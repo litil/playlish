@@ -4,10 +4,13 @@ defaults: &defaults
   working_directory: ~/project
   docker:
     - image: "circleci/node:10.9"
-  branches:
-    only:
-      - master
-      - develop
+
+workflow_filters: &workflow_filters
+  filters:
+    branches:
+      only:
+        - master
+        - develop
 
 jobs:
   build:
@@ -57,3 +60,10 @@ jobs:
 
       # run tests!
       - run: yarn test
+workflows:
+  version: 2
+  build-test-and-deploy:
+    jobs:
+      - build
+      - prettier: *workflow_filters
+      - tests: *workflow_filters
