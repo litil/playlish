@@ -7,84 +7,96 @@ import { addArtistRequest } from '../../../actions/addArtistAction'
 import { createPlaylistRequest } from '../../../actions/createPlaylistAction'
 import { fetchUserRequest } from '../../../actions/fetchUserAction'
 
+import Header from '../../organisms/Header'
+import Title from '../../elements/Title'
+import PageDescription from '../../elements/PageDescription'
+import Button from '../../elements/Button'
+import Input from '../../elements/Input'
+
 import './styles.css';
 
 class CreatePlaylistPage extends Component {
     static propTypes = {
-        /** Spotify user fetchedArtist */
-        fetchedArtist: PropTypes.oneOfType([
-            PropTypes.array,
-            PropTypes.object
-          ]),
-        /** Function performing an API call to add an artist to the playlist */
-        addArtist: PropTypes.func.isRequired,
       /** Function performing an API call to create a playlist into Spotify */
-      createPlaylist: PropTypes.func.isRequired
+      createPlaylist: PropTypes.func.isRequired,
+      /** The Spotify connected user */
+      connectedUser: PropTypes.object
     }
 
     constructor(props) {
         super(props)
         this.state = {
-            artist: 'Welshly Arms',
-            playlistName: 'Playlish1',
-            accessToken: ''
+            playlistName: ''
         }
     }
 
     componentDidMount() {
-        const parsed = qs.parse(this.props.location.hash, { ignoreQueryPrefix: true });
-        const accessToken = parsed.access_token
-        const expiresIn = parsed.expires_in
+        const accessToken = this.props.location.state ?
+            this.props.location.state.accessToken :
+            undefined
 
         this.setState({accessToken: accessToken})
         this.props.fetchUser(accessToken)
-    }
-
-    onChangeArtist = (e) => {
-        this.setState({artist: e.target.value})
     }
 
     onChangePlaylistName = (e) => {
         this.setState({playlistName: e.target.value})
     }
 
-    onClickAddArtist = () => {
-        const { artist, accessToken } = this.state
-        this.props.addArtist(artist, accessToken)
-        this.setState({artist: ''})
-    }
-
     onClickCreatePlaylist = () => {
-        const { accessToken, playlistName } = this.state
+        const { playlistName } = this.state
         const { tracks, connectedUser } = this.props
-
-        console.log('tracks from view', tracks)
+        const accessToken = this.props.location.state ?
+            this.props.location.state.accessToken :
+            undefined
 
         // TODO check artists and playlist name not empty
         this.props.createPlaylist(connectedUser.id, tracks, playlistName, accessToken)
     }
 
+    redirectToHome = () => {
+        // redirect to the homepage
+        this.props.history.push({
+          pathname: '/'
+        })
+    }
+
     render() {
-        const { fetchedArtist, addArtist } = this.props
+        const { snapshotId, isAddingTracks, fetchedArtist, addArtist, connectedUser, isCreatingPlaylist, isFetchingTracks, playlist } = this.props
+
+        const loadingMessage = isFetchingTracks ? 'Fetching corresponding tracks...' :
+            isCreatingPlaylist ? 'Creating the playlist...' :
+            isAddingTracks ? 'Adding tracks to the playlise...' :
+            snapshotId ? 'Your playlist has been successfully created! Check it in Spotify :)' : 'bim'
 
         return <div className="CreatePlaylistPage-container">
-            <h1>Create your playlist</h1>
+            <Header connectedUser={connectedUser} redirectToHome={ this.redirectToHome } />
 
-            <div className="CreatePlaylistPage-search">
-                <input value={this.state.artist} onChange={this.onChangeArtist}/>
-                <button onClick={ this.onClickAddArtist }>Add</button>
-            </div>
+            <div className="CreatePlaylistPage-innerContainer">
 
-            <div className="CreatePlaylistPage-list">
-                { fetchedArtist && fetchedArtist.length > 0 ?
-                    fetchedArtist.map((artist, i) => <div key={`artist-row-${i}`}>{artist.name + ' ' + artist.id}</div>)
-                    : 'No artist selected yet'
-                }
-            </div>
+                <div className="CreatePlaylistPage-playlistName">
+                    <Title text="Create your playlist" />
+                    <PageDescription>
+                        <p>Ready to create your playlist?</p>
+                        <p>You only have to give it a name and we will generate it!</p>
+                    </PageDescription>
 
-            <div className="CreatePlaylistPage-create">
-                <input value={this.state.playlistName} onChange={this.onChangePlaylist}/>
-                <button onClick={this.onClickCreatePlaylist}>Create Playlist</button>
+                    <div className="CreatePlaylistPage-create">
+                        <Input
+                            value={this.state.playlistName}
+                            onChangeFn={this.onChangePlaylistName}
+                            placeholder="Enter a name for your playlist" />
+                        <Button
+                            text="Create"
+                            onClickFn={ this.onClickCreatePlaylist }
+                            styles={{ marginLeft: '32px' }} />
+                    </div>
+
+                    { loadingMessage ?
+                        <span className="CreatePlaylistPage-message">{ loadingMessage }</span>
+                        : ''
+                    }
+                </div>
             </div>
         </div>
     }
@@ -93,25 +105,24 @@ class CreatePlaylistPage extends Component {
 const mapDispatchToProps = dispatch => {
     return ({
         fetchUser: (accessToken) => dispatch(fetchUserRequest(accessToken)),
-        addArtist: (artist, accessToken) => dispatch(addArtistRequest(artist, accessToken)),
         createPlaylist: (userId, tracks, playlistName, accessToken) => dispatch(createPlaylistRequest(userId, tracks, playlistName, accessToken))
     })
 }
 
 const mapStateToProps = state => {
-    const { artistReducer, playlistReducer, userReducer } = state
+    const { playlistReducer, userReducer } = state
 
-    const fetchedArtist = artistReducer ? artistReducer.data : {}
-    const isSearchingArtist = artistReducer ? artistReducer.isWorking : false
     const isFetchingTracks = playlistReducer ? playlistReducer.isFetchingTracks : false
     const isAddingTracks = playlistReducer ? playlistReducer.isAddingTracks : false
     const isCreatingPlaylist = playlistReducer ? playlistReducer.isCreatingTracks : false
     const tracks = playlistReducer ? playlistReducer.tracks : {}
+    const playlist = playlistReducer ? playlistReducer.playlist : {}
 
     const connectedUser = userReducer ? userReducer.user : {}
     const isFetchingUser = userReducer ? userReducer.isFetchingUser : false
+    const snapshotId = playlistReducer ? playlistReducer.snapshotId : {}
 
-    return { fetchedArtist, tracks, connectedUser, isSearchingArtist, isFetchingTracks, isAddingTracks, isCreatingPlaylist }
+    return { snapshotId, playlist, tracks, connectedUser, isFetchingTracks, isAddingTracks, isCreatingPlaylist }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePlaylistPage)

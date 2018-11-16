@@ -36,8 +36,6 @@ function* workerSaga(action) {
         response
     })
 
-    console.log('response', response)
-
   } catch (error) {
       yield put({
           type: actions.GET_ARTIST_TOP_TRACKS_FAILURE,

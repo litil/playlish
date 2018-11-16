@@ -22,7 +22,8 @@ const playlistReducer = (state = initialState, action) => {
         }
         case actionTypes.GET_ARTIST_TOP_TRACKS_SUCCESS: {
             // TODO handle duplicates
-            const artistTracks = action.response.data.tracks
+            // TODO take the min between tracks.length and 5
+            const artistTracks = action.response.data.tracks.slice(0, 5)
             const tracks = state.tracks && state.tracks.length > 0 ?
                 [...state.tracks, ...artistTracks]
                 : artistTracks
@@ -74,10 +75,11 @@ const playlistReducer = (state = initialState, action) => {
             }
         }
         case actionTypes.ADD_TRACKS_PLAYLIST_SUCCESS: {
+            console.log('success', action.response)
             return {
                 ...state,
                 isAddingTracks: false,
-                data: action.response.data,
+                snapshotId: action.response.data.snapshot_id,
                 lastUpdated: action.receivedAt
             }
         }
@@ -85,7 +87,7 @@ const playlistReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isAddingTracks: false,
-                data: undefined,
+                snapshotId: undefined,
                 lastUpdated: action.receivedAt
             }
         }

@@ -24,7 +24,7 @@ class WelcomePage extends Component {
         const scopes = scopesArray.join(' ');
         const clientId = '341cbbaadca743aba2dd3f99302f623f'
         const responseType = 'token'
-        const redirectUri = 'http:%2F%2Flocalhost:3000%2Fcreate'
+        const redirectUri = 'http:%2F%2Flocalhost:3000%2Fsearch'
         const state = '123'     //TODO generate a random string
         window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=${responseType}&redirect_uri=${redirectUri}&state=${state}&scope=${encodeURIComponent(scopes)}`
     }
@@ -44,7 +44,7 @@ class WelcomePage extends Component {
                 </div>
 
                 <button
-                    className="WelcomePage-login" 
+                    className="WelcomePage-login"
                     onClick={this.redirectToSpotifySignin}>Sign in to Spotify</button>
             </div>
         </div>

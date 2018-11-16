@@ -10,9 +10,7 @@ export function* addTracksPlaylistWatcherSaga() {
 // function that makes the api request and returns a Promise for response
 function addTracksPlaylist(playlistId, tracks, accessToken) {
     // curl -i -X POST "https://api.spotify.com/v1/playlists/7oi0w0SLbJ4YyjrOxhZbUv/tracks?uris=spotify%3Atrack%3A4iV5W9uYEdYUVa79Axb7Rh,spotify%3Atrack%3A1301WleyT98MSxVHPZCA6M" -H "Authorization: Bearer {your access token}" -H "Accept: application/json"
-
     const uris = tracks.map(t => t.uri).join(',')
-    console.log('uris', uris)
 
     return axios({
       method: 'post',
