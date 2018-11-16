@@ -1,7 +1,7 @@
-import { takeEvery, call, put } from "redux-saga/effects"
-import * as actions from '../actions/actionTypes.js'
-import axios from "axios"
-import { getArtistTopTracksRequest } from '../actions/addArtistAction'
+import { takeEvery, call, put } from 'redux-saga/effects';
+import * as actions from '../actions/actionTypes.js';
+import axios from 'axios';
+import { getArtistTopTracksRequest } from '../actions/addArtistAction';
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
 export function* addArtistWatcherSaga() {
@@ -15,14 +15,14 @@ function addArtist(artistName, accessToken) {
     baseURL: 'https://api.spotify.com/v1',
     url: '/search',
     headers: {
-       'Authorization': 'Bearer ' + accessToken
+      Authorization: 'Bearer ' + accessToken
     },
     params: {
-        client_id: '341cbbaadca743aba2dd3f99302f623f',
-        q: artistName,
-        type: 'artist',
-        limit: '5',
-        scope: 'user-read-private'
+      client_id: '341cbbaadca743aba2dd3f99302f623f',
+      q: artistName,
+      type: 'artist',
+      limit: '5',
+      scope: 'user-read-private'
     }
   });
 }
@@ -30,24 +30,27 @@ function addArtist(artistName, accessToken) {
 // worker saga: makes the api call when watcher saga sees the action
 function* workerSaga(action) {
   try {
-    const response = yield call(addArtist, action.artistName, action.accessToken);
+    const response = yield call(
+      addArtist,
+      action.artistName,
+      action.accessToken
+    );
 
-    if (response.error) throw response.error
+    if (response.error) throw response.error;
 
     // dispatch a success action to the store with the list of transactions
     yield put({
-        type: actions.ADD_ARTIST_SUCCESS,
-        response
-    })
+      type: actions.ADD_ARTIST_SUCCESS,
+      response
+    });
 
-    const artistsResults = response.data.artists
-    const artist = artistsResults ? artistsResults.items[0] : null
-    yield put(getArtistTopTracksRequest(artist, action.accessToken))
-
+    const artistsResults = response.data.artists;
+    const artist = artistsResults ? artistsResults.items[0] : null;
+    yield put(getArtistTopTracksRequest(artist, action.accessToken));
   } catch (error) {
-      yield put({
-          type: actions.ADD_ARTIST_FAILURE,
-          error
-      })
+    yield put({
+      type: actions.ADD_ARTIST_FAILURE,
+      error
+    });
   }
 }

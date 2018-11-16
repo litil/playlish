@@ -1,6 +1,6 @@
-import { takeEvery, call, put } from "redux-saga/effects"
-import * as actions from '../actions/actionTypes.js'
-import axios from "axios"
+import { takeEvery, call, put } from 'redux-saga/effects';
+import * as actions from '../actions/actionTypes.js';
+import axios from 'axios';
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
 export function* fetchArtistTracksWatcherSaga() {
@@ -14,10 +14,10 @@ function fetchArtistTracks(artist, accessToken) {
     baseURL: 'https://api.spotify.com/v1',
     url: `/artists/${artist.id}/top-tracks`,
     headers: {
-       'Authorization': 'Bearer ' + accessToken
+      Authorization: 'Bearer ' + accessToken
     },
     params: {
-        market: 'from_token'
+      market: 'from_token'
     }
   });
 }
@@ -25,21 +25,20 @@ function fetchArtistTracks(artist, accessToken) {
 // worker saga: makes the api call when watcher saga sees the action
 function* workerSaga(action) {
   try {
-      const { artist, accessToken } = action
+    const { artist, accessToken } = action;
     const response = yield call(fetchArtistTracks, artist, accessToken);
 
-    if (response.error) throw response.error
+    if (response.error) throw response.error;
 
     // dispatch a success action to the store with the list of transactions
     yield put({
-        type: actions.GET_ARTIST_TOP_TRACKS_SUCCESS,
-        response
-    })
-
+      type: actions.GET_ARTIST_TOP_TRACKS_SUCCESS,
+      response
+    });
   } catch (error) {
-      yield put({
-          type: actions.GET_ARTIST_TOP_TRACKS_FAILURE,
-          error
-      })
+    yield put({
+      type: actions.GET_ARTIST_TOP_TRACKS_FAILURE,
+      error
+    });
   }
 }

@@ -1,47 +1,47 @@
 .ArtistRow-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 50%;
-    height: 96px;
-    min-height: 96px;
-    margin: 16px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 50%;
+  height: 96px;
+  min-height: 96px;
+  margin: 16px 0px;
 }
 
-.ArtistRow-container img{
-    width: 96px;
-    height: 96px;
-    margin-right: 32px;
+.ArtistRow-container img {
+  width: 96px;
+  height: 96px;
+  margin-right: 32px;
 }
 
 .ArtistRow-nameContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .ArtistRow-nameContainer span {
-    font-size: 2em;
-    letter-spacing: 0.1em;
+  font-size: 2em;
+  letter-spacing: 0.1em;
 }
 
 .ArtistRow-genreContainer {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .ArtistRow-genre {
-    background-color: #ffffff;
-    color: #181818;
-    -moz-border-radius: 20px;
-	-webkit-border-radius: 20px;
-	border-radius: 20px;
-    display: inline-block;
-    font-size: 0.8em;
-    letter-spacing: 0.1em;
-	font-weight: bold;
-    padding: 4px 16px;
-	text-decoration: none;
-    border: none;
-    margin-right: 8px;
+  background-color: #ffffff;
+  color: #181818;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  display: inline-block;
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  padding: 4px 16px;
+  text-decoration: none;
+  border: none;
+  margin-right: 8px;
 }
