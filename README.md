@@ -1,4 +1,38 @@
+# Playlish
+
+The fastest way to create Spotify playlists from a list of artists.
+
+## Where does the idea come from
+I am huge fan of music festivals. I attend at least 2 festivals a year, up to 5, mostly all during summer. I think what I love the most is listening to ALL the lineup to discover new songs so that I can boast to my friends to know this faaaaaaamous group (let's be honest :) ).
+
+What I was doing for the past few years was searching for all artists on Spotify, then adding their 3 to 5 most famous songs (also known as top tracks in Spotify) to a common playlist. Then, I was able to listened to those curated playlists before each festivals.
+
+I was tired of doing so, so I created a quick React app which creates a playlist with the first 5 top tracks of each artists I looked for.
+
+There's place for tons of improvements but that's still a huge time saver for me!
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## TODO
+
+As I said, there's place for tons of improvements.
+
+### Technical todos
+
+- refactor main pages to include the header by default
+- better handle loader and loading messages
+- display a count of tracks with a warning message when above 100
+- add the new artist on top of the list
+- implement remove artist from playlist
+- implement the playlists stats page
+- add a link of this page into the header
+- redirect the user to the playlists stats page once the playlist has been created
+- send an email to myself for each created playlist or any other metrics tool
+
+### New features
+
+- add a view to list all already created playlists with statistics: number of tracks, genres, total duration...
+- enter a festival lineup url and let Playlish creates the associated playlist
 
 ## Available Scripts
 
