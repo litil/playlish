@@ -2,7 +2,11 @@
 
 The fastest way to create Spotify playlists from a list of artists.
 
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![CircleCI](https://circleci.com/gh/litil/playlish/tree/master.svg?style=svg)](https://circleci.com/gh/litil/playlish/tree/master)
+
 ## Where does the idea come from
+
 I am huge fan of music festivals. I attend at least 2 festivals a year, up to 5, mostly all during summer. I think what I love the most is listening to ALL the lineup to discover new songs so that I can boast to my friends to know this faaaaaaamous group (let's be honest :) ).
 
 What I was doing for the past few years was searching for all artists on Spotify, then adding their 3 to 5 most famous songs (also known as top tracks in Spotify) to a common playlist. Then, I was able to listened to those curated playlists before each festivals.
