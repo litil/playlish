@@ -25,7 +25,7 @@ const artistReducer = (state = initialState, action) => {
         artistsResults &&
         !state.selectedArtists.find(o => o.id === artist.id)
       ) {
-        state.selectedArtists.push(artist);
+        state.selectedArtists.unshift(artist);
       }
 
       return {
