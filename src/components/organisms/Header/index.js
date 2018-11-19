@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import logo from '../../../playlish_logo.svg';
+import HeaderUser from '../../molecules/HeaderUser';
+import HeaderMenu from '../../molecules/HeaderMenu';
+import HeaderSocial from '../../molecules/HeaderSocial';
 
+import logo from '../../../playlish_logo.svg';
 import './styles.css';
 
 export default class Header extends Component {
@@ -14,25 +17,23 @@ export default class Header extends Component {
   };
 
   render() {
+    // @see https://simpleicons.org for brand icons
     const { connectedUser, redirectToHome } = this.props;
 
     return (
       <div className="Header-container">
-        <div className="Header-brand" onClick={redirectToHome}>
-          <img src={logo} alt="logo" />
-          <h2>Playlish</h2>
+        <div className="Header-leftContainer">
+          <div className="Header-brand" onClick={redirectToHome}>
+            <img src={logo} alt="logo" />
+            <h2>Playlish</h2>
+          </div>
         </div>
 
-        {connectedUser ? (
-          <div className="Header-user">
-            <span className="Header-connected">connected as&nbsp;</span>
-            <span className="Header-username">
-              {connectedUser.display_name}
-            </span>
-          </div>
-        ) : (
-          ''
-        )}
+        <div className="Header-rightContainer">
+          <HeaderMenu />
+          {connectedUser ? <HeaderUser connectedUser={connectedUser} /> : ''}
+          <HeaderSocial />
+        </div>
       </div>
     );
   }

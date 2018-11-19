@@ -43,6 +43,7 @@
     "eslint-plugin-prettier": "^3.0.0",
     "husky": "^1.1.4",
     "lint-staged": "^8.0.4",
-    "prettier": "^1.15.2"
+    "prettier": "^1.15.2",
+    "react-tooltip": "^3.9.0"
   }
 }

@@ -9,6 +9,20 @@
   padding: 8px;
 }
 
+.Header-rightContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.Header-leftContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .Header-brand {
   display: flex;
   flex-direction: row;
@@ -31,25 +45,4 @@
   margin-bottom: 0;
   font-weight: bold;
   letter-spacing: 0.1em;
-}
-
-.Header-user {
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  font-size: 1em;
-  margin-right: 24px;
-}
-
-.Header-user span {
-  letter-spacing: 0.1em;
-}
-
-.Header-connected {
-  font-size: 0.8em;
-}
-
-.Header-username {
-  font-size: 1em;
-  font-weight: bold;
 }
