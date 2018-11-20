@@ -23,14 +23,12 @@ As I said, there's place for tons of improvements.
 
 ### Technical todos
 
-- refactor main pages to include the header by default
 - better handle loader and loading messages
-- display a count of tracks with a warning message when above 100
-- add the new artist on top of the list
-- implement remove artist from playlist
+- change favicon
 - implement the playlists stats page
 - add a link of this page into the header
 - redirect the user to the playlists stats page once the playlist has been created
+- improve UI following https://refactoringui.com/
 - send an email to myself for each created playlist or any other metrics tool
 
 ### New features
@@ -42,7 +40,11 @@ As I said, there's place for tons of improvements.
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm install` or `yarn install`
+
+Installs all dependencies. You must run this before running anything else.
+
+### `npm start` or `yarn start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -50,12 +52,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
+### `npm test` or `yarn test`
 
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### `npm run build` or `yarn build`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -65,7 +67,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### `npm run eject` or `yarn run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 

@@ -11,6 +11,17 @@ const initialState = {
  */
 const artistReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.REMOVE_ARTIST: {
+      const artistToRemove = action.artist;
+      const selectedArtists = state.selectedArtists
+        ? state.selectedArtists.filter(a => a.id !== artistToRemove.id)
+        : initialState.selectedArtists;
+      return {
+        ...state,
+        selectedArtists,
+        lastUpdated: action.receivedAt
+      };
+    }
     case actionTypes.ADD_ARTIST_REQUEST: {
       return {
         ...state,
@@ -31,7 +42,7 @@ const artistReducer = (state = initialState, action) => {
       return {
         ...state,
         isWorking: false,
-        data: state.selectedArtists,
+        selectedArtists: state.selectedArtists,
         lastUpdated: action.receivedAt
       };
     }
@@ -39,7 +50,7 @@ const artistReducer = (state = initialState, action) => {
       return {
         ...state,
         isWorking: false,
-        data: undefined,
+        selectedArtists: undefined,
         lastUpdated: action.receivedAt
       };
     }

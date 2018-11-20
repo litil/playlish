@@ -1,10 +1,27 @@
 .ArtistRow-container {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   height: 64px;
   min-height: 80px;
   margin: 0px 0px;
+}
+
+.ArtistRow-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ArtistRow-delete {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.2em;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .ArtistRow-container img {

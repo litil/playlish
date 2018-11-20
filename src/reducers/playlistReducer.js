@@ -14,6 +14,16 @@ const initialState = {
  */
 const playlistReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.REMOVE_ARTIST: {
+      const artistToRemove = action.artist;
+      const tracks = state.tracks
+        ? state.tracks.filter(t => t.artists[0].id !== artistToRemove.id)
+        : initialState.tracks;
+      return {
+        ...state,
+        tracks
+      };
+    }
     case actionTypes.GET_ARTIST_TOP_TRACKS_REQUEST: {
       return {
         ...state,
@@ -76,7 +86,6 @@ const playlistReducer = (state = initialState, action) => {
       };
     }
     case actionTypes.ADD_TRACKS_PLAYLIST_SUCCESS: {
-      console.log('success', action.response);
       return {
         ...state,
         isAddingTracks: false,
