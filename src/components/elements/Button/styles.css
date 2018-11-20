@@ -21,6 +21,9 @@ button:active {
   position: relative;
   top: 1px;
 }
+button:disabled {
+  background-color: #cccccc;
+}
 
 .button-big {
   padding: 8px 100px;

@@ -70,6 +70,8 @@ class SearchArtistsPage extends Component {
 
   render() {
     const { artists, connectedUser, isSearchingArtist } = this.props;
+    const tracksCount = artists ? artists.length * 5 : 0;
+    const maxTracks = 20;
 
     return (
       <div className="SearchArtistsPage-container">
@@ -110,15 +112,22 @@ class SearchArtistsPage extends Component {
 
             {isSearchingArtist ? 'Searching for artists...' : ''}
 
-            {artists && artists.length > 0 ? (
-              <Button
-                text="Ready to generate the playlist?"
-                onClickFn={this.onClickGeneratePlaylist}
-                size="big"
-                styles={{ marginBottom: '96px', marginTop: '32px' }}
-              />
-            ) : (
-              ''
+            {tracksCount >= maxTracks && (
+              <div className="SearchArtistsPage-submitContainer">
+                <span>
+                  You cannot create a playlist with more than 100 songs
+                </span>
+              </div>
+            )}
+            {tracksCount > 0 && tracksCount < maxTracks && (
+              <div className="SearchArtistsPage-submitContainer">
+                <Button
+                  text="Ready to generate the playlist?"
+                  onClickFn={this.onClickGeneratePlaylist}
+                  size="big"
+                  styles={{ marginBottom: '96px', marginTop: '32px' }}
+                />
+              </div>
             )}
           </div>
         </div>
