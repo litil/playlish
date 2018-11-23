@@ -1,0 +1,11 @@
+.SocialIcon-container {
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.SocialIcon-container svg path {
+  fill: rgba(241, 241, 241, 0.5);
+}
+.SocialIcon-container:hover svg path {
+  fill: #1ed760;
+}

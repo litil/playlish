@@ -7,7 +7,6 @@ import { addArtistRequest } from '../../../actions/addArtistAction';
 import { removeArtistRequest } from '../../../actions/removeArtistAction';
 import { fetchUserRequest } from '../../../actions/fetchUserAction';
 
-import Header from '../../organisms/Header';
 import ArtistList from '../../organisms/ArtistList';
 import Title from '../../elements/Title';
 import PageDescription from '../../elements/PageDescription';
@@ -82,11 +81,6 @@ class SearchArtistsPage extends Component {
 
     return (
       <div className="SearchArtistsPage-container">
-        <Header
-          connectedUser={connectedUser}
-          redirectToHome={this.redirectToHome}
-        />
-
         <div className="SearchArtistsPage-innerContainer">
           <div className="SearchArtistsPage-right">
             <Title text="Search for artists" />

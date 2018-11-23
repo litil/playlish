@@ -12,7 +12,7 @@ import Input from '../../elements/Input';
 
 import './styles.css';
 
-class CreatePlaylistPage extends Component {
+class PlaylistDetailPage extends Component {
   static propTypes = {
     /** Function performing an API call to create a playlist into Spotify */
     createPlaylist: PropTypes.func.isRequired,
@@ -64,58 +64,7 @@ class CreatePlaylistPage extends Component {
   };
 
   render() {
-    const {
-      snapshotId,
-      isAddingTracks,
-      connectedUser,
-      isCreatingPlaylist,
-      isFetchingTracks
-    } = this.props;
-
-    const loadingMessage = isFetchingTracks
-      ? 'Fetching corresponding tracks...'
-      : isCreatingPlaylist
-      ? 'Creating the playlist...'
-      : isAddingTracks
-      ? 'Adding tracks to the playlise...'
-      : snapshotId
-      ? 'Your playlist has been successfully created! Check it in Spotify :)'
-      : '';
-
-    return (
-      <div className="CreatePlaylistPage-container">
-        <div className="CreatePlaylistPage-innerContainer">
-          <div className="CreatePlaylistPage-playlistName">
-            <Title text="Create your playlist" />
-            <PageDescription>
-              <p>Ready to create your playlist?</p>
-              <p>You only have to give it a name and we will generate it!</p>
-            </PageDescription>
-
-            <div className="CreatePlaylistPage-create">
-              <Input
-                value={this.state.playlistName}
-                onChangeFn={this.onChangePlaylistName}
-                placeholder="Enter a name for your playlist"
-              />
-              <Button
-                text="Create"
-                onClickFn={this.onClickCreatePlaylist}
-                styles={{ marginLeft: '32px' }}
-              />
-            </div>
-
-            {loadingMessage ? (
-              <span className="CreatePlaylistPage-message">
-                {loadingMessage}
-              </span>
-            ) : (
-              ''
-            )}
-          </div>
-        </div>
-      </div>
-    );
+    return <div>Playlist detail</div>;
   }
 }
 
@@ -159,4 +108,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CreatePlaylistPage);
+)(PlaylistDetailPage);

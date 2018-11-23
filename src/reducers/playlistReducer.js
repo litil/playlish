@@ -1,6 +1,9 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
+  isFetchingPlaylists: false,
+  playlists: null,
+
   isFetchingTracks: false,
   isAddingTracks: false,
   tracks: null,
@@ -14,6 +17,32 @@ const initialState = {
  */
 const playlistReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.LIST_PLAYLISTS_REQUEST: {
+      return {
+        ...state,
+        isFetchingPlaylists: true
+      };
+    }
+    case actionTypes.LIST_PLAYLISTS_SUCCESS: {
+      const playlists = action.response.data
+        ? action.response.data.items
+        : initialState.playlists;
+      return {
+        ...state,
+        isFetchingPlaylists: false,
+        playlists,
+        lastUpdated: action.receivedAt
+      };
+    }
+    case actionTypes.LIST_PLAYLISTS_FAILURE: {
+      return {
+        ...state,
+        isFetchingPlaylists: false,
+        playlists: initialState.playlists,
+        lastUpdated: action.receivedAt
+      };
+    }
+
     case actionTypes.REMOVE_ARTIST: {
       const artistToRemove = action.artist;
       const tracks = state.tracks
