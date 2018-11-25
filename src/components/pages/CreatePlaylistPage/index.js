@@ -67,7 +67,6 @@ class CreatePlaylistPage extends Component {
     const {
       snapshotId,
       isAddingTracks,
-      connectedUser,
       isCreatingPlaylist,
       isFetchingTracks
     } = this.props;

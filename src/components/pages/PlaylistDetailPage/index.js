@@ -5,11 +5,6 @@ import PropTypes from 'prop-types';
 import { createPlaylistRequest } from '../../../actions/createPlaylistAction';
 import { fetchUserRequest } from '../../../actions/fetchUserAction';
 
-import Title from '../../elements/Title';
-import PageDescription from '../../elements/PageDescription';
-import Button from '../../elements/Button';
-import Input from '../../elements/Input';
-
 import './styles.css';
 
 class PlaylistDetailPage extends Component {

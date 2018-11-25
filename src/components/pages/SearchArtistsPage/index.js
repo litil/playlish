@@ -75,7 +75,7 @@ class SearchArtistsPage extends Component {
   };
 
   render() {
-    const { artists, connectedUser, isSearchingArtist } = this.props;
+    const { artists, isSearchingArtist } = this.props;
     const tracksCount = artists ? artists.length * 5 : 0;
     const maxTracks = 100;
 

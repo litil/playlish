@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import logo from '../../../playlish_logo.svg';
 import './styles.css';
 
-export default class MenuHeader extends Component {
+class MenuHeader extends Component {
   redirectToHome = () => {
     // redirect to the homepage
     this.props.history.push({
@@ -20,3 +21,5 @@ export default class MenuHeader extends Component {
     );
   }
 }
+
+export default withRouter(MenuHeader);

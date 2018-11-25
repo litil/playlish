@@ -11,8 +11,6 @@ import './styles.css';
 
 class CallbackPage extends Component {
   static propTypes = {
-    /** Function performing an API call to create a playlist into Spotify */
-    createPlaylist: PropTypes.func.isRequired,
     /** The Spotify connected user */
     connectedUser: PropTypes.object
   };
@@ -37,7 +35,6 @@ class CallbackPage extends Component {
   redirectToPlaylists = loginFn => {
     // update the Auth Context
     const user = this.props.connectedUser;
-    console.log('Before updating context', user);
     loginFn(user, this.state.accessToken);
 
     // redirect to the list of playlists

@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
+import React from 'react';
+import { Route } from 'react-router-dom';
 
 import Menu from '../../organisms/Menu';
-import RightSidebar from '../../organisms/RightSidebar';
 
 import './styles.css';
 

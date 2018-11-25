@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Button from '../../elements/Button';
@@ -12,12 +13,17 @@ import { AuthConsumer } from '../../../contexts/AuthContext';
 
 import './styles.css';
 
-export default class Menu extends Component {
+class Menu extends Component {
   static propTypes = {
     /** Spotify connected user */
-    connectedUser: PropTypes.object,
-    /** Function to redirect the user to the homepage */
-    redirectToHome: PropTypes.func.isRequired
+    connectedUser: PropTypes.object
+  };
+
+  redirectToHome = () => {
+    // redirect to the homepage
+    this.props.history.push({
+      pathname: '/'
+    });
   };
 
   render() {
@@ -51,3 +57,5 @@ export default class Menu extends Component {
     );
   }
 }
+
+export default withRouter(Menu);

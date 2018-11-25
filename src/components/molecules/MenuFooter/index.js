@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { FaCoffee } from 'react-icons/fa';
-
-import SocialIcon from '../../elements/SocialIcon';
 
 import './styles.css';
 

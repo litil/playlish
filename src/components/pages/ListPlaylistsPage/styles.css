@@ -6,25 +6,18 @@
   height: 100%;
 }
 
-/* @see http://jsfiddle.net/6k5trvr4/9/ */
-.ListPlaylistsPage-imgContainer {
-  overflow: hidden;
-  position: relative;
-}
-
-.ListPlaylistsPage-innerImgContainer {
-  display: block;
-  height: 400px;
-  line-height: 400px;
-  overflow: hidden;
-}
-
-.ListPlaylistsPage-innerImgContainer img {
-  position: relative;
-  margin: -50% auto; /* virtualy height needed turn don to zero */
+.ListPlaylistsPage-statsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
   width: 100%;
-  height: auto;
-  vertical-align: middle;
-  -webkit-mask-image: linear-gradient(to top, transparent 25%, black 90%);
-  mask-image: linear-gradient(to top, transparent 25%, black 90%);
+  margin-left: 96px;
+  border-bottom: 1px solid rgba(170, 170, 170, 0.2);
+  padding-bottom: 8px;
+}
+
+.ListPlaylistsPage-statsContainer span {
+  margin-right: 16px;
+  font-size: 1em;
+  letter-spacing: 0.1em;
 }
