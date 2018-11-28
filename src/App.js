@@ -25,14 +25,14 @@ class App extends Component {
                 <Route exact path="/callback" component={CallbackPage} />
                 <DefaultLayout
                   exact
-                  path="/playlists/list"
+                  path="/playlists/"
                   component={ListPlaylistsPage}
                   connectedUser={user}
                   accessToken={spotifyApiToken}
                 />
                 <DefaultLayout
                   exact
-                  path="/playlists/detail"
+                  path="/playlists/:id"
                   component={PlaylistDetailPage}
                   connectedUser={user}
                   accessToken={spotifyApiToken}

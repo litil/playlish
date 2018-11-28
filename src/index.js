@@ -22,10 +22,8 @@ const sagaMiddleware = createSagaMiddleware();
 // create a redux store with our reducer above and middleware
 let store = createStore(
   rootReducer,
-  compose(
-    applyMiddleware(sagaMiddleware),
-    reduxDevTools
-  )
+  compose(applyMiddleware(sagaMiddleware) /*,
+    reduxDevTools*/)
 );
 
 // run the saga

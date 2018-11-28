@@ -5,10 +5,12 @@
   align-items: flex-start;
   width: 224px;
   margin: 0px 0px 56px 56px;
+  cursor: pointer;
 }
 
 .PlaylistItem-container-last {
   margin-right: 56px;
+  cursor: pointer;
 }
 
 .PlaylistItem-container img {

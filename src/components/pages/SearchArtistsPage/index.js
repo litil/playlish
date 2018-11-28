@@ -70,7 +70,6 @@ class SearchArtistsPage extends Component {
 
   onDeleteArtist = artist => {
     const { accessToken } = this.state;
-    console.log('onDeleteArtist', artist);
     this.props.removeArtist(artist, accessToken);
   };
 

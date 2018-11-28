@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import './styles.css';
 
-export default class PlaylistItem extends Component {
+class PlaylistItem extends Component {
   // {
   //   "collaborative": true,
   //   "external_urls": {
@@ -49,6 +50,17 @@ export default class PlaylistItem extends Component {
   //   "uri": "spotify:user:11178545817:playlist:3mQAI4FzVuEdHmkpIuHXk9"
   // }
 
+  redirectToPlaylistDetail = () => {
+    const { playlist } = this.props;
+
+    if (playlist && playlist.id) {
+      // redirect to the playlist detail
+      this.props.history.push({
+        pathname: `/playlists/${playlist.id}`
+      });
+    }
+  };
+
   render() {
     const { playlist, last } = this.props;
     const className = last
@@ -69,7 +81,7 @@ export default class PlaylistItem extends Component {
       );
 
     return (
-      <div className={className}>
+      <div className={className} onClick={this.redirectToPlaylistDetail}>
         {playlistImg}
         <div className="PlaylistItem-info">
           <h3>{playlist.name}</h3>
@@ -79,3 +91,5 @@ export default class PlaylistItem extends Component {
     );
   }
 }
+
+export default withRouter(PlaylistItem);

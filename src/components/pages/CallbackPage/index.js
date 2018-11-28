@@ -39,7 +39,7 @@ class CallbackPage extends Component {
 
     // redirect to the list of playlists
     this.props.history.push({
-      pathname: '/playlists/list'
+      pathname: '/playlists'
     });
   };
 

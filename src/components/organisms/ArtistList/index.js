@@ -16,8 +16,6 @@ export default class ArtistList extends Component {
   render() {
     const { artists } = this.props;
 
-    console.log('props', this.props);
-
     return (
       <div className="ArtistList-container">
         {artists && artists.length > 0

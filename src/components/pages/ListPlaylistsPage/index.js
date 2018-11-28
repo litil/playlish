@@ -32,9 +32,7 @@ class ListPlaylistsPage extends Component {
     const { isFetchingPlaylists, playlists } = this.props;
 
     if (playlists && playlists.length > 1)
-      console.log(JSON.stringify(playlists[0]));
-
-    if (isFetchingPlaylists) return 'Fetching playlists, please';
+      if (isFetchingPlaylists) return 'Fetching playlists, please';
     if (!playlists || playlists.length === 0)
       return 'No playlists found, you work too much!';
 

@@ -2,101 +2,81 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { createPlaylistRequest } from '../../../actions/createPlaylistAction';
-import { fetchUserRequest } from '../../../actions/fetchUserAction';
+import { fetchPlaylistDetailRequest } from '../../../actions/fetchPlaylistDetailAction';
 
+import PageCover from '../../molecules/PageCover';
+import PlaylistDetail from '../../organisms/PlaylistDetail';
+
+import cover from '../../../assets/cover_1.jpg';
 import './styles.css';
 
 class PlaylistDetailPage extends Component {
   static propTypes = {
-    /** Function performing an API call to create a playlist into Spotify */
-    createPlaylist: PropTypes.func.isRequired,
-    /** The Spotify connected user */
-    connectedUser: PropTypes.object
+    /** Playlists detail object. Access the correct playlist detail by playlist id. */
+    playlistsDetail: PropTypes.object.isRequired,
+    /** Function performing an API call to fetch the playlist detail from Spotify */
+    fetchPlaylistDetail: PropTypes.func.isRequired
   };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      playlistName: ''
-    };
-  }
 
   componentDidMount() {
-    const accessToken = this.props.location.state
-      ? this.props.location.state.accessToken
-      : undefined;
+    // accessing context data within componentDidMount is not possible
+    // solution: pass it from above, as props
+    // @see Dan Abramov's answer https://github.com/facebook/react/issues/12397
+    const { accessToken } = this.props;
+    const playlistId = this.props.match.params.id;
 
-    this.setState({ accessToken: accessToken });
-    this.props.fetchUser(accessToken);
+    if (accessToken && playlistId) {
+      this.props.fetchPlaylistDetail(playlistId, accessToken);
+    }
   }
 
-  onChangePlaylistName = e => {
-    this.setState({ playlistName: e.target.value });
-  };
-
-  onClickCreatePlaylist = () => {
-    const { playlistName } = this.state;
-    const { tracks, connectedUser } = this.props;
-    const accessToken = this.props.location.state
-      ? this.props.location.state.accessToken
-      : undefined;
-
-    // TODO check artists and playlist name not empty
-    this.props.createPlaylist(
-      connectedUser.id,
-      tracks,
-      playlistName,
-      accessToken
-    );
-  };
-
-  redirectToHome = () => {
-    // redirect to the homepage
-    this.props.history.push({
-      pathname: '/'
-    });
-  };
-
   render() {
-    return <div>Playlist detail</div>;
+    const { playlistsDetail } = this.props;
+    const playlistId = this.props.match.params.id;
+    if (!playlistsDetail || !playlistId || !playlistsDetail[playlistId])
+      return 'Playlist not found, sorry :(';
+
+    const playlist = playlistsDetail[playlistId];
+
+    return (
+      <div className="PlaylistDetailPage-container">
+        <PageCover
+          alt={`Playlist: ${playlist.name}`}
+          src={cover}
+          title={playlist.name}
+        />
+
+        <div className="PlaylistDetailPage-statsContainer">
+          <span>{`${playlist.followers.total} followers`}</span>
+          <span>{`${playlist.tracks.total} tracks`}</span>
+        </div>
+
+        <PlaylistDetail playlist={playlist} />
+      </div>
+    );
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchUser: accessToken => dispatch(fetchUserRequest(accessToken)),
-    createPlaylist: (userId, tracks, playlistName, accessToken) =>
-      dispatch(createPlaylistRequest(userId, tracks, playlistName, accessToken))
+    fetchPlaylistDetail: (playlistId, accessToken) =>
+      dispatch(fetchPlaylistDetailRequest(playlistId, accessToken))
   };
 };
 
 const mapStateToProps = state => {
-  const { playlistReducer, userReducer } = state;
+  const { playlistReducer } = state;
 
-  const isFetchingTracks = playlistReducer
-    ? playlistReducer.isFetchingTracks
+  const isFetchingPlaylistDetail = playlistReducer
+    ? playlistReducer.isFetchingPlaylistDetail
     : false;
-  const isAddingTracks = playlistReducer
-    ? playlistReducer.isAddingTracks
-    : false;
-  const isCreatingPlaylist = playlistReducer
-    ? playlistReducer.isCreatingTracks
-    : false;
-  const tracks = playlistReducer ? playlistReducer.tracks : {};
-  const playlist = playlistReducer ? playlistReducer.playlist : {};
-
-  const connectedUser = userReducer ? userReducer.user : {};
-  const snapshotId = playlistReducer ? playlistReducer.snapshotId : {};
+  const playlistsDetail = playlistReducer
+    ? playlistReducer.playlistsDetail
+    : {};
 
   return {
-    snapshotId,
-    playlist,
-    tracks,
-    connectedUser,
-    isFetchingTracks,
-    isAddingTracks,
-    isCreatingPlaylist
+    isFetchingPlaylistDetail,
+    playlistsDetail
   };
 };
 

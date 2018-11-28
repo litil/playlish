@@ -7,10 +7,10 @@ import MenuLink from '../MenuLink';
 import './styles.css';
 
 class MenuNavigationClass extends Component {
-  redirectTo = () => {
+  redirectTo = pathname => {
     // redirect to the homepage
     this.props.history.push({
-      pathname: '/'
+      pathname
     });
   };
 
@@ -20,19 +20,19 @@ class MenuNavigationClass extends Component {
         <MenuLink
           text="My Playlishs"
           icon={<FaMusic />}
-          redirectTo={this.redirectTo}
+          redirectTo={() => this.redirectTo('/playlists')}
           styles={{ marginBottom: '32px' }}
         />
         <MenuLink
           text="Create Playlishs"
           icon={<FaPlus />}
-          redirectTo={this.redirectTo}
+          redirectTo={() => this.redirectTo('/playlists')}
           styles={{ marginBottom: '32px' }}
         />
         <MenuLink
           text="Analyze Playlishs"
           icon={<FaChartBar />}
-          redirectTo={this.redirectTo}
+          redirectTo={() => this.redirectTo('/playlists')}
         />
       </div>
     );

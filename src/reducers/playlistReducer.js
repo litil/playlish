@@ -3,6 +3,8 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   isFetchingPlaylists: false,
   playlists: null,
+  isFetchingPlaylistDetail: false,
+  playlistsDetail: {},
 
   isFetchingTracks: false,
   isAddingTracks: false,
@@ -39,6 +41,38 @@ const playlistReducer = (state = initialState, action) => {
         ...state,
         isFetchingPlaylists: false,
         playlists: initialState.playlists,
+        lastUpdated: action.receivedAt
+      };
+    }
+
+    case actionTypes.FETCH_PLAYLIST_DETAIL_REQUEST: {
+      return {
+        ...state,
+        isFetchingPlaylistDetail: true
+      };
+    }
+    case actionTypes.FETCH_PLAYLIST_DETAIL_SUCCESS: {
+      const detail = action.response.data
+        ? action.response.data
+        : initialState.playlistsDetail;
+
+      // inserting the detailed playlist into the array
+      const playlistsDetail = Object.assign(state.playlistsDetail, {
+        [detail.id]: detail
+      });
+
+      return {
+        ...state,
+        isFetchingPlaylistDetail: false,
+        playlistsDetail,
+        lastUpdated: action.receivedAt
+      };
+    }
+    case actionTypes.FETCH_PLAYLIST_DETAIL_FAILURE: {
+      return {
+        ...state,
+        isFetchingPlaylistDetail: false,
+        playlistsDetail: initialState.playlistsDetail,
         lastUpdated: action.receivedAt
       };
     }
