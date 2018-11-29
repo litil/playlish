@@ -43,6 +43,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "date-fns": "^2.0.0-alpha.25",
     "eslint-plugin-prettier": "^3.0.0",
     "husky": "^1.1.4",
     "lint-staged": "^8.0.4",

@@ -21,24 +21,30 @@ function fetchPlaylistTracksSaga(url, accessToken) {
 // worker saga: makes the api call when watcher saga sees the action
 function* workerSaga(action) {
   try {
-    const { url, accessToken } = action;
-    const response = yield call(fetchPlaylistTracksSaga, url, accessToken);
+    const { url, accessToken, playlistId } = action;
+    const response = yield call(
+      fetchPlaylistTracksSaga,
+      url,
+      accessToken,
+      playlistId
+    );
 
     if (response.error) throw response.error;
 
     // dispatch a success action to the store with the list of tracks
     yield put({
       type: actions.FETCH_PLAYLIST_TRACKS_SUCCESS,
-      response
+      response,
+      playlistId
     });
 
-    console.log('in saga', response);
     if (response.data.next) {
       // dispatch a request to fetch the next tracks
       yield put({
         type: actions.FETCH_PLAYLIST_TRACKS_REQUEST,
         url: response.data.next,
-        accessToken
+        accessToken,
+        playlistId
       });
     }
   } catch (error) {

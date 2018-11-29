@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { FaFile, FaMusic, FaVolumeUp } from 'react-icons/fa';
 
 import { listPlaylistsRequest } from '../../../actions/listPlaylistsAction';
 import cover from '../../../assets/cover_1.jpg';
 
 import PlaylistsList from '../../organisms/PlaylistsList';
 import PageCover from '../../molecules/PageCover';
+import PlaylistStatItem from '../../molecules/PlaylistStatItem';
 
 import './styles.css';
 
@@ -50,8 +52,16 @@ class ListPlaylistsPage extends Component {
         />
 
         <div className="ListPlaylistsPage-statsContainer">
-          <span>{`${totalPlaylists} playlists`}</span>
-          <span>{`${totalTracks} tracks`}</span>
+          <PlaylistStatItem
+            icon={<FaVolumeUp />}
+            value={totalPlaylists}
+            text="Playlists"
+          />
+          <PlaylistStatItem
+            icon={<FaMusic />}
+            value={totalTracks}
+            text="Tracks"
+          />
         </div>
 
         <PlaylistsList playlists={playlists} />

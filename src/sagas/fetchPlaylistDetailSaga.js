@@ -34,15 +34,16 @@ function* workerSaga(action) {
     // dispatch a success action to the store with the list of playlists
     yield put({
       type: actions.FETCH_PLAYLIST_DETAIL_SUCCESS,
-      response
+      response,
+      playlistId
     });
 
-    console.log('in saga detail', response);
     if (response.data.tracks.next) {
       // dispatch a request to fetch the next tracks
       yield put({
         type: actions.FETCH_PLAYLIST_TRACKS_REQUEST,
         url: response.data.tracks.next,
+        playlistId,
         accessToken
       });
     }

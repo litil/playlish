@@ -29,11 +29,11 @@ class MenuNavigationClass extends Component {
           redirectTo={() => this.redirectTo('/playlists')}
           styles={{ marginBottom: '32px' }}
         />
-        <MenuLink
+        {/* <MenuLink
           text="Analyze Playlishs"
           icon={<FaChartBar />}
           redirectTo={() => this.redirectTo('/playlists')}
-        />
+        /> */}
       </div>
     );
   }

@@ -9,11 +9,11 @@ const initialState = {
  * This method handles the playlists' tracks actions. It returns an object which will
  * be set in the data entry of the reducer.
  */
-const playlistReducer = (state = initialState, action) => {
+const playlistTracksReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_PLAYLIST_DETAIL_SUCCESS: {
       const detail = action.response.data;
-      const tracks = detail ? [detail.tracks] : [];
+      const tracks = detail ? detail.tracks.items : [];
 
       // inserting the tracks into into the object
       const playlistsTracks = Object.assign(state.playlistsTracks, {
@@ -36,17 +36,18 @@ const playlistReducer = (state = initialState, action) => {
     case actionTypes.FETCH_PLAYLIST_TRACKS_SUCCESS: {
       const tracks = action.response.data;
       const existingTracks = state.playlistsTracks;
+      const playlistId = action.playlistId;
+      const newTracks = existingTracks[playlistId]
+        ? existingTracks[playlistId].concat(tracks.items)
+        : existingTracks[playlistId];
+      const newPlaylistsTracks = Object.assign(existingTracks, {
+        [playlistId]: newTracks
+      });
 
-      // comment choper la playlist ID
-
-      const playlistsTracks =
-        action.response.data && actio
-          ? action.response.data.items
-          : initialState.playlists;
       return {
         ...state,
         isFetchingTracks: false,
-        playlists,
+        playlistsTracks: newPlaylistsTracks,
         lastUpdated: action.receivedAt
       };
     }
@@ -63,4 +64,4 @@ const playlistReducer = (state = initialState, action) => {
   }
 };
 
-export default playlistReducer;
+export default playlistTracksReducer;

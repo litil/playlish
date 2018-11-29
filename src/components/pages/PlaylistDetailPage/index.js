@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { FaUser, FaMusic, FaClock, FaFire } from 'react-icons/fa';
 
 import { fetchPlaylistDetailRequest } from '../../../actions/fetchPlaylistDetailAction';
 
 import PageCover from '../../molecules/PageCover';
+import PlaylistStatItem from '../../molecules/PlaylistStatItem';
 import PlaylistDetail from '../../organisms/PlaylistDetail';
 
-import cover from '../../../assets/cover_1.jpg';
+import cover from '../../../assets/cover_2.jpg';
 import './styles.css';
 
 class PlaylistDetailPage extends Component {
@@ -30,13 +32,48 @@ class PlaylistDetailPage extends Component {
     }
   }
 
+  msToTime = duration => {
+    var milliseconds = parseInt((duration % 1000) / 100),
+      seconds = parseInt((duration / 1000) % 60),
+      minutes = parseInt((duration / (1000 * 60)) % 60),
+      hours = parseInt((duration / (1000 * 60 * 60)) % 24);
+
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    // return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+    return hours + 'h ' + minutes + 'min';
+  };
+
+  calculatePlaylistDuration = playlistTracks => {
+    const playlistDurationArray = playlistTracks.map(
+      item => item.track.duration_ms
+    );
+    const duration = playlistDurationArray.reduce((sum, x) => sum + x);
+    return this.msToTime(duration);
+  };
+
+  calculatePlaylistPopularity = playlistTracks => {
+    const playlistPopularityArray = playlistTracks.map(
+      item => item.track.popularity
+    );
+    return Math.round(
+      playlistPopularityArray.reduce((sum, x) => sum + x) /
+        playlistTracks.length
+    );
+  };
+
   render() {
-    const { playlistsDetail } = this.props;
+    const { playlistsDetail, playlistsTracks } = this.props;
     const playlistId = this.props.match.params.id;
     if (!playlistsDetail || !playlistId || !playlistsDetail[playlistId])
       return 'Playlist not found, sorry :(';
 
     const playlist = playlistsDetail[playlistId];
+    const playlistTracks = playlistsTracks[playlistId];
+    const playlistDuration = this.calculatePlaylistDuration(playlistTracks);
+    const playlistPopularity = this.calculatePlaylistPopularity(playlistTracks);
 
     return (
       <div className="PlaylistDetailPage-container">
@@ -47,11 +84,29 @@ class PlaylistDetailPage extends Component {
         />
 
         <div className="PlaylistDetailPage-statsContainer">
-          <span>{`${playlist.followers.total} followers`}</span>
-          <span>{`${playlist.tracks.total} tracks`}</span>
+          <PlaylistStatItem
+            icon={<FaUser />}
+            value={playlist.followers.total}
+            text="Followers"
+          />
+          <PlaylistStatItem
+            icon={<FaMusic />}
+            value={playlist.tracks.total}
+            text="Tracks"
+          />
+          <PlaylistStatItem
+            icon={<FaClock />}
+            value={playlistDuration}
+            text="Duration"
+          />
+          <PlaylistStatItem
+            icon={<FaFire />}
+            value={playlistPopularity}
+            text="Popularity"
+          />
         </div>
 
-        <PlaylistDetail playlist={playlist} />
+        <PlaylistDetail playlist={playlist} playlistTracks={playlistTracks} />
       </div>
     );
   }
@@ -65,7 +120,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = state => {
-  const { playlistReducer } = state;
+  const { playlistReducer, playlistTracksReducer } = state;
 
   const isFetchingPlaylistDetail = playlistReducer
     ? playlistReducer.isFetchingPlaylistDetail
@@ -73,10 +128,18 @@ const mapStateToProps = state => {
   const playlistsDetail = playlistReducer
     ? playlistReducer.playlistsDetail
     : {};
+  const isFetchingTracks = playlistTracksReducer
+    ? playlistTracksReducer.isFetchingTracks
+    : false;
+  const playlistsTracks = playlistTracksReducer
+    ? playlistTracksReducer.playlistsTracks
+    : {};
 
   return {
     isFetchingPlaylistDetail,
-    playlistsDetail
+    playlistsDetail,
+    isFetchingTracks,
+    playlistsTracks
   };
 };
 
