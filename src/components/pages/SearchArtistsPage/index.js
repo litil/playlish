@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as qs from 'query-string';
 
-import { addArtistRequest } from '../../../actions/addArtistAction';
 import { removeArtistRequest } from '../../../actions/removeArtistAction';
 import { fetchUserRequest } from '../../../actions/fetchUserAction';
 
@@ -55,9 +54,9 @@ class SearchArtistsPage extends Component {
   };
 
   onClickAddArtist = () => {
-    const { artist, accessToken } = this.state;
-    this.props.addArtist(artist, accessToken);
-    this.setState({ artist: '' });
+    // const { artist, accessToken } = this.state;
+    // this.props.addArtist(artist, accessToken);
+    // this.setState({ artist: '' });
   };
 
   onClickGeneratePlaylist = () => {
@@ -139,8 +138,8 @@ class SearchArtistsPage extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     fetchUser: accessToken => dispatch(fetchUserRequest(accessToken)),
-    addArtist: (artist, accessToken) =>
-      dispatch(addArtistRequest(artist, accessToken)),
+    // addArtist: (artist, accessToken) =>
+    //   dispatch(addArtistRequest(artist, accessToken)),
     removeArtist: (artist, accessToken) =>
       dispatch(removeArtistRequest(artist, accessToken))
   };

@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { FaMusic, FaClock, FaFire } from 'react-icons/fa';
 
 import { createPlaylistRequest } from '../../../actions/createPlaylistAction';
-import { fetchUserRequest } from '../../../actions/fetchUserAction';
+import { searchArtistsRequest } from '../../../actions/searchArtistsAction';
+import { removeTracksRequest } from '../../../actions/removeTracksAction';
+import { getArtistTopTracksRequest } from '../../../actions/getArtistTopTracksAction';
 
-import Title from '../../elements/Title';
-import PageDescription from '../../elements/PageDescription';
-import Button from '../../elements/Button';
+import PageCoverWithInput from '../../molecules/PageCoverWithInput';
+import PlaylistStatItem from '../../molecules/PlaylistStatItem';
+import SearchedArtist from '../../molecules/SearchedArtist';
+import SelectedArtist from '../../molecules/SelectedArtist';
 import Input from '../../elements/Input';
+import Button from '../../elements/Button';
+
+import cover from '../../../assets/cover_3.jpg';
 
 import './styles.css';
 
@@ -27,25 +34,17 @@ class CreatePlaylistPage extends Component {
     };
   }
 
-  componentDidMount() {
-    const accessToken = this.props.location.state
-      ? this.props.location.state.accessToken
-      : undefined;
-
-    this.setState({ accessToken: accessToken });
-    this.props.fetchUser(accessToken);
-  }
-
-  onChangePlaylistName = e => {
-    this.setState({ playlistName: e.target.value });
-  };
-
   onClickCreatePlaylist = () => {
     const { playlistName } = this.state;
-    const { tracks, connectedUser } = this.props;
-    const accessToken = this.props.location.state
-      ? this.props.location.state.accessToken
-      : undefined;
+    const { selectedArtists, connectedUser, accessToken } = this.props;
+
+    const tracks = selectedArtists
+      ? selectedArtists
+          .map(artist => {
+            return Object.values(artist)[0].tracks;
+          })
+          .flat()
+      : [];
 
     // TODO check artists and playlist name not empty
     this.props.createPlaylist(
@@ -56,61 +55,92 @@ class CreatePlaylistPage extends Component {
     );
   };
 
-  redirectToHome = () => {
-    // redirect to the homepage
-    this.props.history.push({
-      pathname: '/'
-    });
+  onChangePlaylistName = e => {
+    const playlistName = e.target.value;
+    this.setState({ playlistName });
+  };
+
+  onChangeSearchArtists = e => {
+    const artistKeyword = e.target.value;
+    const { accessToken } = this.props;
+
+    if (artistKeyword.length > 2) {
+      this.props.searchArtists(artistKeyword, accessToken);
+    }
+  };
+
+  addArtist = artist => {
+    const { getArtistTopTracks, accessToken } = this.props;
+    getArtistTopTracks(artist, accessToken);
   };
 
   render() {
-    const {
-      snapshotId,
-      isAddingTracks,
-      isCreatingPlaylist,
-      isFetchingTracks
-    } = this.props;
-
-    const loadingMessage = isFetchingTracks
-      ? 'Fetching corresponding tracks...'
-      : isCreatingPlaylist
-      ? 'Creating the playlist...'
-      : isAddingTracks
-      ? 'Adding tracks to the playlise...'
-      : snapshotId
-      ? 'Your playlist has been successfully created! Check it in Spotify :)'
-      : '';
+    const { searchedArtists, selectedArtists } = this.props;
+    const countTracks = 0;
+    const playlistDuration = 0;
+    const playlistPopularity = 0;
+    const createInputPlaceholder = 'Enter a name for your playlist';
 
     return (
-      <div className="CreatePlaylistPage-container">
-        <div className="CreatePlaylistPage-innerContainer">
-          <div className="CreatePlaylistPage-playlistName">
-            <Title text="Create your playlist" />
-            <PageDescription>
-              <p>Ready to create your playlist?</p>
-              <p>You only have to give it a name and we will generate it!</p>
-            </PageDescription>
+      <div className="PlaylistDetailPage-container">
+        <PageCoverWithInput
+          alt="Create your playlist"
+          src={cover}
+          value={createInputPlaceholder}
+          placeholder={createInputPlaceholder}
+          onChangeFn={this.onChangePlaylistName}
+        />
+        <div className="PlaylistDetailPage-statsContainer">
+          <PlaylistStatItem
+            icon={<FaMusic />}
+            value={countTracks}
+            text="Tracks"
+          />
+          <PlaylistStatItem
+            icon={<FaClock />}
+            value={playlistDuration}
+            text="Duration"
+          />
+          <PlaylistStatItem
+            icon={<FaFire />}
+            value={playlistPopularity}
+            text="Popularity"
+          />
+        </div>
 
-            <div className="CreatePlaylistPage-create">
-              <Input
-                value={this.state.playlistName}
-                onChangeFn={this.onChangePlaylistName}
-                placeholder="Enter a name for your playlist"
-              />
-              <Button
-                text="Create"
-                onClickFn={this.onClickCreatePlaylist}
-                styles={{ marginLeft: '32px' }}
-              />
-            </div>
+        <div className="CreatePlaylistPage-body">
+          <Input
+            placeholder="Search for artists"
+            onChangeFn={this.onChangeSearchArtists}
+          />
+          <div className="CreatePlaylistPage-searchResults">
+            {!searchedArtists
+              ? 'Search results'
+              : searchedArtists.items.map((artist, i) => {
+                  return (
+                    <SearchedArtist
+                      artist={artist}
+                      key={`searched-artists-${i}`}
+                      onClickFn={() => this.addArtist(artist)}
+                      last={i === searchedArtists.items.length - 1}
+                    />
+                  );
+                })}
+          </div>
 
-            {loadingMessage ? (
-              <span className="CreatePlaylistPage-message">
-                {loadingMessage}
-              </span>
-            ) : (
-              ''
-            )}
+          <div className="CreatePlaylistPage-playlist">
+            <h2>Your playlist</h2>
+            <Button text="Create" onClickFn={this.onClickCreatePlaylist} />
+            {selectedArtists
+              ? selectedArtists.map((artist, i) => {
+                  return (
+                    <SelectedArtist
+                      artist={Object.values(artist)[0]}
+                      key={`selected-artist-${i}`}
+                    />
+                  );
+                })
+              : 'please search for artists'}
           </div>
         </div>
       </div>
@@ -120,38 +150,38 @@ class CreatePlaylistPage extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchUser: accessToken => dispatch(fetchUserRequest(accessToken)),
+    getArtistTopTracks: (artist, accessToken) =>
+      dispatch(getArtistTopTracksRequest(artist, accessToken)),
+    removeTracks: (tracksUris, accessToken) =>
+      dispatch(removeTracksRequest(tracksUris, accessToken)),
+    searchArtists: (keyword, accessToken) =>
+      dispatch(searchArtistsRequest(keyword, accessToken)),
     createPlaylist: (userId, tracks, playlistName, accessToken) =>
       dispatch(createPlaylistRequest(userId, tracks, playlistName, accessToken))
   };
 };
 
 const mapStateToProps = state => {
-  const { playlistReducer, userReducer } = state;
+  const { createPlaylistReducer } = state;
 
-  const isFetchingTracks = playlistReducer
-    ? playlistReducer.isFetchingTracks
+  const isSearchingArtists = createPlaylistReducer
+    ? createPlaylistReducer.isSearchingArtists
     : false;
-  const isAddingTracks = playlistReducer
-    ? playlistReducer.isAddingTracks
+  const searchedArtists = createPlaylistReducer
+    ? createPlaylistReducer.searchedArtists
+    : null;
+  const isFetchingTracks = createPlaylistReducer
+    ? createPlaylistReducer.isFetchingTracks
     : false;
-  const isCreatingPlaylist = playlistReducer
-    ? playlistReducer.isCreatingTracks
-    : false;
-  const tracks = playlistReducer ? playlistReducer.tracks : {};
-  const playlist = playlistReducer ? playlistReducer.playlist : {};
-
-  const connectedUser = userReducer ? userReducer.user : {};
-  const snapshotId = playlistReducer ? playlistReducer.snapshotId : {};
+  const selectedArtists = createPlaylistReducer
+    ? createPlaylistReducer.selectedArtists
+    : null;
 
   return {
-    snapshotId,
-    playlist,
-    tracks,
-    connectedUser,
+    isSearchingArtists,
+    searchedArtists,
     isFetchingTracks,
-    isAddingTracks,
-    isCreatingPlaylist
+    selectedArtists
   };
 };
 

@@ -1,0 +1,40 @@
+.SearchedArtist-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 112px;
+  margin: 0px 28px 0px 0px;
+  cursor: pointer;
+}
+
+.SearchedArtist-container-last {
+  margin-right: 0px;
+  cursor: pointer;
+}
+
+.SearchedArtist-container img,
+.SearchedArtist-container-last img {
+  width: 112px;
+  height: 112px;
+}
+
+.SearchedArtist-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.SearchedArtist-container h3 {
+  font-size: 0.9em;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.SearchedArtist-container p {
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+  color: #aaaaaa;
+}

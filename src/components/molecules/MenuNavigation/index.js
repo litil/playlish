@@ -26,7 +26,7 @@ class MenuNavigationClass extends Component {
         <MenuLink
           text="Create Playlishs"
           icon={<FaPlus />}
-          redirectTo={() => this.redirectTo('/playlists')}
+          redirectTo={() => this.redirectTo('/playlists/create')}
           styles={{ marginBottom: '32px' }}
         />
         {/* <MenuLink

@@ -10,6 +10,7 @@ import { fetchUserWatcherSaga } from './fetchUserSaga';
 import { listPlaylistsWatcherSaga } from './listPlaylistsSaga';
 import { fetchPlaylistDetailWatcherSaga } from './fetchPlaylistDetailSaga';
 import { fetchPlaylistTracksWatcherSaga } from './fetchPlaylistTracksSaga';
+import { searchArtistsWatcherSaga } from './searchArtistsSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -21,6 +22,7 @@ export default function* rootSaga() {
     fork(addArtistWatcherSaga),
     fork(fetchArtistTracksWatcherSaga),
     fork(createPlaylistWatcherSaga),
-    fork(addTracksPlaylistWatcherSaga)
+    fork(addTracksPlaylistWatcherSaga),
+    fork(searchArtistsWatcherSaga)
   ]);
 }

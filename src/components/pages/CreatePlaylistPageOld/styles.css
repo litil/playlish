@@ -36,21 +36,3 @@
   letter-spacing: 0.1em;
   margin-top: 40px;
 }
-
-.CreatePlaylistPage-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 100%;
-  padding-left: 96px;
-  margin-top: 32px;
-}
-
-.CreatePlaylistPage-searchResults {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  margin: 32px 0px;
-}

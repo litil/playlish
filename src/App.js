@@ -32,6 +32,13 @@ class App extends Component {
                 />
                 <DefaultLayout
                   exact
+                  path="/playlists/create"
+                  component={CreatePlaylistPage}
+                  connectedUser={user}
+                  accessToken={spotifyApiToken}
+                />
+                <DefaultLayout
+                  exact
                   path="/playlists/:id"
                   component={PlaylistDetailPage}
                   connectedUser={user}
@@ -41,13 +48,6 @@ class App extends Component {
                   exact
                   path="/search"
                   component={SearchArtistsPage}
-                  connectedUser={user}
-                  accessToken={spotifyApiToken}
-                />
-                <DefaultLayout
-                  exact
-                  path="/create"
-                  component={CreatePlaylistPage}
                   connectedUser={user}
                   accessToken={spotifyApiToken}
                 />

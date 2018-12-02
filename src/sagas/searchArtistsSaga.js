@@ -3,21 +3,25 @@ import * as actions from '../actions/actionTypes.js';
 import axios from 'axios';
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
-export function* fetchArtistTracksWatcherSaga() {
-  yield takeEvery(actions.GET_ARTIST_TOP_TRACKS_REQUEST, workerSaga);
+export function* searchArtistsWatcherSaga() {
+  yield takeEvery(actions.SEARCH_ARTISTS_REQUEST, workerSaga);
 }
 
 // function that makes the api request and returns a Promise for response
-function fetchArtistTracks(artist, accessToken) {
+function searchArtists(keyword, accessToken) {
   return axios({
     method: 'get',
     baseURL: 'https://api.spotify.com/v1',
-    url: `/artists/${artist.id}/top-tracks`,
+    url: '/search',
     headers: {
       Authorization: 'Bearer ' + accessToken
     },
     params: {
-      market: 'from_token'
+      client_id: '341cbbaadca743aba2dd3f99302f623f',
+      q: keyword,
+      type: 'artist',
+      limit: '5',
+      scope: 'user-read-private'
     }
   });
 }
@@ -25,20 +29,22 @@ function fetchArtistTracks(artist, accessToken) {
 // worker saga: makes the api call when watcher saga sees the action
 function* workerSaga(action) {
   try {
-    const { artist, accessToken } = action;
-    const response = yield call(fetchArtistTracks, artist, accessToken);
+    const response = yield call(
+      searchArtists,
+      action.keyword,
+      action.accessToken
+    );
 
     if (response.error) throw response.error;
 
     // dispatch a success action to the store with the list of transactions
     yield put({
-      type: actions.GET_ARTIST_TOP_TRACKS_SUCCESS,
-      response,
-      artist
+      type: actions.SEARCH_ARTISTS_SUCCESS,
+      response
     });
   } catch (error) {
     yield put({
-      type: actions.GET_ARTIST_TOP_TRACKS_FAILURE,
+      type: actions.ADD_ARTIST_FAILURE,
       error
     });
   }
