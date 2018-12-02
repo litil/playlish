@@ -5,7 +5,6 @@ import { AuthConsumer } from './contexts/AuthContext';
 
 import WelcomePage from './components/pages/WelcomePage';
 import CreatePlaylistPage from './components/pages/CreatePlaylistPage';
-import SearchArtistsPage from './components/pages/SearchArtistsPage';
 import CallbackPage from './components/pages/CallbackPage';
 import ListPlaylistsPage from './components/pages/ListPlaylistsPage';
 import PlaylistDetailPage from './components/pages/PlaylistDetailPage';
@@ -41,13 +40,6 @@ class App extends Component {
                   exact
                   path="/playlists/:id"
                   component={PlaylistDetailPage}
-                  connectedUser={user}
-                  accessToken={spotifyApiToken}
-                />
-                <DefaultLayout
-                  exact
-                  path="/search"
-                  component={SearchArtistsPage}
                   connectedUser={user}
                   accessToken={spotifyApiToken}
                 />

@@ -44,7 +44,7 @@ function* workerSaga(action) {
     });
   } catch (error) {
     yield put({
-      type: actions.ADD_ARTIST_FAILURE,
+      type: actions.SEARCH_ARTISTS_FAILURE,
       error
     });
   }
