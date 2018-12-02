@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FaMusic, FaPlus, FaChartBar } from 'react-icons/fa';
+import { FaMusic, FaPlus } from 'react-icons/fa';
 import { withRouter } from 'react-router';
 
 import MenuLink from '../MenuLink';

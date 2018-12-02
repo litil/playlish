@@ -30,18 +30,14 @@ export default class PlaylistDetail extends Component {
 
     return (
       <div className="PlaylistDetail-container">
-        <div>
-          <TrackRow
-            track={headerTrack}
-            key={`${playlist.name}-track-header`}
-            header={true}
-          />
-          {playlistTracks.map((track, i) => {
-            return (
-              <TrackRow track={track} key={`${playlist.name}-track-${i}`} />
-            );
-          })}
-        </div>
+        <TrackRow
+          track={headerTrack}
+          key={`${playlist.name}-track-header`}
+          header={true}
+        />
+        {playlistTracks.map((track, i) => {
+          return <TrackRow track={track} key={`${playlist.name}-track-${i}`} />;
+        })}
       </div>
     );
   }

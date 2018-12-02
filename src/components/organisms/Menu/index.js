@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Button from '../../elements/Button';
 import MenuHeader from '../../molecules/MenuHeader';
 import MenuUserCard from '../../molecules/MenuUserCard';
 import MenuSeparator from '../../elements/MenuSeparator';
@@ -45,10 +44,7 @@ class Menu extends Component {
                   </div>
                 </>
               ) : (
-                <>
-                  It seems that you're not authenticated.
-                  <Button text="Login" onClickFn={this.redirectToHome} />
-                </>
+                <Redirect to="/" />
               )}
             </div>
           )}

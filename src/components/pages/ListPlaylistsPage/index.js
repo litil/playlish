@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { FaFile, FaMusic, FaVolumeUp } from 'react-icons/fa';
+import { FaMusic, FaVolumeUp } from 'react-icons/fa';
 
 import { listPlaylistsRequest } from '../../../actions/listPlaylistsAction';
 import cover from '../../../assets/cover_1.jpg';

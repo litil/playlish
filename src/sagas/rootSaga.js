@@ -1,4 +1,5 @@
-import { fork } from 'redux-saga/effects';
+import { fork, all } from 'redux-saga/effects';
+
 import { addArtistWatcherSaga } from './addArtistSaga';
 import { fetchArtistTracksWatcherSaga } from './fetchArtistTracksSaga';
 import { createPlaylistWatcherSaga } from './createPlaylistSaga';
@@ -11,7 +12,7 @@ import { fetchPlaylistDetailWatcherSaga } from './fetchPlaylistDetailSaga';
 import { fetchPlaylistTracksWatcherSaga } from './fetchPlaylistTracksSaga';
 
 export default function* rootSaga() {
-  yield [
+  yield all([
     fork(fetchUserWatcherSaga),
     fork(listPlaylistsWatcherSaga),
     fork(fetchPlaylistDetailWatcherSaga),
@@ -21,5 +22,5 @@ export default function* rootSaga() {
     fork(fetchArtistTracksWatcherSaga),
     fork(createPlaylistWatcherSaga),
     fork(addTracksPlaylistWatcherSaga)
-  ];
+  ]);
 }
