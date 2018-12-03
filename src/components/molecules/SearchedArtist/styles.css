@@ -3,8 +3,8 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 112px;
-  margin: 0px 28px 0px 0px;
+  width: 164px;
+  margin: 0px 48px 0px 0px;
   cursor: pointer;
 }
 
@@ -15,8 +15,8 @@
 
 .SearchedArtist-container img,
 .SearchedArtist-container-last img {
-  width: 112px;
-  height: 112px;
+  width: 164px;
+  height: 164px;
 }
 
 .SearchedArtist-info {

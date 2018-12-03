@@ -5,6 +5,7 @@ import { FaMusic, FaClock, FaFire } from 'react-icons/fa';
 
 import { createPlaylistRequest } from '../../../actions/createPlaylistAction';
 import { searchArtistsRequest } from '../../../actions/searchArtistsAction';
+import { resetSearchArtistsRequest } from '../../../actions/searchArtistsAction';
 import { removeTracksRequest } from '../../../actions/removeTracksAction';
 import { getArtistTopTracksRequest } from '../../../actions/getArtistTopTracksAction';
 
@@ -15,6 +16,7 @@ import SearchedArtist from '../../molecules/SearchedArtist';
 import SelectedArtist from '../../molecules/SelectedArtist';
 import Input from '../../elements/Input';
 import Button from '../../elements/Button';
+import Title from '../../elements/Title';
 
 import cover from '../../../assets/cover_3.jpg';
 
@@ -31,7 +33,8 @@ class CreatePlaylistPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playlistName: ''
+      playlistName: '',
+      artistKeyword: ''
     };
   }
 
@@ -63,6 +66,7 @@ class CreatePlaylistPage extends Component {
 
   onChangeSearchArtists = e => {
     const artistKeyword = e.target.value;
+    this.setState({ artistKeyword });
     const { accessToken } = this.props;
 
     if (artistKeyword.length > 2) {
@@ -71,15 +75,71 @@ class CreatePlaylistPage extends Component {
   };
 
   addArtist = artist => {
-    const { getArtistTopTracks, accessToken } = this.props;
+    const { getArtistTopTracks, accessToken, resetSearchArtists } = this.props;
     getArtistTopTracks(artist, accessToken);
+    this.setState({ artistKeyword: '' });
+    resetSearchArtists();
+  };
+
+  countTracks = () => {
+    const { selectedArtists } = this.props;
+    if (!selectedArtists || selectedArtists.length === 0) return 0;
+
+    const artistsArray = selectedArtists.map(
+      item => Object.values(item)[0].tracks.length
+    );
+    return artistsArray.reduce((sum, x) => sum + x);
+  };
+
+  msToTime = duration => {
+    // const milliseconds = parseInt((duration % 1000) / 100),
+    //   seconds = parseInt((duration / 1000) % 60);
+    let minutes = parseInt((duration / (1000 * 60)) % 60),
+      hours = parseInt((duration / (1000 * 60 * 60)) % 24);
+
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    // seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    // return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+    return hours + 'h ' + minutes + 'min';
+  };
+
+  calculateDuration = () => {
+    const { selectedArtists } = this.props;
+    if (!selectedArtists || selectedArtists.length === 0) return 0;
+
+    const tracksDurationArray = selectedArtists.map(
+      item => Object.values(item)[0].tracks.duration_ms
+    );
+    const duration = tracksDurationArray.reduce((sum, x) => sum + x);
+    return this.msToTime(duration);
+  };
+
+  calculatePopularity = countTracks => {
+    const { selectedArtists } = this.props;
+    if (!selectedArtists || selectedArtists.length === 0 || countTracks === 0)
+      return 0;
+
+    const tracksPopularityArray = selectedArtists.map(item =>
+      Object.values(item)[0].tracks.map(t => t.popularity)
+    );
+
+    const artistsPopularityArray =
+      tracksPopularityArray.reduce((sum, x) => sum + x) / countTracks;
+
+    console.log('t', tracksPopularityArray);
+
+    return Math.round(
+      tracksPopularityArray.reduce((sum, x) => sum + x) / countTracks
+    );
   };
 
   render() {
     const { searchedArtists, selectedArtists } = this.props;
-    const countTracks = 0;
-    const playlistDuration = 0;
-    const playlistPopularity = 0;
+    const countTracks = this.countTracks();
+    const playlistDuration = this.calculateDuration();
+    const playlistPopularity = this.calculatePopularity(countTracks);
     const createInputPlaceholder = 'Enter a name for your playlist';
 
     return (
@@ -87,7 +147,7 @@ class CreatePlaylistPage extends Component {
         <PageCoverWithInput
           alt="Create your playlist"
           src={cover}
-          value={createInputPlaceholder}
+          value={this.state.value}
           placeholder={createInputPlaceholder}
           onChangeFn={this.onChangePlaylistName}
         />
@@ -111,15 +171,23 @@ class CreatePlaylistPage extends Component {
         </StatsContainer>
 
         <div className="CreatePlaylistPage-body">
-          <Input
-            placeholder="Search for artists"
-            onChangeFn={this.onChangeSearchArtists}
-            styles={{ padding: '0px' }}
-          />
-          <div className="CreatePlaylistPage-searchResults">
-            {!searchedArtists
-              ? 'Search results'
-              : searchedArtists.items.map((artist, i) => {
+          <div className="CreatePlaylistPage-innerBody">
+            <Title text="Search" />
+
+            <Input
+              placeholder="Arctic Monkeys, Terror, Welshly Arms ..."
+              value={this.state.artistKeyword}
+              onChangeFn={this.onChangeSearchArtists}
+              styles={{ padding: '0px', border: 'none' }}
+            />
+            <div className="CreatePlaylistPage-searchResults">
+              {!searchedArtists ? (
+                <p>
+                  Start by searching for artists. Note that we'll only display
+                  the 5 most relevant ones. Then, add them to your playlist.
+                </p>
+              ) : (
+                searchedArtists.items.map((artist, i) => {
                   return (
                     <SearchedArtist
                       artist={artist}
@@ -128,22 +196,31 @@ class CreatePlaylistPage extends Component {
                       last={i === searchedArtists.items.length - 1}
                     />
                   );
-                })}
-          </div>
+                })
+              )}
+            </div>
 
-          <div className="CreatePlaylistPage-playlist">
-            <h2>Your playlist</h2>
-            <Button text="Create" onClickFn={this.onClickCreatePlaylist} />
-            {selectedArtists
-              ? selectedArtists.map((artist, i) => {
+            {selectedArtists && selectedArtists.length > 0 ? (
+              <div className="CreatePlaylistPage-playlist">
+                <Title text="Your Playlist" />
+                {selectedArtists.map((artist, i) => {
                   return (
                     <SelectedArtist
                       artist={Object.values(artist)[0]}
                       key={`selected-artist-${i}`}
                     />
                   );
-                })
-              : 'please search for artists'}
+                })}
+                <Button
+                  text="Create"
+                  onClickFn={this.onClickCreatePlaylist}
+                  styles={{ marginTop: '32px' }}
+                  disabled={!this.state.playlistName}
+                />
+              </div>
+            ) : (
+              ''
+            )}
           </div>
         </div>
       </div>
@@ -153,6 +230,7 @@ class CreatePlaylistPage extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
+    resetSearchArtists: () => dispatch(resetSearchArtistsRequest()),
     getArtistTopTracks: (artist, accessToken) =>
       dispatch(getArtistTopTracksRequest(artist, accessToken)),
     removeTracks: (tracksUris, accessToken) =>

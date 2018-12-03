@@ -9,6 +9,8 @@ export default class PageCoverWithInput extends Component {
   static propTypes = {
     /** Playlist input placeholder */
     placeholder: PropTypes.string,
+    /** Playlist input value */
+    value: PropTypes.string,
     /** The absolute path to the image src */
     src: PropTypes.string.isRequired,
     /** The image alternative text */
@@ -25,12 +27,14 @@ export default class PageCoverWithInput extends Component {
         <div className="PageCoverWithInput-innerImgContainer">
           <img src={src} alt={alt} />
         </div>
-        <Input
-          placeholder={placeholder}
-          value={value}
-          onChangeFn={onChangeFn}
-          styles={{ marginBottom: '32px' }}
-        />
+        <div className="PageCoverWithInput-inputContainer">
+          <Input
+            placeholder={placeholder}
+            value={value}
+            onChangeFn={onChangeFn}
+            styles={{ border: 'none' }}
+          />
+        </div>
       </div>
     );
   }

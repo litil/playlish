@@ -1,7 +1,9 @@
-h1 {
-  font-size: 3em;
-  text-transform: uppercase;
+.Title-h1 {
+  font-size: 2em;
   font-weight: bold;
   letter-spacing: 0.1em;
-  margin-bottom: 60px;
+  border-bottom: 1px solid white;
+  padding-bottom: 8px;
+  width: 100%;
+  text-align: left;
 }

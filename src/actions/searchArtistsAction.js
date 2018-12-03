@@ -5,3 +5,7 @@ export const searchArtistsRequest = (keyword, accessToken) => ({
   keyword,
   accessToken
 });
+
+export const resetSearchArtistsRequest = () => ({
+  type: actionTypes.RESET_SEARCH_ARTISTS_REQUEST
+});

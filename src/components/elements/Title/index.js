@@ -10,6 +10,6 @@ export default class Title extends Component {
   };
 
   render() {
-    return <h1>{this.props.text}</h1>;
+    return <h1 className="Title-h1">{this.props.text}</h1>;
   }
 }

@@ -42,7 +42,14 @@
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
-  margin-top: 32px;
+}
+
+.CreatePlaylistPage-innerBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 32px 48px 32px 48px;
 }
 
 .CreatePlaylistPage-searchResults {
@@ -52,4 +59,12 @@
   align-items: flex-start;
   width: 100%;
   margin: 32px 0px;
+}
+
+.CreatePlaylistPage-playlist {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
 }

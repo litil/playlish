@@ -13,6 +13,14 @@ const initialState = {
  */
 const createPlaylistReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.RESET_SEARCH_ARTISTS_REQUEST: {
+      return {
+        ...state,
+        isSearchingArtists: false,
+        searchedArtists: initialState.searchedArtists
+      };
+    }
+
     case actionTypes.SEARCH_ARTISTS_REQUEST: {
       return {
         ...state,
