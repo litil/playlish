@@ -6,6 +6,7 @@ import { FaMusic, FaVolumeUp } from 'react-icons/fa';
 import { listPlaylistsRequest } from '../../../actions/listPlaylistsAction';
 import cover from '../../../assets/cover_1.jpg';
 
+import StatsContainer from '../../organisms/StatsContainer';
 import PlaylistsList from '../../organisms/PlaylistsList';
 import PageCover from '../../molecules/PageCover';
 import PlaylistStatItem from '../../molecules/PlaylistStatItem';
@@ -51,7 +52,7 @@ class ListPlaylistsPage extends Component {
           title="Your Playlists"
         />
 
-        <div className="ListPlaylistsPage-statsContainer">
+        <StatsContainer>
           <PlaylistStatItem
             icon={<FaVolumeUp />}
             value={totalPlaylists}
@@ -62,7 +63,7 @@ class ListPlaylistsPage extends Component {
             value={totalTracks}
             text="Tracks"
           />
-        </div>
+        </StatsContainer>
 
         <PlaylistsList playlists={playlists} />
       </div>

@@ -1,0 +1,21 @@
+.StatsContainer-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.StatsContainer-innerContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  border-bottom: 1px solid rgba(170, 170, 170, 0.2);
+  margin: 0px 48px;
+  padding-bottom: 8px;
+}
+
+.StatsContainer-container span {
+  font-size: 1em;
+  letter-spacing: 0.1em;
+}

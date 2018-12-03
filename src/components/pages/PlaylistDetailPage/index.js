@@ -8,6 +8,7 @@ import { fetchPlaylistDetailRequest } from '../../../actions/fetchPlaylistDetail
 import PageCover from '../../molecules/PageCover';
 import PlaylistStatItem from '../../molecules/PlaylistStatItem';
 import PlaylistDetail from '../../organisms/PlaylistDetail';
+import StatsContainer from '../../organisms/StatsContainer';
 
 import cover from '../../../assets/cover_2.jpg';
 import './styles.css';
@@ -83,7 +84,7 @@ class PlaylistDetailPage extends Component {
           title={playlist.name}
         />
 
-        <div className="PlaylistDetailPage-statsContainer">
+        <StatsContainer>
           <PlaylistStatItem
             icon={<FaUser />}
             value={playlist.followers.total}
@@ -104,7 +105,7 @@ class PlaylistDetailPage extends Component {
             value={playlistPopularity}
             text="Popularity"
           />
-        </div>
+        </StatsContainer>
 
         <PlaylistDetail playlist={playlist} playlistTracks={playlistTracks} />
       </div>

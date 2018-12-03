@@ -8,6 +8,7 @@ import { searchArtistsRequest } from '../../../actions/searchArtistsAction';
 import { removeTracksRequest } from '../../../actions/removeTracksAction';
 import { getArtistTopTracksRequest } from '../../../actions/getArtistTopTracksAction';
 
+import StatsContainer from '../../organisms/StatsContainer';
 import PageCoverWithInput from '../../molecules/PageCoverWithInput';
 import PlaylistStatItem from '../../molecules/PlaylistStatItem';
 import SearchedArtist from '../../molecules/SearchedArtist';
@@ -90,7 +91,8 @@ class CreatePlaylistPage extends Component {
           placeholder={createInputPlaceholder}
           onChangeFn={this.onChangePlaylistName}
         />
-        <div className="PlaylistDetailPage-statsContainer">
+
+        <StatsContainer>
           <PlaylistStatItem
             icon={<FaMusic />}
             value={countTracks}
@@ -106,12 +108,13 @@ class CreatePlaylistPage extends Component {
             value={playlistPopularity}
             text="Popularity"
           />
-        </div>
+        </StatsContainer>
 
         <div className="CreatePlaylistPage-body">
           <Input
             placeholder="Search for artists"
             onChangeFn={this.onChangeSearchArtists}
+            styles={{ padding: '0px' }}
           />
           <div className="CreatePlaylistPage-searchResults">
             {!searchedArtists

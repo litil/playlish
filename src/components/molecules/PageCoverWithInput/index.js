@@ -29,7 +29,7 @@ export default class PageCoverWithInput extends Component {
           placeholder={placeholder}
           value={value}
           onChangeFn={onChangeFn}
-          styles={{ marginLeft: '48px', marginBottom: '32px' }}
+          styles={{ marginBottom: '32px' }}
         />
       </div>
     );

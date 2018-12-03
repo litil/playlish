@@ -34,13 +34,13 @@ class Menu extends Component {
               {isConnected && user ? (
                 <>
                   <div className="MenuUpper-container">
-                    <MenuHeader />
+                    <MenuHeader styles={{ marginTop: '32px' }} />
                     <MenuUserCard styles={{ marginTop: '64px' }} />
                     <MenuSeparator />
                     <MenuNavigation />
                     <MenuSeparator />
                     <MenuFollow />
-                    <MenuFooter />
+                    <MenuFooter styles={{ marginBottom: '8px' }} />
                   </div>
                 </>
               ) : (
