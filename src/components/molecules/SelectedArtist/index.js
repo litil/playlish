@@ -9,8 +9,6 @@ export default class SelectedArtist extends Component {
       ? 'SelectedArtist-container-last'
       : 'SelectedArtist-container';
 
-    console.log(artist);
-
     if (!artist) return '';
 
     const artistImg =

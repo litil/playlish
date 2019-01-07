@@ -16,7 +16,7 @@ export default class MenuFooter extends Component {
   render() {
     return (
       <div className="MenuFooter-container" style={this.props.styles}>
-        <span>Scriptaculaire - 2018</span>
+        <span>Scriptaculaire - 2019</span>
         {/* <div className="MenuFooter-linkContainer">
           <span>You love it? Buy me a </span>
           <SocialIcon

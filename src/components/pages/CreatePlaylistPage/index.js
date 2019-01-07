@@ -22,6 +22,18 @@ import cover from '../../../assets/cover_3.jpg';
 
 import './styles.css';
 
+Object.defineProperty(Array.prototype, 'flat', {
+  value: function(depth = 1) {
+    return this.reduce(function(flat, toFlatten) {
+      return flat.concat(
+        Array.isArray(toFlatten) && depth - 1
+          ? toFlatten.flat(depth - 1)
+          : toFlatten
+      );
+    }, []);
+  }
+});
+
 class CreatePlaylistPage extends Component {
   static propTypes = {
     /** Function performing an API call to create a playlist into Spotify */
@@ -43,17 +55,15 @@ class CreatePlaylistPage extends Component {
     const { selectedArtists, connectedUser, accessToken } = this.props;
 
     const tracks = selectedArtists
-      ? selectedArtists
-          .map(artist => {
-            return Object.values(artist)[0].tracks;
-          })
-          .flat()
+      ? selectedArtists.map(artist => {
+          return Object.values(artist)[0].tracks;
+        })
       : [];
 
     // TODO check artists and playlist name not empty
     this.props.createPlaylist(
       connectedUser.id,
-      tracks,
+      tracks.flat(),
       playlistName,
       accessToken
     );
@@ -109,10 +119,14 @@ class CreatePlaylistPage extends Component {
     const { selectedArtists } = this.props;
     if (!selectedArtists || selectedArtists.length === 0) return 0;
 
-    const tracksDurationArray = selectedArtists.map(
-      item => Object.values(item)[0].tracks.duration_ms
+    const tracksDurationArray = selectedArtists.map(item =>
+      Object.values(item)[0]
+        .tracks.map(t => t.duration_ms)
+        .reduce((sum, x) => sum + x)
     );
+
     const duration = tracksDurationArray.reduce((sum, x) => sum + x);
+
     return this.msToTime(duration);
   };
 
@@ -122,17 +136,15 @@ class CreatePlaylistPage extends Component {
       return 0;
 
     const tracksPopularityArray = selectedArtists.map(item =>
-      Object.values(item)[0].tracks.map(t => t.popularity)
+      Object.values(item)[0]
+        .tracks.map(t => t.popularity)
+        .reduce((sum, x) => sum + x)
     );
 
     const artistsPopularityArray =
       tracksPopularityArray.reduce((sum, x) => sum + x) / countTracks;
 
-    console.log('t', tracksPopularityArray);
-
-    return Math.round(
-      tracksPopularityArray.reduce((sum, x) => sum + x) / countTracks
-    );
+    return Math.round(artistsPopularityArray);
   };
 
   render() {
