@@ -4,12 +4,15 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
     "query-string": "^6.2.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
+    "react-test-renderer": "^16.6.3",
     "redux": "^4.0.1",
     "redux-saga": "^0.16.2"
   },
@@ -40,9 +43,12 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "date-fns": "^2.0.0-alpha.25",
     "eslint-plugin-prettier": "^3.0.0",
     "husky": "^1.1.4",
     "lint-staged": "^8.0.4",
-    "prettier": "^1.15.2"
+    "prettier": "^1.15.2",
+    "react-icons": "^3.2.2",
+    "react-tooltip": "^3.9.0"
   }
 }

@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { createPlaylistRequest } from '../../../actions/createPlaylistAction';
 import { fetchUserRequest } from '../../../actions/fetchUserAction';
 
-import Header from '../../organisms/Header';
 import Title from '../../elements/Title';
 import PageDescription from '../../elements/PageDescription';
 import Button from '../../elements/Button';
@@ -68,7 +67,6 @@ class CreatePlaylistPage extends Component {
     const {
       snapshotId,
       isAddingTracks,
-      connectedUser,
       isCreatingPlaylist,
       isFetchingTracks
     } = this.props;
@@ -85,11 +83,6 @@ class CreatePlaylistPage extends Component {
 
     return (
       <div className="CreatePlaylistPage-container">
-        <Header
-          connectedUser={connectedUser}
-          redirectToHome={this.redirectToHome}
-        />
-
         <div className="CreatePlaylistPage-innerContainer">
           <div className="CreatePlaylistPage-playlistName">
             <Title text="Create your playlist" />

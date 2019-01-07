@@ -1,0 +1,54 @@
+.CallbackPage-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.CallbackPage-innerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80%;
+}
+
+.CallbackPage-brand {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.1em;
+}
+
+.CallbackPage-brand img {
+  width: 96px;
+  height: 96px;
+}
+
+.CallbackPage-brand h1 {
+  font-size: 7em;
+  text-transform: uppercase;
+  margin-left: 0.5em;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: bold;
+  color: #1ed760;
+  letter-spacing: 0.1em;
+}
+
+.CallbackPage-slogan h3 {
+  font-size: 1.6em;
+  letter-spacing: 0.3em;
+  font-weight: bold;
+  margin-bottom: 3em;
+}
+
+.Loading-container {
+  font-size: 1.3em;
+  letter-spacing: 0.3em;
+  margin-bottom: 3em;
+}

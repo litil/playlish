@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import * as qs from 'query-string';
 
 import { addArtistRequest } from '../../../actions/addArtistAction';
+import { removeArtistRequest } from '../../../actions/removeArtistAction';
 import { fetchUserRequest } from '../../../actions/fetchUserAction';
 
-import Header from '../../organisms/Header';
 import ArtistList from '../../organisms/ArtistList';
 import Title from '../../elements/Title';
 import PageDescription from '../../elements/PageDescription';
@@ -68,16 +68,18 @@ class SearchArtistsPage extends Component {
     });
   };
 
+  onDeleteArtist = artist => {
+    const { accessToken } = this.state;
+    this.props.removeArtist(artist, accessToken);
+  };
+
   render() {
-    const { artists, connectedUser, isSearchingArtist } = this.props;
+    const { artists, isSearchingArtist } = this.props;
+    const tracksCount = artists ? artists.length * 5 : 0;
+    const maxTracks = 100;
 
     return (
       <div className="SearchArtistsPage-container">
-        <Header
-          connectedUser={connectedUser}
-          redirectToHome={this.redirectToHome}
-        />
-
         <div className="SearchArtistsPage-innerContainer">
           <div className="SearchArtistsPage-right">
             <Title text="Search for artists" />
@@ -106,19 +108,26 @@ class SearchArtistsPage extends Component {
               />
             </div>
 
-            <ArtistList artists={artists} />
+            <ArtistList artists={artists} deleteFn={this.onDeleteArtist} />
 
             {isSearchingArtist ? 'Searching for artists...' : ''}
 
-            {artists && artists.length > 0 ? (
-              <Button
-                text="Ready to generate the playlist?"
-                onClickFn={this.onClickGeneratePlaylist}
-                size="big"
-                styles={{ marginBottom: '96px', marginTop: '32px' }}
-              />
-            ) : (
-              ''
+            {tracksCount >= maxTracks && (
+              <div className="SearchArtistsPage-submitContainer">
+                <span>
+                  You cannot create a playlist with more than 100 songs
+                </span>
+              </div>
+            )}
+            {tracksCount > 0 && tracksCount < maxTracks && (
+              <div className="SearchArtistsPage-submitContainer">
+                <Button
+                  text="Ready to generate the playlist?"
+                  onClickFn={this.onClickGeneratePlaylist}
+                  size="big"
+                  styles={{ marginBottom: '96px', marginTop: '32px' }}
+                />
+              </div>
             )}
           </div>
         </div>
@@ -131,14 +140,16 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchUser: accessToken => dispatch(fetchUserRequest(accessToken)),
     addArtist: (artist, accessToken) =>
-      dispatch(addArtistRequest(artist, accessToken))
+      dispatch(addArtistRequest(artist, accessToken)),
+    removeArtist: (artist, accessToken) =>
+      dispatch(removeArtistRequest(artist, accessToken))
   };
 };
 
 const mapStateToProps = state => {
   const { artistReducer, userReducer } = state;
 
-  const artists = artistReducer ? artistReducer.data : {};
+  const artists = artistReducer ? artistReducer.selectedArtists : {};
   const isSearchingArtist = artistReducer ? artistReducer.isWorking : false;
 
   const connectedUser = userReducer ? userReducer.user : {};

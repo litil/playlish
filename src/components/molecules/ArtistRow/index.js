@@ -6,7 +6,9 @@ import './styles.css';
 export default class ArtistRow extends Component {
   static propTypes = {
     /** Spotify artist */
-    artist: PropTypes.object.isRequired
+    artist: PropTypes.object.isRequired,
+    /** Function to remove the artist from the selected ones */
+    deleteFn: PropTypes.func.isRequired
   };
 
   render() {
@@ -14,21 +16,15 @@ export default class ArtistRow extends Component {
 
     return (
       <div className="ArtistRow-container">
-        <img src={artist.images[0].url} alt={artist.name} />
+        <div className="ArtistRow-left">
+          <img src={artist.images[0].url} alt={artist.name} />
 
-        <div className="ArtistRow-nameContainer">
-          <span>{artist.name}</span>
-          {/*}
-                <div className="ArtistRow-genreContainer">
-                    {artist.genres.map((g, i) => {
-                        return <div
-                            className="ArtistRow-genre"
-                            key={`${artist.id}-genre-${i}`}>
-                            { g }
-                        </div>
-                    })}
-                </div>
-                */}
+          <div className="ArtistRow-nameContainer">
+            <span>{artist.name}</span>
+          </div>
+        </div>
+        <div className="ArtistRow-delete" onClick={this.props.deleteFn}>
+          X
         </div>
       </div>
     );

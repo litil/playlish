@@ -4,10 +4,16 @@ defaults: &defaults
   working_directory: ~/project
   docker:
     - image: "circleci/node:10.9"
-  branches:
-    only:
-      - master
-      - develop
+
+workflow_filters: &workflow_filters
+  requires:
+    - build
+  filters:
+    branches:
+      only:
+        - master
+        - develop
+        - refactoring-ui
 
 jobs:
   build:
@@ -45,7 +51,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/repo
+          at: ~/project
       - run: './node_modules/.bin/prettier --single-quote --write "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}"'
 
   tests:
@@ -53,7 +59,14 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/repo
+          at: ~/project
 
       # run tests!
-      - run: yarn test
+      - run: CI=true yarn test
+workflows:
+  version: 2
+  build-test-and-deploy:
+    jobs:
+      - build
+      - prettier: *workflow_filters
+      - tests: *workflow_filters

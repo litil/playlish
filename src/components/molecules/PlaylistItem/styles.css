@@ -1,0 +1,39 @@
+.PlaylistItem-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 224px;
+  margin: 0px 0px 56px 56px;
+  cursor: pointer;
+}
+
+.PlaylistItem-container-last {
+  margin-right: 56px;
+  cursor: pointer;
+}
+
+.PlaylistItem-container img {
+  width: 224px;
+  height: 224px;
+}
+
+.PlaylistItem-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.PlaylistItem-container h3 {
+  font-size: 0.9em;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.PlaylistItem-container p {
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+  color: #aaaaaa;
+}

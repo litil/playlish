@@ -1,0 +1,40 @@
+.TrackRow-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid rgba(170, 170, 170, 0.2);
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+
+.TrackRow-container.header {
+  color: rgba(241, 241, 241, 0.5);
+}
+
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.TrackRow-title,
+.TrackRow-artist,
+.TrackRow-album,
+.TrackRow-date,
+.TrackRow-popularity {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-right: 32px;
+}
+
+.TrackRow-title {
+  width: 350px;
+}
+
+.TrackRow-popularity {
+  margin-right: 0px;
+}

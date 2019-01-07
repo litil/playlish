@@ -1,17 +1,33 @@
 .ArtistRow-container {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  width: 50%;
-  height: 96px;
-  min-height: 96px;
-  margin: 16px 0px;
+  height: 64px;
+  min-height: 80px;
+  margin: 0px 0px;
+}
+
+.ArtistRow-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ArtistRow-delete {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.2em;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .ArtistRow-container img {
-  width: 96px;
-  height: 96px;
-  margin-right: 32px;
+  width: 64px;
+  height: 64px;
+  margin-right: 16px;
 }
 
 .ArtistRow-nameContainer {
@@ -21,7 +37,7 @@
 }
 
 .ArtistRow-nameContainer span {
-  font-size: 2em;
+  font-size: 1.5em;
   letter-spacing: 0.1em;
 }
 

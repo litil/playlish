@@ -21,7 +21,7 @@ export default class WelcomePage extends Component {
     const scopes = scopesArray.join(' ');
     const clientId = '341cbbaadca743aba2dd3f99302f623f';
     const responseType = 'token';
-    const redirectUri = 'http:%2F%2Flocalhost:3000%2Fsearch';
+    const redirectUri = 'http:%2F%2Flocalhost:3000%2Fcallback';
     const state = '123'; //TODO generate a random string
     window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=${responseType}&redirect_uri=${redirectUri}&state=${state}&scope=${encodeURIComponent(
       scopes

@@ -1,0 +1,12 @@
+.PlaylistDetail-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 64px;
+  margin-bottom: 32px;
+  margin-left: 96px;
+  margin-right: 8px;
+  width: 100%;
+}

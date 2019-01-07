@@ -11,18 +11,26 @@ export default class Button extends Component {
     text: PropTypes.string.isRequired,
     /** Function to be called on click on the button */
     onClickFn: PropTypes.func.isRequired,
+    /** Is the button disabled? */
+    disabled: PropTypes.bool,
     /** Optional styles */
     styles: PropTypes.object
   };
   static defaultProps = {
-    size: 'small'
+    size: 'small',
+    disabled: false
   };
 
   render() {
-    const { size, onClickFn, text, styles } = this.props;
+    const { size, onClickFn, text, styles, disabled } = this.props;
 
     return (
-      <button onClick={onClickFn} className={`button-${size}`} style={styles}>
+      <button
+        onClick={onClickFn}
+        className={`button-${size}`}
+        style={styles}
+        disabled={disabled}
+      >
         {text}
       </button>
     );

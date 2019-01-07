@@ -10,6 +10,7 @@ import './index.css';
 import App from './App';
 import rootReducer from './reducers/rootReducer';
 import rootSaga from './sagas/rootSaga';
+import { AuthProvider } from './contexts/AuthContext';
 
 // dev tools middleware
 const reduxDevTools =
@@ -21,10 +22,8 @@ const sagaMiddleware = createSagaMiddleware();
 // create a redux store with our reducer above and middleware
 let store = createStore(
   rootReducer,
-  compose(
-    applyMiddleware(sagaMiddleware),
-    reduxDevTools
-  )
+  compose(applyMiddleware(sagaMiddleware) /*,
+    reduxDevTools*/)
 );
 
 // run the saga
@@ -33,7 +32,9 @@ sagaMiddleware.run(rootSaga);
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')
