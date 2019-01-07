@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as qs from 'query-string';
 
-import { AuthConsumer } from '../../../contexts/AuthContext';
+import { AuthConsumer, AuthContext } from '../../../contexts/AuthContext';
 import { fetchUserRequest } from '../../../actions/fetchUserAction';
 import logo from '../../../playlish_logo.svg';
 
@@ -49,6 +49,16 @@ class CallbackPage extends Component {
     const receivedUser =
       isFetchingUser === false && connectedUser && connectedUser.display_name;
 
+    // automatically redirecting the user to the authenticated page
+    if (receivedUser) {
+      let value = this.context;
+      value.login(connectedUser, this.state.accessToken);
+
+      this.props.history.push({
+        pathname: '/playlists/create'
+      });
+    }
+
     return (
       <div className="CallbackPage-container">
         <div className="CallbackPage-innerContainer">
@@ -61,21 +71,7 @@ class CallbackPage extends Component {
           </div>
 
           <div className="Loading-container">
-            <AuthConsumer>
-              {({ isConnected, login, logout }) => (
-                <div>
-                  {receivedUser ? (
-                    <button onClick={() => this.redirectToPlaylists(login)}>
-                      {`${
-                        connectedUser.display_name
-                      }, ready to create playlists?`}
-                    </button>
-                  ) : (
-                    "Please wait while we're loading your profile..."
-                  )}
-                </div>
-              )}
-            </AuthConsumer>
+            Please wait while we're loading your profile...
           </div>
         </div>
       </div>
@@ -100,6 +96,8 @@ const mapStateToProps = state => {
     isFetchingUser
   };
 };
+
+CallbackPage.contextType = AuthContext; // This part is important to access context values
 
 export default connect(
   mapStateToProps,
