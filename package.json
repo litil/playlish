@@ -49,6 +49,7 @@
     "lint-staged": "^8.0.4",
     "prettier": "^1.15.2",
     "react-icons": "^3.2.2",
+    "react-notifications": "^1.4.3",
     "react-tooltip": "^3.9.0"
   }
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FaMusic, FaClock, FaFire } from 'react-icons/fa';
+import { withRouter, Redirect } from 'react-router-dom';
 
 import { createPlaylistRequest } from '../../../actions/createPlaylistAction';
 import { searchArtistsRequest } from '../../../actions/searchArtistsAction';
@@ -148,11 +149,21 @@ class CreatePlaylistPage extends Component {
   };
 
   render() {
-    const { searchedArtists, selectedArtists } = this.props;
+    const {
+      searchedArtists,
+      selectedArtists,
+      createdPlaylist,
+      isCreatingPlaylist
+    } = this.props;
     const countTracks = this.countTracks();
     const playlistDuration = this.calculateDuration();
     const playlistPopularity = this.calculatePopularity(countTracks);
     const createInputPlaceholder = 'Enter a name for your playlist';
+    const isPlaylistCreated = createdPlaylist && isCreatingPlaylist === false;
+
+    if (isPlaylistCreated) {
+      return <Redirect to="/playlists" />;
+    }
 
     return (
       <div className="PlaylistDetailPage-container">
@@ -255,7 +266,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = state => {
-  const { createPlaylistReducer } = state;
+  const { createPlaylistReducer, playlistReducer } = state;
 
   const isSearchingArtists = createPlaylistReducer
     ? createPlaylistReducer.isSearchingArtists
@@ -270,15 +281,22 @@ const mapStateToProps = state => {
     ? createPlaylistReducer.selectedArtists
     : null;
 
+  const createdPlaylist = playlistReducer ? playlistReducer.playlist : null;
+  const isCreatingPlaylist = playlistReducer
+    ? playlistReducer.isCreating
+    : false;
+
   return {
     isSearchingArtists,
     searchedArtists,
     isFetchingTracks,
-    selectedArtists
+    selectedArtists,
+    createdPlaylist,
+    isCreatingPlaylist
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CreatePlaylistPage);
+)(withRouter(CreatePlaylistPage));

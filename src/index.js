@@ -13,8 +13,10 @@ import rootSaga from './sagas/rootSaga';
 import { AuthProvider } from './contexts/AuthContext';
 
 // dev tools middleware
+/*
 const reduxDevTools =
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+*/
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();

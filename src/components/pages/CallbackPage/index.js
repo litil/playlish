@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as qs from 'query-string';
 
-import { AuthConsumer, AuthContext } from '../../../contexts/AuthContext';
+import { AuthContext } from '../../../contexts/AuthContext';
 import { fetchUserRequest } from '../../../actions/fetchUserAction';
 import logo from '../../../playlish_logo.svg';
 
