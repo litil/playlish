@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import React, { Component } from 'react';
 import ArtistRow from '../../molecules/ArtistRow';
-
 import './styles.css';
 
 export default class ArtistList extends Component {
@@ -10,14 +8,14 @@ export default class ArtistList extends Component {
     /** Spotify artists */
     artists: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     /** Function to remove the artist from the selected ones */
-    deleteFn: PropTypes.func.isRequired
+    deleteFn: PropTypes.func.isRequired,
   };
 
   render() {
     const { artists } = this.props;
 
     return (
-      <div className="ArtistList-container">
+      <div className="ArtistList-container" data-test="artist-list-container">
         {artists && artists.length > 0
           ? artists.map((artist, i) => (
               <ArtistRow

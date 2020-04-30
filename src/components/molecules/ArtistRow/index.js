@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import React, { Component } from 'react';
 import './styles.css';
 
 export default class ArtistRow extends Component {
@@ -8,14 +7,15 @@ export default class ArtistRow extends Component {
     /** Spotify artist */
     artist: PropTypes.object.isRequired,
     /** Function to remove the artist from the selected ones */
-    deleteFn: PropTypes.func.isRequired
+    deleteFn: PropTypes.func.isRequired,
   };
 
   render() {
     const { artist } = this.props;
+    console.log('here');
 
     return (
-      <div className="ArtistRow-container">
+      <div className="ArtistRow-container" data-test="artist-row">
         <div className="ArtistRow-left">
           <img src={artist.images[0].url} alt={artist.name} />
 
