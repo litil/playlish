@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.13.4",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.7",
     "axios": "0.19.2",
     "query-string": "6.12.1",
     "react": "16.13.1",
@@ -12,7 +16,8 @@
     "react-scripts": "3.4.1",
     "react-test-renderer": "16.13.1",
     "redux": "4.0.5",
-    "redux-saga": "^0.16.2"
+    "redux-saga": "^0.16.2",
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "@testing-library/react": "^10.0.3",

@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import { formatDistance } from 'date-fns';
 import PropTypes from 'prop-types';
-
-import { formatDistance } from 'date-fns/esm';
-
+import React, { Component } from 'react';
+import { getValidDate } from './../../../helpers';
 import './styles.css';
 
 export default class TrackRow extends Component {
@@ -10,10 +9,10 @@ export default class TrackRow extends Component {
     /** The track's details */
     track: PropTypes.object.isRequired,
     /** Is it the header row */
-    header: PropTypes.bool
+    header: PropTypes.bool,
   };
   static defaultProps = {
-    header: false
+    header: false,
   };
 
   render() {
@@ -23,15 +22,16 @@ export default class TrackRow extends Component {
     if (!track) return '';
 
     const artist = trackDetail.artists
-      ? trackDetail.artists.map(i => i.name).join(', ')
+      ? trackDetail.artists.map((i) => i.name).join(', ')
       : 'Unknown';
     const album = trackDetail.album ? trackDetail.album.name : 'Unknown';
 
     const dateNow = new Date();
+    console.log('track.added_at', track.added_at);
     const dateValue =
       track.added_at === 'Added'
         ? 'Added'
-        : formatDistance(track.added_at, dateNow);
+        : formatDistance(getValidDate(track.added_at), dateNow);
 
     const containerClassName = header
       ? 'TrackRow-container header'
