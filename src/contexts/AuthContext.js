@@ -1,9 +1,13 @@
 import React from 'react';
 
-const AuthContext = React.createContext({});
+const AuthContext = React.createContext({
+  user: undefined,
+  isConnected: false,
+  spotifyApiToken: undefined,
+});
 
 class AuthProvider extends React.Component {
-  state = { user: null, isConnected: false, spotifyApiToken: null };
+  state = { user: undefined, isConnected: false, spotifyApiToken: undefined };
   // state = {
   //   user: {
   //     country: 'FR',
@@ -39,7 +43,11 @@ class AuthProvider extends React.Component {
     this.setState({ isConnected: true, user: user, spotifyApiToken: token });
   }
   logout() {
-    this.setState({ isConnected: false, user: null, spotifyApiToken: null });
+    this.setState({
+      isConnected: false,
+      user: undefined,
+      spotifyApiToken: undefined,
+    });
   }
 
   render() {
@@ -50,7 +58,7 @@ class AuthProvider extends React.Component {
           user: this.state.user,
           spotifyApiToken: this.state.spotifyApiToken,
           login: this.login,
-          logout: this.logout
+          logout: this.logout,
         }}
       >
         {this.props.children}

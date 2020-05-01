@@ -1,16 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { FaMusic, FaVolumeUp } from 'react-icons/fa';
-
+import { connect } from 'react-redux';
 import { listPlaylistsRequest } from '../../../actions/listPlaylistsAction';
 import cover from '../../../assets/cover_1.jpg';
-
-import StatsContainer from '../../organisms/StatsContainer';
-import PlaylistsList from '../../organisms/PlaylistsList';
-import PageCover from '../../molecules/PageCover';
-import PlaylistStatItem from '../../molecules/PlaylistStatItem';
-
+import { PageCover, PlaylistStatItem } from '../../molecules/';
+import { PlaylistsList, StatsContainer } from '../../organisms/';
 import './styles.css';
 
 class ListPlaylistsPage extends Component {
@@ -18,7 +13,7 @@ class ListPlaylistsPage extends Component {
     /** The Spotify connected user */
     connectedUser: PropTypes.object,
     /** The Spotify access token */
-    accessToken: PropTypes.string
+    accessToken: PropTypes.string,
   };
 
   componentDidMount() {
@@ -40,7 +35,7 @@ class ListPlaylistsPage extends Component {
       return 'No playlists found, you work too much!';
 
     const totalTracks = playlists
-      .map(p => p.tracks.total)
+      .map((p) => p.tracks.total)
       .reduce((sum, x) => sum + x);
     const totalPlaylists = playlists.length;
 
@@ -71,14 +66,14 @@ class ListPlaylistsPage extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     listPlaylists: (userId, accessToken) =>
-      dispatch(listPlaylistsRequest(userId, accessToken))
+      dispatch(listPlaylistsRequest(userId, accessToken)),
   };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { playlistReducer } = state;
 
   const isFetchingPlaylists = playlistReducer
@@ -88,11 +83,8 @@ const mapStateToProps = state => {
 
   return {
     isFetchingPlaylists,
-    playlists
+    playlists,
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ListPlaylistsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ListPlaylistsPage);

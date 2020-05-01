@@ -1,9 +1,18 @@
-import React, { Component } from 'react';
+import React, { FunctionComponent } from 'react';
 import { withRouter } from 'react-router-dom';
-
 import './styles.css';
 
-class PlaylistItem extends Component {
+interface IPlaylistItemProps {
+  push: (path: string) => void;
+  playlist: IPlaylist;
+  last?: boolean;
+}
+
+const PlaylistItemComponent: FunctionComponent<IPlaylistItemProps> = ({
+  playlist,
+  push,
+  last,
+}) => {
   // {
   //   "collaborative": true,
   //   "external_urls": {
@@ -50,46 +59,39 @@ class PlaylistItem extends Component {
   //   "uri": "spotify:user:11178545817:playlist:3mQAI4FzVuEdHmkpIuHXk9"
   // }
 
-  redirectToPlaylistDetail = () => {
-    const { playlist } = this.props;
-
+  const redirectToPlaylistDetail = () => {
     if (playlist && playlist.id) {
       // redirect to the playlist detail
-      this.props.history.push({
-        pathname: `/playlists/${playlist.id}`
-      });
+      push(`/playlists/${playlist.id}`);
     }
   };
 
-  render() {
-    const { playlist, last } = this.props;
-    const className = last
-      ? 'PlaylistItem-container-last'
-      : 'PlaylistItem-container';
+  const className = last
+    ? 'PlaylistItem-container-last'
+    : 'PlaylistItem-container';
 
-    if (!playlist) return '';
+  if (!playlist) return <></>;
 
-    const playlistImg =
-      playlist.images && playlist.images.length > 0 ? (
-        <img
-          className="PlaylistItem-img"
-          src={playlist.images[0].url}
-          alt={playlist.name}
-        />
-      ) : (
-        ''
-      );
-
-    return (
-      <div className={className} onClick={this.redirectToPlaylistDetail}>
-        {playlistImg}
-        <div className="PlaylistItem-info">
-          <h3>{playlist.name}</h3>
-          <p>{`${playlist.tracks.total} tracks`}</p>
-        </div>
-      </div>
+  const playlistImg =
+    playlist.images && playlist.images.length > 0 ? (
+      <img
+        className="PlaylistItem-img"
+        src={playlist.images[0].url}
+        alt={playlist.name}
+      />
+    ) : (
+      ''
     );
-  }
-}
 
-export default withRouter(PlaylistItem);
+  return (
+    <div className={className} onClick={redirectToPlaylistDetail}>
+      {playlistImg}
+      <div className="PlaylistItem-info">
+        <h3>{playlist.name}</h3>
+        <p>{`${playlist.tracks.total} tracks`}</p>
+      </div>
+    </div>
+  );
+};
+
+export const PlaylistItem = withRouter(PlaylistItemComponent);

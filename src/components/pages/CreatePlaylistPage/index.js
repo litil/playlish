@@ -12,14 +12,14 @@ import {
   searchArtistsRequest,
 } from '../../../actions/searchArtistsAction';
 import cover from '../../../assets/cover_3.jpg';
-import Button from '../../elements/Button';
-import Input from '../../elements/Input';
-import Title from '../../elements/Title';
-import PageCoverWithInput from '../../molecules/PageCoverWithInput';
-import PlaylistStatItem from '../../molecules/PlaylistStatItem';
-import SearchedArtist from '../../molecules/SearchedArtist';
-import SelectedArtist from '../../molecules/SelectedArtist';
-import StatsContainer from '../../organisms/StatsContainer';
+import { Button, Input, Title } from '../../elements';
+import {
+  PageCoverWithInput,
+  PlaylistStatItem,
+  SearchedArtist,
+  SelectedArtist,
+} from '../../molecules/';
+import { StatsContainer } from '../../organisms';
 import './styles.css';
 
 class CreatePlaylistPage extends Component {
