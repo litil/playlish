@@ -1,15 +1,13 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-
-import Menu from '../../organisms/Menu';
-
+import { Menu } from '../../organisms';
 import './styles.css';
 
 const DefaultLayout = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={matchProps => (
+      render={(matchProps) => (
         <div className="DefaultLayout-container">
           <div className="LeftMenu-container">
             <Menu />

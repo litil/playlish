@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import React from 'react';
-import ArtistList from './index.js';
+import { ArtistList } from './';
 
 describe('ArtistList', () => {
   it('renders No artist selected yet if none given', () => {

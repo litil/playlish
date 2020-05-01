@@ -1,0 +1,3 @@
+interface IImage {
+  url: string;
+}

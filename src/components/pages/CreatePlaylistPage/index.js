@@ -1,53 +1,40 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { flatten } from 'lodash';
 import PropTypes from 'prop-types';
-import { FaMusic, FaClock, FaFire } from 'react-icons/fa';
-import { withRouter, Redirect } from 'react-router-dom';
-
+import React, { Component } from 'react';
+import { FaClock, FaFire, FaMusic } from 'react-icons/fa';
+import { connect } from 'react-redux';
+import { Redirect, withRouter } from 'react-router-dom';
 import { createPlaylistRequest } from '../../../actions/createPlaylistAction';
-import { searchArtistsRequest } from '../../../actions/searchArtistsAction';
-import { resetSearchArtistsRequest } from '../../../actions/searchArtistsAction';
-import { removeTracksRequest } from '../../../actions/removeTracksAction';
 import { getArtistTopTracksRequest } from '../../../actions/getArtistTopTracksAction';
-
-import StatsContainer from '../../organisms/StatsContainer';
-import PageCoverWithInput from '../../molecules/PageCoverWithInput';
-import PlaylistStatItem from '../../molecules/PlaylistStatItem';
-import SearchedArtist from '../../molecules/SearchedArtist';
-import SelectedArtist from '../../molecules/SelectedArtist';
-import Input from '../../elements/Input';
-import Button from '../../elements/Button';
-import Title from '../../elements/Title';
-
+import { removeTracksRequest } from '../../../actions/removeTracksAction';
+import {
+  resetSearchArtistsRequest,
+  searchArtistsRequest,
+} from '../../../actions/searchArtistsAction';
 import cover from '../../../assets/cover_3.jpg';
-
+import { Button, Input, Title } from '../../elements';
+import {
+  PageCoverWithInput,
+  PlaylistStatItem,
+  SearchedArtist,
+  SelectedArtist,
+} from '../../molecules/';
+import { StatsContainer } from '../../organisms';
 import './styles.css';
-
-Object.defineProperty(Array.prototype, 'flat', {
-  value: function(depth = 1) {
-    return this.reduce(function(flat, toFlatten) {
-      return flat.concat(
-        Array.isArray(toFlatten) && depth - 1
-          ? toFlatten.flat(depth - 1)
-          : toFlatten
-      );
-    }, []);
-  }
-});
 
 class CreatePlaylistPage extends Component {
   static propTypes = {
     /** Function performing an API call to create a playlist into Spotify */
     createPlaylist: PropTypes.func.isRequired,
     /** The Spotify connected user */
-    connectedUser: PropTypes.object
+    connectedUser: PropTypes.object,
   };
 
   constructor(props) {
     super(props);
     this.state = {
       playlistName: '',
-      artistKeyword: ''
+      artistKeyword: '',
     };
   }
 
@@ -56,7 +43,7 @@ class CreatePlaylistPage extends Component {
     const { selectedArtists, connectedUser, accessToken } = this.props;
 
     const tracks = selectedArtists
-      ? selectedArtists.map(artist => {
+      ? selectedArtists.map((artist) => {
           return Object.values(artist)[0].tracks;
         })
       : [];
@@ -64,18 +51,18 @@ class CreatePlaylistPage extends Component {
     // TODO check artists and playlist name not empty
     this.props.createPlaylist(
       connectedUser.id,
-      tracks.flat(),
+      flatten(tracks),
       playlistName,
       accessToken
     );
   };
 
-  onChangePlaylistName = e => {
+  onChangePlaylistName = (e) => {
     const playlistName = e.target.value;
     this.setState({ playlistName });
   };
 
-  onChangeSearchArtists = e => {
+  onChangeSearchArtists = (e) => {
     const artistKeyword = e.target.value;
     this.setState({ artistKeyword });
     const { accessToken } = this.props;
@@ -85,7 +72,7 @@ class CreatePlaylistPage extends Component {
     }
   };
 
-  addArtist = artist => {
+  addArtist = (artist) => {
     const { getArtistTopTracks, accessToken, resetSearchArtists } = this.props;
     getArtistTopTracks(artist, accessToken);
     this.setState({ artistKeyword: '' });
@@ -97,12 +84,12 @@ class CreatePlaylistPage extends Component {
     if (!selectedArtists || selectedArtists.length === 0) return 0;
 
     const artistsArray = selectedArtists.map(
-      item => Object.values(item)[0].tracks.length
+      (item) => Object.values(item)[0].tracks.length
     );
     return artistsArray.reduce((sum, x) => sum + x);
   };
 
-  msToTime = duration => {
+  msToTime = (duration) => {
     // const milliseconds = parseInt((duration % 1000) / 100),
     //   seconds = parseInt((duration / 1000) % 60);
     let minutes = parseInt((duration / (1000 * 60)) % 60),
@@ -120,9 +107,9 @@ class CreatePlaylistPage extends Component {
     const { selectedArtists } = this.props;
     if (!selectedArtists || selectedArtists.length === 0) return 0;
 
-    const tracksDurationArray = selectedArtists.map(item =>
+    const tracksDurationArray = selectedArtists.map((item) =>
       Object.values(item)[0]
-        .tracks.map(t => t.duration_ms)
+        .tracks.map((t) => t.duration_ms)
         .reduce((sum, x) => sum + x)
     );
 
@@ -131,14 +118,14 @@ class CreatePlaylistPage extends Component {
     return this.msToTime(duration);
   };
 
-  calculatePopularity = countTracks => {
+  calculatePopularity = (countTracks) => {
     const { selectedArtists } = this.props;
     if (!selectedArtists || selectedArtists.length === 0 || countTracks === 0)
       return 0;
 
-    const tracksPopularityArray = selectedArtists.map(item =>
+    const tracksPopularityArray = selectedArtists.map((item) =>
       Object.values(item)[0]
-        .tracks.map(t => t.popularity)
+        .tracks.map((t) => t.popularity)
         .reduce((sum, x) => sum + x)
     );
 
@@ -153,7 +140,7 @@ class CreatePlaylistPage extends Component {
       searchedArtists,
       selectedArtists,
       createdPlaylist,
-      isCreatingPlaylist
+      isCreatingPlaylist,
     } = this.props;
     const countTracks = this.countTracks();
     const playlistDuration = this.calculateDuration();
@@ -251,7 +238,7 @@ class CreatePlaylistPage extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     resetSearchArtists: () => dispatch(resetSearchArtistsRequest()),
     getArtistTopTracks: (artist, accessToken) =>
@@ -261,11 +248,13 @@ const mapDispatchToProps = dispatch => {
     searchArtists: (keyword, accessToken) =>
       dispatch(searchArtistsRequest(keyword, accessToken)),
     createPlaylist: (userId, tracks, playlistName, accessToken) =>
-      dispatch(createPlaylistRequest(userId, tracks, playlistName, accessToken))
+      dispatch(
+        createPlaylistRequest(userId, tracks, playlistName, accessToken)
+      ),
   };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { createPlaylistReducer, playlistReducer } = state;
 
   const isSearchingArtists = createPlaylistReducer
@@ -292,7 +281,7 @@ const mapStateToProps = state => {
     isFetchingTracks,
     selectedArtists,
     createdPlaylist,
-    isCreatingPlaylist
+    isCreatingPlaylist,
   };
 };
 
