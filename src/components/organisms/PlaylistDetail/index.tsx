@@ -15,8 +15,10 @@ export const PlaylistDetail: FunctionComponent<IPlaylistDetailProps> = ({
 
   const headerTrack = {
     added_at: 'Added',
+    name: 'Title',
+    id: '1',
     track: {
-      artists: [{ name: 'Artist' }],
+      artists: [{ id: '1', name: 'Artist' }],
       album: { name: 'Album' },
       popularity: 'Popularity',
       name: 'Title',

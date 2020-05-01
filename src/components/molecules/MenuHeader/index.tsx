@@ -1,19 +1,16 @@
 import React, { FunctionComponent } from 'react';
-import { withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import logo from '../../../playlish_logo.svg';
 import './styles.css';
 
 interface IMenuHeaderProps {
   styles?: object;
-  push: (path: string) => void;
 }
+type props = IMenuHeaderProps & RouteComponentProps;
 
-const MenuHeaderComponent: FunctionComponent<IMenuHeaderProps> = ({
-  push,
-  styles,
-}) => {
+const MenuHeaderComponent: FunctionComponent<props> = ({ history, styles }) => {
   const redirectToHome = () => {
-    push('/');
+    history.push('/');
   };
 
   return (

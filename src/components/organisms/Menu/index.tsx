@@ -11,19 +11,9 @@ import {
 } from '../../molecules';
 import './styles.css';
 
-interface IMenuProps {
-  push: (path: string) => void;
-  connectedUser: object;
-}
+interface IMenuProps {}
 
-const MenuComponent: FunctionComponent<IMenuProps> = ({
-  push,
-  connectedUser,
-}) => {
-  const redirectToHome = () => {
-    push('/');
-  };
-
+const MenuComponent: FunctionComponent<IMenuProps> = () => {
   return (
     <div className="Menu-container">
       <AuthConsumer>

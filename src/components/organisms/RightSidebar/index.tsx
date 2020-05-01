@@ -3,7 +3,7 @@ import { FaCoffee, FaGithub, FaTwitter } from 'react-icons/fa';
 import { SocialIcon } from '../../elements';
 import './styles.css';
 
-export const RightSidebar: FunctionComponent<{}> = ({}) => {
+export const RightSidebar: FunctionComponent<{}> = () => {
   const linkToGithub = () => {
     window.open('https://github.com/litil/playlish');
   };

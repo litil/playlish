@@ -1,8 +1,8 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import './styles.css';
 
 interface IStatsContainerProps {
-  children: ReactElement;
+  children: ReactNode;
 }
 
 export const StatsContainer: FunctionComponent<IStatsContainerProps> = ({

@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as serviceWorker from './serviceWorker';
-import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
+import { Router } from 'react-router';
+import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { BrowserRouter } from 'react-router-dom';
-
-import './index.css';
 import App from './App';
+import { AuthProvider } from './contexts/AuthContext';
+import history from './history';
+import './index.css';
 import rootReducer from './reducers/rootReducer';
 import rootSaga from './sagas/rootSaga';
-import { AuthProvider } from './contexts/AuthContext';
+import * as serviceWorker from './serviceWorker';
 
 // dev tools middleware
 /*
@@ -33,11 +33,11 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router history={history}>
       <AuthProvider>
         <App />
       </AuthProvider>
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );

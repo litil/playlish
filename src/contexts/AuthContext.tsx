@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 
-const AuthContext = React.createContext({
+interface IAuthContextState {
+  user: IUser | undefined;
+  isConnected: boolean;
+  spotifyApiToken: string | undefined;
+  login?: (user: IUser | undefined, token: string) => void;
+  logout?: () => void;
+}
+
+const initialState: IAuthContextState = {
   user: undefined,
   isConnected: false,
   spotifyApiToken: undefined,
-});
+};
 
-class AuthProvider extends React.Component {
-  state = { user: undefined, isConnected: false, spotifyApiToken: undefined };
+const AuthContext = React.createContext(initialState);
+
+interface IAuthProviderProps {
+  children: ReactNode[];
+}
+
+const AuthProvider: FunctionComponent<IAuthProviderProps> = (children) => {
+  const [state, updateState] = React.useState(initialState);
   // state = {
   //   user: {
   //     country: 'FR',
@@ -33,39 +47,34 @@ class AuthProvider extends React.Component {
   //   spotifyApiToken: null
   // };
 
-  constructor() {
-    super();
-    this.login = this.login.bind(this);
-    this.logout = this.logout.bind(this);
-  }
+  const login = (user: IUser | undefined, token: string) => {
+    updateState({ isConnected: true, user: user, spotifyApiToken: token });
+  };
 
-  login(user, token) {
-    this.setState({ isConnected: true, user: user, spotifyApiToken: token });
-  }
-  logout() {
-    this.setState({
+  const logout = () => {
+    updateState({
       isConnected: false,
       user: undefined,
       spotifyApiToken: undefined,
     });
-  }
+  };
 
-  render() {
-    return (
-      <AuthContext.Provider
-        value={{
-          isConnected: this.state.isConnected,
-          user: this.state.user,
-          spotifyApiToken: this.state.spotifyApiToken,
-          login: this.login,
-          logout: this.logout,
-        }}
-      >
-        {this.props.children}
-      </AuthContext.Provider>
-    );
-  }
-}
+  console.log(children);
+
+  return (
+    <AuthContext.Provider
+      value={{
+        isConnected: state.isConnected,
+        user: state.user,
+        spotifyApiToken: state.spotifyApiToken,
+        login,
+        logout,
+      }}
+    >
+      {children.children}
+    </AuthContext.Provider>
+  );
+};
 const AuthConsumer = AuthContext.Consumer;
 
 export { AuthProvider, AuthConsumer, AuthContext };

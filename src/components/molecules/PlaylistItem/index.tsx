@@ -1,17 +1,17 @@
 import React, { FunctionComponent } from 'react';
-import { withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import './styles.css';
 
 interface IPlaylistItemProps {
-  push: (path: string) => void;
   playlist: IPlaylist;
   last?: boolean;
 }
+type props = IPlaylistItemProps & RouteComponentProps;
 
-const PlaylistItemComponent: FunctionComponent<IPlaylistItemProps> = ({
+const PlaylistItemComponent: FunctionComponent<props> = ({
   playlist,
-  push,
   last,
+  history,
 }) => {
   // {
   //   "collaborative": true,
@@ -46,7 +46,7 @@ const PlaylistItemComponent: FunctionComponent<IPlaylistItemProps> = ({
   //     "href": "https://api.spotify.com/v1/users/11178545817",
   //     "id": "11178545817",
   //     "type": "user",
-  //     "uri": "spotify:user:11178545817"
+  //     "uri": "spotify:user:P11178545817"
   //   },
   //   "primary_color": null,
   //   "public": false,
@@ -62,7 +62,7 @@ const PlaylistItemComponent: FunctionComponent<IPlaylistItemProps> = ({
   const redirectToPlaylistDetail = () => {
     if (playlist && playlist.id) {
       // redirect to the playlist detail
-      push(`/playlists/${playlist.id}`);
+      history.push(`/playlists/${playlist.id}`);
     }
   };
 

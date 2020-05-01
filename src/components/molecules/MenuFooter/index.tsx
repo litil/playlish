@@ -6,13 +6,13 @@ interface IMenuFooterProps {
 }
 
 export const MenuFooter: FunctionComponent<IMenuFooterProps> = ({ styles }) => {
-  const linkToBuyMeACoffee = () => {
-    window.open('https://www.buymeacoffee.com/3z7CnoJ');
-  };
+  // const linkToBuyMeACoffee = () => {
+  //   window.open('https://www.buymeacoffee.com/3z7CnoJ');
+  // };
 
   return (
     <div className="MenuFooter-container" style={styles}>
-      <span>Scriptaculaire - 2011 - 2020</span>
+      <span>© 2020, Scriptaculaire</span>
       {/* <div className="MenuFooter-linkContainer">
           <span>You love it? Buy me a </span>
           <SocialIcon

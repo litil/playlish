@@ -1,18 +1,15 @@
 import React, { FunctionComponent } from 'react';
 import { FaMusic, FaPlus } from 'react-icons/fa';
-import { withRouter } from 'react-router';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { MenuLink } from '../';
 import './styles.css';
 
-interface IMenuNavigationProps {
-  push: (path: string) => void;
-}
+interface IMenuNavigationProps {}
+type props = IMenuNavigationProps & RouteComponentProps;
 
-const MenuNavigationClass: FunctionComponent<IMenuNavigationProps> = ({
-  push,
-}) => {
+const MenuNavigationClass: FunctionComponent<props> = ({ history }) => {
   const redirectTo = (pathname: string) => {
-    push(pathname);
+    history.push(pathname);
   };
 
   return (

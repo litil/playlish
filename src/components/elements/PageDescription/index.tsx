@@ -1,12 +1,12 @@
-import { FunctionComponent, ReactElement } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import './styles.css';
 
 interface IPageDescriptionProps {
-  children: ReactElement;
+  children?: ReactNode;
 }
 
 export const PageDescription: FunctionComponent<IPageDescriptionProps> = ({
   children,
 }) => {
-  return children;
+  return <>{children}</>;
 };

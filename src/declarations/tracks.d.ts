@@ -9,7 +9,7 @@ interface IInnerTrack {
   album: IAlbum;
   artists: IArtist[];
   name: string;
-  popularity: number;
+  popularity: number | string;
 }
 
 interface IAlbum {

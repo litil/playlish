@@ -1,6 +1,6 @@
 interface IArtist {
   id: string | number;
-  images: IImage[];
+  images?: IImage[];
   name: string;
-  tracks: ITrack[];
+  tracks?: ITrack[];
 }
