@@ -9,10 +9,10 @@ const DefaultLayout = ({ component: Component, ...rest }) => {
       {...rest}
       render={(matchProps) => (
         <div className="DefaultLayout-container">
-          <div className="LeftMenu-container">
+          <div className="LeftMenu-container bg-gray-900 text-gray-100">
             <Menu />
           </div>
-          <div className="MainComponent-container">
+          <div className="bg-background-100 text-blue-100 h-screen overflow-hidden font-sans ml-24">
             <Component
               {...matchProps}
               connectedUser={rest.connectedUser}

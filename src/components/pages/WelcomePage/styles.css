@@ -60,12 +60,14 @@
   font-weight: bold;
   padding: 8px 100px;
   text-decoration: none;
-  text-shadow: 2px 2px 0px #2f6627;
+  /* text-shadow: 2px 2px 0px #2f6627; */
   border: none;
 }
+
 .WelcomePage-login:hover {
   background-color: #1ed760;
 }
+
 .WelcomePage-login:active {
   position: relative;
   top: 1px;

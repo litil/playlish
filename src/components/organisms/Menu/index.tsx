@@ -15,15 +15,15 @@ interface IMenuProps {}
 
 const MenuComponent: FunctionComponent<IMenuProps> = () => {
   return (
-    <div className="Menu-container">
+    <div>
       <AuthConsumer>
         {({ isConnected, user }) => (
-          <div className="Menu-innerContainer">
+          <div>
             {isConnected && user ? (
               <>
-                <div className="MenuUpper-container">
-                  <MenuHeader styles={{ marginTop: '32px' }} />
-                  <MenuUserCard styles={{ marginTop: '64px' }} />
+                <div>
+                  <MenuHeader />
+                  <MenuUserCard />
                   <MenuSeparator />
                   <MenuNavigation />
                   <MenuSeparator />
