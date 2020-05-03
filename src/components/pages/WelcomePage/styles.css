@@ -36,7 +36,7 @@
   margin-top: 0;
   margin-bottom: 0;
   font-weight: bold;
-  color: #1ed760;
+  color: #48bb78;
   letter-spacing: 0.1em;
 }
 
@@ -48,7 +48,7 @@
 }
 
 .WelcomePage-login {
-  background-color: #1ed760;
+  background-color: #48bb78;
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
   border-radius: 20px;
@@ -65,7 +65,7 @@
 }
 
 .WelcomePage-login:hover {
-  background-color: #1ed760;
+  background-color: #48bb78;
 }
 
 .WelcomePage-login:active {

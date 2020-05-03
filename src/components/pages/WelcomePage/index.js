@@ -68,7 +68,7 @@ export default class WelcomePage extends Component {
           <div class="container mx-auto px-6 py-2 flex justify-between items-center">
             <div className="flex flex-row items-center">
               <img src={logo} alt="logo" class="h-8 w-8 mr-2" />
-              <h1 class="font-bold text-2xl lg:text-4xl text-customGreen-100 uppercase">
+              <h1 class="font-bold text-2xl lg:text-4xl text-green-500 uppercase">
                 Playlish
               </h1>
             </div>
@@ -101,7 +101,7 @@ export default class WelcomePage extends Component {
           </h4>
           <div className="container">
             <button
-              class="bg-transparent hover:bg-customGreen-100 text-blue-100 hover:text-blue-100 font-semibold py-2 px-8 border border-solid border-blue-100 hover:border-transparent uppercase rounded-xl"
+              class="bg-transparent hover:bg-green-500 text-blue-100 hover:text-green-100 font-semibold py-2 px-8 border border-solid border-blue-100 hover:border-transparent uppercase rounded-xl"
               onClick={this.redirectToSpotifySignin}
             >
               Get started

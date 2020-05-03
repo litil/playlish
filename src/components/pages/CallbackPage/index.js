@@ -65,7 +65,7 @@ class CallbackPage extends Component {
           <div class="container mx-auto px-6 py-2 flex justify-between items-center">
             <div className="flex flex-row items-center">
               <img src={logo} alt="logo" class="h-8 w-8 mr-2" />
-              <h1 class="font-bold text-2xl lg:text-4xl text-customGreen-100 uppercase">
+              <h1 class="font-bold text-2xl lg:text-4xl text-green-500 uppercase">
                 Playlish
               </h1>
             </div>
