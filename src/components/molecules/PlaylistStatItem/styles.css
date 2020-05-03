@@ -6,8 +6,8 @@
 }
 
 .PlaylistStatItem-container img {
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 12px;
 }
 
 .PlaylistStatItem-container svg path {
@@ -15,7 +15,7 @@
 }
 
 .PlaylistStatItem-container span {
-  font-size: 0.9em;
+  font-size: 0.8em;
   letter-spacing: 0.1em;
   color: rgba(241, 241, 241, 0.5);
 }
@@ -26,5 +26,5 @@
 }
 
 .PlaylistStatItem-value {
-  margin-right: 48px;
+  margin-right: 24px;
 }

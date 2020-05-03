@@ -8,11 +8,10 @@ const DefaultLayout = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(matchProps) => (
-        <div className="DefaultLayout-container">
-          <div className="w-20 bg-gray-900 text-gray-100">
-            <Menu />
-          </div>
-          <div className="bg-background-100 text-blue-100 h-screen font-sans ml-24">
+        <div className="">
+          <Menu />
+
+          <div className="container mx-auto min-h-screen flex flex-col align-items bg-background-100 text-blue-100 font-sans">
             <Component
               {...matchProps}
               connectedUser={rest.connectedUser}

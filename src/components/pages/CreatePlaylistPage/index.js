@@ -11,15 +11,11 @@ import {
   resetSearchArtistsRequest,
   searchArtistsRequest,
 } from '../../../actions/searchArtistsAction';
-import cover from '../../../assets/cover_3.jpg';
-import { Button, Input, Title } from '../../elements';
 import {
-  PageCoverWithInput,
   PlaylistStatItem,
   SearchedArtist,
   SelectedArtist,
 } from '../../molecules/';
-import { StatsContainer } from '../../organisms';
 import './styles.css';
 
 class CreatePlaylistPage extends Component {
@@ -142,6 +138,7 @@ class CreatePlaylistPage extends Component {
       createdPlaylist,
       isCreatingPlaylist,
     } = this.props;
+    const { playlistName } = this.state;
     const countTracks = this.countTracks();
     const playlistDuration = this.calculateDuration();
     const playlistPopularity = this.calculatePopularity(countTracks);
@@ -152,35 +149,133 @@ class CreatePlaylistPage extends Component {
       return <Redirect to="/playlists" />;
     }
 
+    const isArtistsSectionVisible = !!playlistName;
+    const isPreviewVisible =
+      isArtistsSectionVisible &&
+      !!selectedArtists &&
+      selectedArtists.length > 0;
+
     return (
-      <div className="PlaylistDetailPage-container">
-        <PageCoverWithInput
-          alt="Create your playlist"
-          src={cover}
-          value={this.state.value}
-          placeholder={createInputPlaceholder}
-          onChangeFn={this.onChangePlaylistName}
-        />
+      <div className="flex flex-col items-center">
+        {/* <h1 className="font-bold text-3xl lg:text-5xl mb-6">
+          Create a new playlist
+        </h1> */}
+        {/* <div className="mb-2 container w-1/2">
+          <div className="mb-4 text-left">
+            💬 Start by choosing a cool name for your playlist.
+          </div>
+          <div className="mb-4 text-left">
+            🔎 Then, search for artists and add them to your playlist. We
+            automatically add the 5 most famous songs from each artist you've
+            selected.{" "}
+          </div>
+          <div className="mb-4 text-left">
+            ✅ Finally, review it and click on the create button below.
+          </div>
+          <div className="mb-4 text-left">
+            💪 That's it! your playlist is ready to be played or shared from
+            Spotify
+          </div>
+        </div>
+        <div className="container text-xs lg:text-sm italic w-1/2">
+          Keep in mind that you can't create a playlist with more than 100 songs
+          right now.
+        </div> */}
 
-        <StatsContainer>
-          <PlaylistStatItem
-            icon={<FaMusic />}
-            value={countTracks}
-            text="Tracks"
-          />
-          <PlaylistStatItem
-            icon={<FaClock />}
-            value={playlistDuration}
-            text="Duration"
-          />
-          <PlaylistStatItem
-            icon={<FaFire />}
-            value={playlistPopularity}
-            text="Popularity"
-          />
-        </StatsContainer>
+        <div className="mt-12 mb-24 w-3/4 flex flex-col items-center">
+          <div className="mb-4 text-2xl lg:text-3xl">
+            💬 Choose a name for your playlist
+          </div>
+          <input
+            className="border-0 w-3/4 text-center"
+            placeholder="> type here the name of your playlist"
+            onChange={this.onChangePlaylistName}
+          ></input>
+        </div>
 
-        <div className="CreatePlaylistPage-body">
+        {isArtistsSectionVisible && (
+          <div className="mb-12 w-3/4 flex flex-col items-center">
+            <div className="mb-2 text-2xl lg:text-3xl">
+              🔎 Search for artists
+            </div>
+            <div className="container text-xs lg:text-sm italic mb-4 w-3/4">
+              We automatically add the 3 most famous songs from each artist
+              you've selected. Keep in mind that you can't create a playlist
+              with more than 100 songs right now.
+            </div>
+            <input
+              className="border-0 w-3/4 text-center"
+              placeholder="> search for artists here, such as: Milburn, Bjorg, Eminem ..."
+              onChange={this.onChangeSearchArtists}
+              value={this.state.artistKeyword}
+            ></input>
+            <div className="CreatePlaylistPage-searchResults">
+              {!!searchedArtists &&
+                searchedArtists.items.map((artist, i) => {
+                  return (
+                    <SearchedArtist
+                      artist={artist}
+                      key={`searched-artists-${i}`}
+                      onClickFn={() => this.addArtist(artist)}
+                      last={i === searchedArtists.items.length - 1}
+                    />
+                  );
+                })}
+            </div>
+          </div>
+        )}
+
+        {isPreviewVisible && (
+          <div className="mb-4 w-3/4 flex flex-col items-center">
+            <div className="mb-2 text-2xl lg:text-3xl">
+              ✅ Finally, review it and click on the create button below.
+            </div>
+
+            <div className="flex flex-row text-blue-200 items-center mb-8">
+              <PlaylistStatItem
+                icon={<FaMusic />}
+                value={countTracks}
+                text="Tracks"
+              />
+              <PlaylistStatItem
+                icon={<FaClock />}
+                value={playlistDuration}
+                text="Duration"
+              />
+              <PlaylistStatItem
+                icon={<FaFire />}
+                value={playlistPopularity}
+                text="Popularity"
+              />
+            </div>
+
+            {selectedArtists && selectedArtists.length > 0 ? (
+              <div className="flex flex-col">
+                {selectedArtists.map((artist, i) => {
+                  return (
+                    <SelectedArtist
+                      artist={Object.values(artist)[0]}
+                      key={`selected-artist-${i}`}
+                    />
+                  );
+                })}
+              </div>
+            ) : (
+              ''
+            )}
+
+            {playlistName && (
+              <button
+                class="bg-transparent hover:bg-green-500 text-blue-100 hover:text-green-100 font-semibold py-2 px-8 border border-solid border-blue-100 hover:border-transparent uppercase rounded-xl mt-8"
+                onClick={this.onClickCreatePlaylist}
+              >
+                Create playlist
+              </button>
+            )}
+          </div>
+        )}
+
+        {/* <div className="CreatePlaylistPage-body">
           <div className="CreatePlaylistPage-innerBody">
             <Title text="Search" />
 
@@ -188,7 +283,7 @@ class CreatePlaylistPage extends Component {
               placeholder="Arctic Monkeys, Terror, Welshly Arms ..."
               value={this.state.artistKeyword}
               onChangeFn={this.onChangeSearchArtists}
-              styles={{ padding: '0px', border: 'none' }}
+              styles={{ padding: "0px", border: "none" }}
             />
             <div className="CreatePlaylistPage-searchResults">
               {!searchedArtists ? (
@@ -224,15 +319,16 @@ class CreatePlaylistPage extends Component {
                 <Button
                   text="Create"
                   onClickFn={this.onClickCreatePlaylist}
-                  styles={{ marginTop: '32px' }}
+                  styles={{ marginTop: "32px" }}
                   disabled={!this.state.playlistName}
                 />
               </div>
             ) : (
-              ''
+              ""
             )}
           </div>
         </div>
+       */}
       </div>
     );
   }

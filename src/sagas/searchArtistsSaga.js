@@ -1,6 +1,6 @@
-import { takeEvery, call, put } from 'redux-saga/effects';
-import * as actions from '../actions/actionTypes.js';
 import axios from 'axios';
+import { call, put, takeEvery } from 'redux-saga/effects';
+import * as actions from '../actions/actionTypes.js';
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
 export function* searchArtistsWatcherSaga() {
@@ -14,15 +14,15 @@ function searchArtists(keyword, accessToken) {
     baseURL: 'https://api.spotify.com/v1',
     url: '/search',
     headers: {
-      Authorization: 'Bearer ' + accessToken
+      Authorization: 'Bearer ' + accessToken,
     },
     params: {
       client_id: '341cbbaadca743aba2dd3f99302f623f',
       q: keyword,
       type: 'artist',
-      limit: '5',
-      scope: 'user-read-private'
-    }
+      limit: '3',
+      scope: 'user-read-private',
+    },
   });
 }
 
@@ -40,12 +40,12 @@ function* workerSaga(action) {
     // dispatch a success action to the store with the list of transactions
     yield put({
       type: actions.SEARCH_ARTISTS_SUCCESS,
-      response
+      response,
     });
   } catch (error) {
     yield put({
       type: actions.SEARCH_ARTISTS_FAILURE,
-      error
+      error,
     });
   }
 }

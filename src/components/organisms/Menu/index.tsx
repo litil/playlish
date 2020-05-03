@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { FaCoffee, FaGithub, FaMusic, FaPlus, FaTwitter } from 'react-icons/fa';
+import { FaCoffee, FaGithub, FaPlus, FaTwitter } from 'react-icons/fa';
 import { Redirect, RouteComponentProps, withRouter } from 'react-router-dom';
 import { AuthConsumer } from '../../../contexts/AuthContext';
 import logo from '../../../playlish_logo.svg';
@@ -39,47 +39,39 @@ const MenuComponent: FunctionComponent<props> = ({ history }) => {
           <div>
             {isConnected && user ? (
               <>
-                <div className="flex flex-col justify-between h-screen overflow-hidden items-center">
-                  <div className="container flex flex-col items-center">
-                    <div className="mt-2 mb-12" onClick={() => redirectTo('/')}>
-                      <img src={logo} alt="logo" className="h-8 w-8" />
+                <nav>
+                  <div className="container mx-auto px-6 py-2 mb-12 flex justify-between items-center">
+                    <div className="flex flex-row items-center">
+                      <img src={logo} alt="logo" className="h-8 w-8 mr-2" />
+                      <h1 className="font-bold text-2xl lg:text-4xl text-green-500 uppercase">
+                        Playlish
+                      </h1>
                     </div>
-                    <div
-                      className={`mb-2 p-2 m-2 hover:bg-green-500 hover:text-green-100 rounded-lg cursor-pointer ${
-                        isActive('/playlists') ? activeIconCSS : ''
-                      }`}
-                      onClick={() => redirectTo('/playlists')}
-                    >
-                      <FaMusic />
-                    </div>
-                    <div
-                      className={`mb-2 p-2 m-2 hover:bg-green-500 hover:text-green-100 rounded-lg cursor-pointer ${
-                        isActive('/playlists/create') ? activeIconCSS : ''
-                      }`}
-                      onClick={() => redirectTo('/playlists/create')}
-                    >
-                      <FaPlus />
-                    </div>
+                    <ul className="inline-flex mt-2 h-4">
+                      <li className="text-xl ml-3 text-green-100 hover:text-green-500 cursor-pointer">
+                        <FaPlus />
+                      </li>
+                      <li className="ml-3">
+                        <SocialIcon
+                          icon={<FaGithub />}
+                          onClickFn={linkToGithub}
+                        />
+                      </li>
+                      <li className="ml-3">
+                        <SocialIcon
+                          icon={<FaTwitter />}
+                          onClickFn={linkToTwitter}
+                        />
+                      </li>
+                      <li className="ml-3">
+                        <SocialIcon
+                          icon={<FaCoffee />}
+                          onClickFn={linkToBuyMeACoffee}
+                        />
+                      </li>
+                    </ul>
                   </div>
-
-                  <div className="container flex flex-col items-center">
-                    <SocialIcon
-                      icon={<FaGithub />}
-                      onClickFn={linkToGithub}
-                      styles={{ marginBottom: '12px' }}
-                    />
-                    <SocialIcon
-                      icon={<FaTwitter />}
-                      onClickFn={linkToTwitter}
-                      styles={{ marginBottom: '12px' }}
-                    />
-                    <SocialIcon
-                      icon={<FaCoffee />}
-                      onClickFn={linkToBuyMeACoffee}
-                      styles={{ marginBottom: '24px' }}
-                    />
-                  </div>
-                </div>
+                </nav>
               </>
             ) : (
               <Redirect to="/" />

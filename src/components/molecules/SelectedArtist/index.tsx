@@ -21,7 +21,7 @@ export const SelectedArtist: FunctionComponent<ISelectedArtistProps> = ({
   const artistImg =
     artist.images && artist.images.length > 0 ? (
       <img
-        className="SelectedArtist-img"
+        className="max-w-56 w-56"
         src={artist.images[0].url}
         alt={artist.name}
       />
@@ -30,17 +30,19 @@ export const SelectedArtist: FunctionComponent<ISelectedArtistProps> = ({
     );
 
   return (
-    <div className={className} onClick={onClickFn}>
-      <div className="SelectedArtist-left">{artistImg}</div>
-      <div className="SelectedArtist-right">
-        <div className="SelectedArtist-info">
-          <h3>{artist.name}</h3>
-        </div>
+    <div className="container flex flex-row items-center mb-8">
+      <div className="h-56 min-h-56 flex flex-row items-center">
+        {artistImg}
+      </div>
+      <div className="flex flex-col justify-center pl-6">
+        <h3 className="text-l lg:text-xl font-bold mb-1 text-left">
+          {artist.name}
+        </h3>
         {artist.tracks
           ? artist.tracks.map((track, i) => {
               return (
                 <div
-                  className="SelectedArtist-tracks"
+                  className="text-left"
                   key={`selected-artist-tracks-${track.id}`}
                 >
                   {track.name}
