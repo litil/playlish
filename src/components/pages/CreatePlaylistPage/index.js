@@ -169,7 +169,7 @@ class CreatePlaylistPage extends Component {
 
         {isArtistsSectionVisible && (
           <>
-            <hr />
+            <hr className="text-blue-100" />
             <div className="mb-16 mt-16 w-3/4 flex flex-col items-center">
               <div className="mb-2 text-2xl lg:text-3xl">
                 🔎 Search for artists
@@ -204,10 +204,10 @@ class CreatePlaylistPage extends Component {
 
         {isPreviewVisible && (
           <>
-            <hr />
+            <hr className="text-blue-100" />
             <div className="mb-4 mt-16 w-3/4 flex flex-col items-center">
               <div className="mb-2 text-2xl lg:text-3xl">
-                ✅ Review it and create.
+                ✅ Review and create your playlist
               </div>
 
               <div className="flex flex-row text-blue-200 items-center mb-8">

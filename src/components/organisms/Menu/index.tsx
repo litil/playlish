@@ -41,14 +41,20 @@ const MenuComponent: FunctionComponent<props> = ({ history }) => {
               <>
                 <nav>
                   <div className="container mx-auto px-6 py-2 mb-12 flex justify-between items-center">
-                    <div className="flex flex-row items-center">
+                    <div
+                      className="flex flex-row items-center cursor-pointer"
+                      onClick={() => redirectTo('/playlists')}
+                    >
                       <img src={logo} alt="logo" className="h-8 w-8 mr-2" />
                       <h1 className="font-bold text-2xl lg:text-4xl text-green-500 uppercase">
                         Playlish
                       </h1>
                     </div>
                     <ul className="inline-flex mt-2 h-4">
-                      <li className="text-xl ml-3 text-green-100 hover:text-green-500 cursor-pointer">
+                      <li
+                        className="text-xl ml-3 text-green-100 hover:text-green-500 cursor-pointer"
+                        onClick={() => redirectTo('/playlists/create')}
+                      >
                         <FaPlus />
                       </li>
                       <li className="ml-3">
