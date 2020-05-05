@@ -8,32 +8,27 @@ interface ITrackRowProps {
   track: ITrack;
 }
 
-export const TrackRow: FunctionComponent<ITrackRowProps> = ({
-  header,
-  track,
-}) => {
+export const TrackRow: FunctionComponent<ITrackRowProps> = ({ header, track }) => {
   const trackDetail = track.track;
 
   if (!track) return <></>;
 
-  const artist = trackDetail.artists
-    ? trackDetail.artists.map((i) => i.name).join(', ')
-    : 'Unknown';
+  const artist = trackDetail.artists ? trackDetail.artists.map(i => i.name).join(', ') : 'Unknown';
   const album = trackDetail.album ? trackDetail.album.name : 'Unknown';
 
   const dateNow = new Date();
   console.log('track.added_at', track.added_at);
   const dateValue =
-    track.added_at === 'Added'
-      ? 'Added'
-      : formatDistance(getValidDate(track.added_at), dateNow);
+    track.added_at === 'Added' ? 'Added' : formatDistance(getValidDate(track.added_at), dateNow);
 
-  const containerClassName = header
-    ? 'TrackRow-container header'
-    : 'TrackRow-container';
+  const containerClassName = header ? 'TrackRow-container header' : 'TrackRow-container';
 
   return (
-    <div className={containerClassName}>
+    <div
+      className={`flex flex-row justify-start items-center w-full py-2 border-b border-gray-800 ${
+        header ? 'text-gray-500' : ''
+      }`}
+    >
       <span className="TrackRow-title truncate">{trackDetail.name}</span>
       <span className="TrackRow-artist truncate">{artist}</span>
       <span className="TrackRow-album truncate">{album}</span>

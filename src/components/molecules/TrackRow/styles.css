@@ -10,7 +10,8 @@
 }
 
 .TrackRow-container.header {
-  color: rgba(241, 241, 241, 0.5);
+  /* gray-500 */
+  color: #a0aec0;
 }
 
 .truncate {

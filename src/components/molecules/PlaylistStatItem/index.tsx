@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import './styles.css';
 
 interface IPlaylistStatItemProps {
   text: string;
@@ -12,13 +11,13 @@ export const PlaylistStatItem: FunctionComponent<IPlaylistStatItemProps> = ({
   text,
   value,
   icon,
-  styles,
+  styles
 }) => {
   return (
     <div className="flex flex-row items-center" style={styles}>
-      {icon ? icon : ''}
-      <span className="PlaylistStatItem-text">{`${text}:`}</span>
-      <span className="PlaylistStatItem-value">{value}</span>
+      <span className="text-green-500">{icon ? icon : ''}</span>
+      <span className="ml-2 mr-2">{`${text}:`}</span>
+      <span className="mr-12">{value}</span>
     </div>
   );
 };
