@@ -16,7 +16,6 @@ import {
   SearchedArtist,
   SelectedArtist,
 } from '../../molecules/';
-import './styles.css';
 
 class CreatePlaylistPage extends Component {
   static propTypes = {
@@ -246,7 +245,7 @@ class CreatePlaylistPage extends Component {
 
               {playlistName && (
                 <button
-                  className="bg-transparent hover:bg-green-500 text-blue-100 hover:text-green-100 font-semibold py-2 px-8 border border-solid border-blue-100 hover:border-transparent uppercase rounded-xl mt-8"
+                  className="bg-transparent hover:bg-green-500 text-blue-100 hover:text-green-100 font-semibold py-2 px-8 border border-solid border-blue-100 hover:border-transparent uppercase rounded-xl mt-8 mb-8"
                   onClick={this.onClickCreatePlaylist}
                 >
                   Create playlist
@@ -255,61 +254,6 @@ class CreatePlaylistPage extends Component {
             </div>
           </>
         )}
-
-        {/* <div className="CreatePlaylistPage-body">
-          <div className="CreatePlaylistPage-innerBody">
-            <Title text="Search" />
-
-            <Input
-              placeholder="Arctic Monkeys, Terror, Welshly Arms ..."
-              value={this.state.artistKeyword}
-              onChangeFn={this.onChangeSearchArtists}
-              styles={{ padding: "0px", border: "none" }}
-            />
-            <div className="CreatePlaylistPage-searchResults">
-              {!searchedArtists ? (
-                <p>
-                  Start by searching for artists. Note that we'll only display
-                  the 5 most relevant ones. Then, add them to your playlist.
-                </p>
-              ) : (
-                searchedArtists.items.map((artist, i) => {
-                  return (
-                    <SearchedArtist
-                      artist={artist}
-                      key={`searched-artists-${i}`}
-                      onClickFn={() => this.addArtist(artist)}
-                      last={i === searchedArtists.items.length - 1}
-                    />
-                  );
-                })
-              )}
-            </div>
-
-            {selectedArtists && selectedArtists.length > 0 ? (
-              <div className="CreatePlaylistPage-playlist">
-                <Title text="Your Playlist" />
-                {selectedArtists.map((artist, i) => {
-                  return (
-                    <SelectedArtist
-                      artist={Object.values(artist)[0]}
-                      key={`selected-artist-${i}`}
-                    />
-                  );
-                })}
-                <Button
-                  text="Create"
-                  onClickFn={this.onClickCreatePlaylist}
-                  styles={{ marginTop: "32px" }}
-                  disabled={!this.state.playlistName}
-                />
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
-       */}
       </div>
     );
   }
