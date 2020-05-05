@@ -21,7 +21,7 @@ export const SelectedArtist: FunctionComponent<ISelectedArtistProps> = ({
   const artistImg =
     artist.images && artist.images.length > 0 ? (
       <img
-        className="max-w-56 w-56"
+        className="max-w-full max-h-full"
         src={artist.images[0].url}
         alt={artist.name}
       />
@@ -31,11 +31,11 @@ export const SelectedArtist: FunctionComponent<ISelectedArtistProps> = ({
 
   return (
     <div className="container flex flex-row items-center mb-8">
-      <div className="h-56 min-h-56 flex flex-row items-center">
+      <div className="h-56 min-h-56 w-56 min-w-56 flex flex-row items-center">
         {artistImg}
       </div>
       <div className="flex flex-col justify-center pl-6">
-        <h3 className="text-l lg:text-xl font-bold mb-1 text-left">
+        <h3 className="text-l lg:text-xl font-bold mb-2 text-left">
           {artist.name}
         </h3>
         {artist.tracks

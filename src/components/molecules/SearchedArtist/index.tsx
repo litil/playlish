@@ -16,7 +16,11 @@ export const SearchedArtist: FunctionComponent<ISearchedArtistProps> = ({
 
   const artistImg =
     artist.images && artist.images.length > 0 ? (
-      <img className="w-48" src={artist.images[0].url} alt={artist.name} />
+      <img
+        className="max-w-full max-h-full"
+        src={artist.images[0].url}
+        alt={artist.name}
+      />
     ) : (
       ''
     );
@@ -26,7 +30,9 @@ export const SearchedArtist: FunctionComponent<ISearchedArtistProps> = ({
       className="container flex flex-col items-center cursor-pointer hover:text-green-500 rounded-lg"
       onClick={onClickFn}
     >
-      <div className="pt-2 pl-2 pr-2 pb-1 h-48 min-h-48">{artistImg}</div>
+      <div className="pt-2 pl-2 pr-2 pb-1 h-48 min-h-48 w-48 min-w-48">
+        {artistImg}
+      </div>
       <h3 className="text-l">{artist.name}</h3>
     </div>
   );

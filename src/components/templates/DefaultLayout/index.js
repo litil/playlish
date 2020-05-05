@@ -11,7 +11,7 @@ const DefaultLayout = ({ component: Component, ...rest }) => {
         <div className="">
           <Menu />
 
-          <div className="container mx-auto min-h-screen flex flex-col align-items bg-background-100 text-blue-100 font-sans">
+          <div className="container mx-auto min-h-screen flex flex-col align-items bg-background-900 text-blue-100 font-sans">
             <Component
               {...matchProps}
               connectedUser={rest.connectedUser}

@@ -19,7 +19,9 @@ module.exports = {
       white: "#fff",
 
       background: {
-        100: "#011627",
+        100: "#9eb9e6",
+        500: "#5f7e9779",
+        900: "#011627",
       },
 
       // customGreen: {

@@ -60,7 +60,7 @@ class CallbackPage extends Component {
     }
 
     return (
-      <div class="bg-background-100 text-blue-100 h-screen overflow-hidden font-sans">
+      <div class="bg-background-900 text-blue-100 h-screen overflow-hidden font-sans">
         <nav>
           <div class="container mx-auto px-6 py-2 flex justify-between items-center">
             <div className="flex flex-row items-center">
