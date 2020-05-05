@@ -28,12 +28,10 @@
 .PlaylistItem-container h3 {
   font-size: 0.9em;
   letter-spacing: 0.1em;
-  margin-bottom: 4px;
 }
 
 .PlaylistItem-container p {
   font-size: 0.8em;
   letter-spacing: 0.1em;
-  margin-top: 4px;
   color: #aaaaaa;
 }

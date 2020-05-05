@@ -83,11 +83,17 @@ const PlaylistItemComponent: FunctionComponent<props> = ({
       ''
     );
 
+  const byPlaylistSubstring = playlist.name.indexOf(' - by Playlish');
+  const playlistName =
+    byPlaylistSubstring !== -1
+      ? playlist.name.substring(0, byPlaylistSubstring)
+      : playlist.name;
+
   return (
     <div className={className} onClick={redirectToPlaylistDetail}>
       {playlistImg}
-      <div className="PlaylistItem-info">
-        <h3>{playlist.name}</h3>
+      <div className="flex flex-col items-start justify-start mt-2">
+        <h3>{playlistName}</h3>
         <p>{`${playlist.tracks.total} tracks`}</p>
       </div>
     </div>
