@@ -4,12 +4,12 @@
   justify-content: flex-start;
   align-items: flex-start;
   width: 224px;
-  margin: 0px 0px 56px 56px;
+  margin: 0px 28px 56px 28px;
   cursor: pointer;
 }
 
 .PlaylistItem-container-last {
-  margin-right: 56px;
+  /* margin-right: 56px; */
   cursor: pointer;
 }
 
@@ -33,5 +33,4 @@
 .PlaylistItem-container p {
   font-size: 0.8em;
   letter-spacing: 0.1em;
-  color: #aaaaaa;
 }

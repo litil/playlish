@@ -38,3 +38,11 @@
     transform: rotate(360deg);
   }
 }
+
+/* removing the input border */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}

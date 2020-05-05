@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import './App.css';
 import CallbackPage from './components/pages/CallbackPage';
 import CreatePlaylistPage from './components/pages/CreatePlaylistPage';
@@ -20,14 +20,15 @@ class App extends Component {
 
               return (
                 <Switch>
-                  <Route exact path="/" component={WelcomePage} />
-                  <Route exact path="/callback" component={CallbackPage} />
+                  <DefaultLayout exact path="/" component={WelcomePage} isConnected />
+                  <DefaultLayout exact path="/callback" component={CallbackPage} isConnected />
                   <DefaultLayout
                     exact
                     path="/playlists/"
                     component={ListPlaylistsPage}
                     connectedUser={user}
                     accessToken={spotifyApiToken}
+                    isConnected
                   />
                   <DefaultLayout
                     exact
@@ -35,6 +36,7 @@ class App extends Component {
                     component={CreatePlaylistPage}
                     connectedUser={user}
                     accessToken={spotifyApiToken}
+                    isConnected
                   />
                   <DefaultLayout
                     exact
@@ -42,6 +44,7 @@ class App extends Component {
                     component={PlaylistDetailPage}
                     connectedUser={user}
                     accessToken={spotifyApiToken}
+                    isConnected
                   />
                 </Switch>
               );

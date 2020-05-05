@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
 import { TrackRow } from '../../molecules';
-import './styles.css';
 
 interface IPlaylistDetailProps {
   playlist: IPlaylist;
@@ -9,7 +8,7 @@ interface IPlaylistDetailProps {
 
 export const PlaylistDetail: FunctionComponent<IPlaylistDetailProps> = ({
   playlist,
-  playlistTracks,
+  playlistTracks
 }) => {
   if (!playlist) return <></>;
 
@@ -21,18 +20,14 @@ export const PlaylistDetail: FunctionComponent<IPlaylistDetailProps> = ({
       artists: [{ id: '1', name: 'Artist' }],
       album: { name: 'Album' },
       popularity: 'Popularity',
-      name: 'Title',
-    },
+      name: 'Title'
+    }
   };
 
   return (
-    <div className="PlaylistDetail-container">
-      <div className="PlaylistDetail-innerContainer">
-        <TrackRow
-          track={headerTrack}
-          key={`${playlist.name}-track-header`}
-          header={true}
-        />
+    <div className="flex flex-row flex-wrap w-full items-center justify-center mb-8 mt-16">
+      <div className="flex flex-row flex-wrap w-full items-center justify-center px-12">
+        <TrackRow track={headerTrack} key={`${playlist.name}-track-header`} header={true} />
         {playlistTracks.map((track: ITrack, i: number) => {
           return <TrackRow track={track} key={`${playlist.name}-track-${i}`} />;
         })}

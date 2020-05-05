@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { FaPlusCircle } from 'react-icons/fa';
-import { Redirect, RouteComponentProps, withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { AuthConsumer } from '../../../contexts/AuthContext';
 import logo from '../../../playlish_logo.svg';
 import './styles.css';
@@ -36,29 +36,29 @@ const MenuComponent: FunctionComponent<props> = ({ history }) => {
       <AuthConsumer>
         {({ isConnected, user }) => (
           <div>
-            {isConnected && user ? (
-              <>
-                <nav>
-                  <div className="container mx-auto px-6 py-2 mb-12 flex justify-between items-center">
-                    <div
-                      className="flex flex-row items-center cursor-pointer"
-                      onClick={() => redirectTo('/playlists')}
-                    >
-                      <img src={logo} alt="logo" className="h-8 w-8 mr-2" />
-                      <h1 className="font-bold text-2xl lg:text-4xl text-green-500 uppercase">
-                        Playlish
-                      </h1>
-                    </div>
-                    <div className="flex flex-row py-2 px-4 bg-green-500 hover:bg-green-700 text-green-100 cursor-pointer rounded rounded-lg justify-center items-center">
-                      <FaPlusCircle />{' '}
-                      <span className="ml-1 text-sm">Create a playlist</span>
-                    </div>
+            <>
+              <nav>
+                <div className="container mx-auto px-6 py-2 mb-12 flex justify-between items-center">
+                  <div
+                    className="flex flex-row items-center cursor-pointer"
+                    onClick={() => redirectTo('/playlists')}
+                  >
+                    <img src={logo} alt="logo" className="h-8 w-8 mr-2" />
+                    <h1 className="font-bold text-2xl lg:text-4xl text-customGreen-100">
+                      Playlish
+                    </h1>
                   </div>
-                </nav>
-              </>
-            ) : (
-              <Redirect to="/" />
-            )}
+                  {isConnected && !!user && (
+                    <div
+                      className="flex flex-row py-2 px-4 bg-green-500 hover:bg-green-700 text-green-100 cursor-pointer rounded rounded-lg justify-center items-center"
+                      onClick={() => redirectTo('/playlists/create')}
+                    >
+                      <FaPlusCircle /> <span className="ml-1 text-sm">Create a playlist</span>
+                    </div>
+                  )}
+                </div>
+              </nav>
+            </>
           </div>
         )}
       </AuthConsumer>
