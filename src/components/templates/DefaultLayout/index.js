@@ -9,7 +9,7 @@ const DefaultLayout = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(matchProps) => (
-        <div className="">
+        <div className="min-h-screen flex flex-col justify-between">
           <Menu />
 
           <div className="container mx-auto flex flex-col align-items bg-background-900 text-blue-100 font-sans">
@@ -20,8 +20,8 @@ const DefaultLayout = ({ component: Component, ...rest }) => {
             />
           </div>
 
-          <div className="container mx-auto flex flex-row items-center justify-center bg-background-900 text-blue-100 font-sans text-sm">
-            <ul className="inline-flex mt-2 h-4">
+          <div className="flex flex-row items-center justify-center bg-background-900 text-blue-100 font-sans text-sm">
+            <ul className="inline-flex mt-2 mb-2 h-12">
               <li className="ml-3 text-blue-100 flex flex-row items-center justify-center h-12 ml-2 mr-2 text-sm">
                 <FaGithub />
                 <span className="ml-1 text-sm">

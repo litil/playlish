@@ -1,9 +1,8 @@
 import React, { FunctionComponent } from 'react';
-import { FaCoffee, FaGithub, FaPlus, FaTwitter } from 'react-icons/fa';
+import { FaPlusCircle } from 'react-icons/fa';
 import { Redirect, RouteComponentProps, withRouter } from 'react-router-dom';
 import { AuthConsumer } from '../../../contexts/AuthContext';
 import logo from '../../../playlish_logo.svg';
-import { SocialIcon } from '../../elements';
 import './styles.css';
 
 interface IMenuProps {}
@@ -50,32 +49,10 @@ const MenuComponent: FunctionComponent<props> = ({ history }) => {
                         Playlish
                       </h1>
                     </div>
-                    <ul className="inline-flex mt-2 h-4">
-                      <li
-                        className="text-xl ml-3 text-green-100 hover:text-green-500 cursor-pointer"
-                        onClick={() => redirectTo('/playlists/create')}
-                      >
-                        <FaPlus />
-                      </li>
-                      <li className="ml-3">
-                        <SocialIcon
-                          icon={<FaGithub />}
-                          onClickFn={linkToGithub}
-                        />
-                      </li>
-                      <li className="ml-3">
-                        <SocialIcon
-                          icon={<FaTwitter />}
-                          onClickFn={linkToTwitter}
-                        />
-                      </li>
-                      <li className="ml-3">
-                        <SocialIcon
-                          icon={<FaCoffee />}
-                          onClickFn={linkToBuyMeACoffee}
-                        />
-                      </li>
-                    </ul>
+                    <div className="flex flex-row py-2 px-4 bg-green-500 hover:bg-green-700 text-green-100 cursor-pointer rounded rounded-lg justify-center items-center">
+                      <FaPlusCircle />{' '}
+                      <span className="ml-1 text-sm">Create a playlist</span>
+                    </div>
                   </div>
                 </nav>
               </>
