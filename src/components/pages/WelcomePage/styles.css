@@ -1,10 +1,15 @@
 .WelcomePage-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 100vh;
+  background-image: url('/assets/body-top-pattern.svg');
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.WelcomePage-SectionTitle {
+  background-image: url('/assets/title-pattern.svg');
+  background-repeat: no-repeat;
+  background-position: 50%;
+  height: 200px;
+  line-height: 200px;
 }
 
 .WelcomePage-innerContainer {

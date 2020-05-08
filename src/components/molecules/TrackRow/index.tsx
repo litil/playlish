@@ -17,7 +17,6 @@ export const TrackRow: FunctionComponent<ITrackRowProps> = ({ header, track }) =
   const album = trackDetail.album ? trackDetail.album.name : 'Unknown';
 
   const dateNow = new Date();
-  console.log('track.added_at', track.added_at);
   const dateValue =
     track.added_at === 'Added' ? 'Added' : formatDistance(getValidDate(track.added_at), dateNow);
 

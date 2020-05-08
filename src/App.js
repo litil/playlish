@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import CallbackPage from './components/pages/CallbackPage';
 import CreatePlaylistPage from './components/pages/CreatePlaylistPage';
@@ -20,7 +20,7 @@ class App extends Component {
 
               return (
                 <Switch>
-                  <DefaultLayout exact path="/" component={WelcomePage} isConnected />
+                  <Route exact path="/" component={WelcomePage} isConnected />
                   <DefaultLayout exact path="/callback" component={CallbackPage} isConnected />
                   <DefaultLayout
                     exact

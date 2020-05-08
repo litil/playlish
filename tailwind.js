@@ -19,9 +19,15 @@ module.exports = {
       white: '#fff',
 
       background: {
-        100: '#9eb9e6',
-        500: '#5f7e9779',
-        900: '#011627'
+        900: '#192750'
+      },
+
+      customBlue: {
+        100: '#D2D6DC',
+        300: '#9EAFE2',
+        500: '#0BA4FF',
+        700: '#0b71ff',
+        900: '#192750'
       },
 
       customGreen: {
