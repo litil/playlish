@@ -1,8 +1,9 @@
 import React, { FunctionComponent } from 'react';
+import { IconContext } from 'react-icons';
 import { FaPlusCircle } from 'react-icons/fa';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { AuthConsumer } from '../../../contexts/AuthContext';
-import logo from '../../../playlish_logo.svg';
+import logo from '../../../playlish_logo_white.svg';
 import './styles.css';
 
 interface IMenuProps {}
@@ -13,24 +14,6 @@ const MenuComponent: FunctionComponent<props> = ({ history }) => {
     history.push(pathname);
   };
 
-  const linkToGithub = () => {
-    window.open('https://github.com/litil/playlish');
-  };
-
-  const linkToTwitter = () => {
-    window.open('https://twitter.com/shipasap');
-  };
-
-  const linkToBuyMeACoffee = () => {
-    window.open('https://www.buymeacoffee.com/3z7CnoJ');
-  };
-
-  const isActive = (pathname: string) => {
-    return history.location.pathname === pathname;
-  };
-
-  const activeIconCSS = 'bg-green-500 text-green-100';
-
   return (
     <div>
       <AuthConsumer>
@@ -38,23 +21,40 @@ const MenuComponent: FunctionComponent<props> = ({ history }) => {
           <div>
             <>
               <nav>
-                <div className="container mx-auto px-6 py-2 mb-12 flex justify-between items-center">
+                <div className="container mx-auto px-6 py-1 mb-12 flex justify-between items-center">
                   <div
                     className="flex flex-row items-center cursor-pointer"
                     onClick={() => redirectTo('/playlists')}
                   >
-                    <img src={logo} alt="logo" className="h-8 w-8 mr-2" />
-                    <h1 className="font-bold text-2xl lg:text-4xl text-customGreen-100">
+                    <img src={logo} alt="logo" className="h-6 w-6 mr-2" />
+                    <h1 className="font-bold text-xl lg:text-2xl text-blue-100 font-sans tracking-widest">
                       Playlish
                     </h1>
                   </div>
                   {isConnected && !!user && (
-                    <div
-                      className="flex flex-row py-2 px-4 bg-green-500 hover:bg-green-700 text-green-100 cursor-pointer rounded rounded-lg justify-center items-center"
-                      onClick={() => redirectTo('/playlists/create')}
-                    >
-                      <FaPlusCircle /> <span className="ml-1 text-sm">Create a playlist</span>
-                    </div>
+                    <ul className="flex flex-row">
+                      <li className="cursor-pointer text-blue-100 hover:text-customBlue-300 ml-4">
+                        <button
+                          // class="bg-transparent hover:bg-blue-500 text-blue-100 font-semibold py-2 px-8 border border-solid border-blue-100 hover:border-transparent uppercase rounded-xl flex flex-row items-center justify-center"
+                          className="
+                            bg-customBlue-500 hover:bg-customBlue-700 
+                            text-blue-100 font-semibold 
+                            py-1 px-3
+                            text-xs
+                            border border-solid border-transparent 
+                            rounded-xl 
+                            flex flex-row items-center justify-center"
+                          onClick={() => redirectTo('/playlists/create')}
+                        >
+                          <IconContext.Provider value={{ size: '1em' }}>
+                            <div>
+                              <FaPlusCircle />
+                            </div>
+                          </IconContext.Provider>
+                          <span className="ml-1">Create playlist</span>
+                        </button>
+                      </li>
+                    </ul>
                   )}
                 </div>
               </nav>
