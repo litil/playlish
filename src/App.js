@@ -21,7 +21,7 @@ class App extends Component {
               return (
                 <Switch>
                   <Route exact path="/" component={WelcomePage} isConnected />
-                  <DefaultLayout exact path="/callback" component={CallbackPage} isConnected />
+                  <Route exact path="/callback" component={CallbackPage} isConnected />
                   <DefaultLayout
                     exact
                     path="/playlists/"
