@@ -82,7 +82,7 @@ const PlaylistItemComponent: FunctionComponent<props> = ({ playlist, last, histo
       {playlistImg}
       <div className="flex flex-col items-start justify-start mt-2">
         <h3 className="text-blue-100">{playlistName}</h3>
-        <p className="text-gray-500">{`${playlist.tracks.total} tracks`}</p>
+        <p className="text-customBlue-300">{`${playlist.tracks.total} tracks`}</p>
       </div>
     </div>
   );

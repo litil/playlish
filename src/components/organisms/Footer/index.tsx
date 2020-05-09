@@ -30,7 +30,7 @@ const FooterComponent: FunctionComponent<props> = ({ history }) => {
   const activeIconCSS = 'bg-green-500 text-green-100';
 
   return (
-    <div className="flex flex-col items-center justify-center text-sm mt-24 mb-4">
+    <div className="flex flex-col items-center justify-center text-sm mt-8 mb-4">
       <ul className="flex flex-row">
         <li
           className="cursor-pointer text-blue-100 hover:text-customBlue-300 ml-2 mr-2 "

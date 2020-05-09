@@ -39,8 +39,12 @@ class CallbackPage extends Component {
 
     // redirect to the list of playlists
     this.props.history.push({
-      pathname: '/playlists/create'
+      pathname: '/playlists'
     });
+  };
+
+  redirectTo = pathname => {
+    this.props.history.push(pathname);
   };
 
   linkToGithub = () => {
@@ -80,7 +84,7 @@ class CallbackPage extends Component {
           <div className="container mx-auto px-6 py-2 mb-12 flex justify-between items-center">
             <div
               className="flex flex-row items-center cursor-pointer"
-              onClick={() => this.redirectTo('/')}
+              onClick={() => this.redirectTo('/playlists')}
             >
               <img src={logo} alt="logo" className="h-6 w-6 mr-2" />
               <h1 className="font-bold text-xl lg:text-2xl text-blue-100 font-sans tracking-widest">

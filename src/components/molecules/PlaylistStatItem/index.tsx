@@ -14,8 +14,8 @@ export const PlaylistStatItem: FunctionComponent<IPlaylistStatItemProps> = ({
   styles
 }) => {
   return (
-    <div className="flex flex-row items-center" style={styles}>
-      <span className="text-green-500">{icon ? icon : ''}</span>
+    <div className="flex flex-row items-center text-customBlue-300" style={styles}>
+      <span>{icon ? icon : ''}</span>
       <span className="ml-2 mr-2">{`${text}:`}</span>
       <span className="mr-12">{value}</span>
     </div>
