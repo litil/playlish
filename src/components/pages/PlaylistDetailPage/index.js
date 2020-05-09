@@ -64,7 +64,7 @@ class PlaylistDetailPage extends Component {
 
     return (
       <div className="flex flex-col items-center">
-        <div className="mt-16 mb-16 flex flex-col items-center">
+        <div className="mt-16 mb-16 flex flex-col items-center w-full">
           <StatsContainer>
             <PlaylistStatItem icon={<FaUser />} value={playlist.followers.total} text="Followers" />
             <PlaylistStatItem icon={<FaMusic />} value={playlist.tracks.total} text="Tracks" />
