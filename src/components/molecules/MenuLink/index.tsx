@@ -17,7 +17,7 @@ export const MenuLink: FunctionComponent<IMenuLinkProps> = ({
   return (
     <div className="MenuLink-container" onClick={redirectTo} style={styles}>
       {icon ? icon : ''}
-      <span>{text}</span>
+      {/* <span>{text}</span> */}
     </div>
   );
 };

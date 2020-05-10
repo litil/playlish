@@ -1,6 +1,8 @@
 .App {
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   text-align: center;
+  background-color: #192750;
 }
 
 .App-container {
@@ -13,7 +15,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #192750;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -31,7 +33,16 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+/* removing the input border */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
 }

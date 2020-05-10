@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as qs from 'query-string';
-
-import { AuthContext } from '../../../contexts/AuthContext';
+import React, { Component } from 'react';
+import { IconContext } from 'react-icons';
+import { FaCoffee, FaEnvelope, FaGithub, FaTwitter } from 'react-icons/fa';
+import { connect } from 'react-redux';
 import { fetchUserRequest } from '../../../actions/fetchUserAction';
-import logo from '../../../playlish_logo.svg';
-
+import { AuthContext } from '../../../contexts/AuthContext';
+import logo from '../../../playlish_logo_white.svg';
 import './styles.css';
 
 class CallbackPage extends Component {
@@ -39,15 +39,34 @@ class CallbackPage extends Component {
 
     // redirect to the list of playlists
     this.props.history.push({
-      pathname: '/playlists/create'
+      pathname: '/playlists'
     });
+  };
+
+  redirectTo = pathname => {
+    this.props.history.push(pathname);
+  };
+
+  linkToGithub = () => {
+    window.open('https://github.com/litil/playlish');
+  };
+
+  linkToTwitter = () => {
+    window.open('https://twitter.com/shipasap');
+  };
+
+  linkToBuyMeACoffee = () => {
+    window.open('https://www.buymeacoffee.com/3z7CnoJ');
+  };
+
+  mailTo = () => {
+    window.location.href = `mailto:guillaume.p.lambert@gmail.com`;
   };
 
   render() {
     const { isFetchingUser, connectedUser } = this.props;
 
-    const receivedUser =
-      isFetchingUser === false && connectedUser && connectedUser.display_name;
+    const receivedUser = isFetchingUser === false && connectedUser && connectedUser.display_name;
 
     // automatically redirecting the user to the authenticated page
     if (receivedUser) {
@@ -60,18 +79,89 @@ class CallbackPage extends Component {
     }
 
     return (
-      <div className="CallbackPage-container">
-        <div className="CallbackPage-innerContainer">
-          <div className="CallbackPage-brand">
-            <img src={logo} alt="logo" />
-            <h1>Playlish</h1>
+      <div className="min-h-screen flex flex-col justify-between h-full pt-4 WelcomePage-container">
+        <nav>
+          <div className="container mx-auto px-6 py-2 mb-12 flex justify-between items-center">
+            <div
+              className="flex flex-row items-center cursor-pointer"
+              onClick={() => this.redirectTo('/playlists')}
+            >
+              <img src={logo} alt="logo" className="h-6 w-6 mr-2" />
+              <h1 className="font-bold text-xl lg:text-2xl text-blue-100 font-sans tracking-widest">
+                Playlish
+              </h1>
+            </div>
           </div>
-          <div className="CallbackPage-slogan">
-            <h3>Fastest playlist generator for Spotify</h3>
-          </div>
+        </nav>
 
-          <div className="Loading-container">
-            Please wait while we're loading your profile...
+        <div className="container mx-auto flex flex-col justify-center align-items mb-48">
+          <h2 className="font-bold text-4xl lg:text-6xl text-blue-100 mb-1 tracking-widest mt-32 justify-center items-center">
+            Welcome to Playlish
+          </h2>
+          <div className="container flex flex-row items-center justify-center">
+            <h4 class="flex text-lg lg:text-xl text-customBlue-300 mb-12 w-1/2"></h4>
+          </div>
+        </div>
+
+        <div className="container mx-auto flex flex-col justify-center align-items">
+          <div className="flex flex-col items-center justify-center text-sm mt-24 mb-4">
+            <ul className="flex flex-row">
+              <li
+                className="cursor-pointer text-blue-100 hover:text-customBlue-300 ml-2 mr-2 "
+                onClick={this.linkToGithub}
+              >
+                <IconContext.Provider value={{ color: '#9EAFE2', size: '1.2em' }}>
+                  <div>
+                    <FaGithub />
+                  </div>
+                </IconContext.Provider>
+              </li>
+              <li
+                className="cursor-pointer text-blue-100 hover:text-customBlue-300 ml-2 mr-2"
+                onClick={this.linkToTwitter}
+              >
+                <IconContext.Provider value={{ color: '#9EAFE2', size: '1.2em' }}>
+                  <div>
+                    <FaTwitter />
+                  </div>
+                </IconContext.Provider>
+              </li>
+              <li
+                className="cursor-pointer text-blue-100 hover:text-customBlue-300 ml-2 mr-2"
+                onClick={this.linkToBuyMeACoffee}
+              >
+                <IconContext.Provider value={{ color: '#9EAFE2', size: '1.2em' }}>
+                  <div>
+                    <FaCoffee />
+                  </div>
+                </IconContext.Provider>
+              </li>
+              <li
+                className="cursor-pointer text-blue-100 hover:text-customBlue-300 ml-2 mr-2"
+                onClick={this.mailTo}
+              >
+                <IconContext.Provider value={{ color: '#9EAFE2', size: '1.2em' }}>
+                  <div>
+                    <FaEnvelope />
+                  </div>
+                </IconContext.Provider>
+              </li>
+            </ul>
+            <ul className="flex flex-row text-xs lg:text-sm text-customBlue-300 mt-2">
+              <li>Copyright © 2020 Playlish</li>
+              <li className="mx-2">•</li>
+              <li>
+                A{' '}
+                <a
+                  href="https://twitter.com/shipasap"
+                  target="_blank"
+                  className="hover:text-customBlue-500 cursor-pointer"
+                >
+                  @shipasap
+                </a>{' '}
+                product
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -99,7 +189,4 @@ const mapStateToProps = state => {
 
 CallbackPage.contextType = AuthContext; // This part is important to access context values
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CallbackPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CallbackPage);

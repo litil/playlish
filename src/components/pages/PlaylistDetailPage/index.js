@@ -3,17 +3,15 @@ import React, { Component } from 'react';
 import { FaClock, FaFire, FaMusic, FaUser } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { fetchPlaylistDetailRequest } from '../../../actions/fetchPlaylistDetailAction';
-import cover from '../../../assets/cover_2.jpg';
-import { PageCover, PlaylistStatItem } from '../../molecules/';
+import { PlaylistStatItem } from '../../molecules/';
 import { PlaylistDetail, StatsContainer } from '../../organisms/';
-import './styles.css';
 
 class PlaylistDetailPage extends Component {
   static propTypes = {
     /** Playlists detail object. Access the correct playlist detail by playlist id. */
     playlistsDetail: PropTypes.object.isRequired,
     /** Function performing an API call to fetch the playlist detail from Spotify */
-    fetchPlaylistDetail: PropTypes.func.isRequired,
+    fetchPlaylistDetail: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -28,7 +26,7 @@ class PlaylistDetailPage extends Component {
     }
   }
 
-  msToTime = (duration) => {
+  msToTime = duration => {
     // const milliseconds = parseInt((duration % 1000) / 100),
     //   seconds = parseInt((duration / 1000) % 60);
     let minutes = parseInt((duration / (1000 * 60)) % 60),
@@ -42,22 +40,15 @@ class PlaylistDetailPage extends Component {
     return hours + 'h ' + minutes + 'min';
   };
 
-  calculatePlaylistDuration = (playlistTracks) => {
-    const playlistDurationArray = playlistTracks.map(
-      (item) => item.track.duration_ms
-    );
+  calculatePlaylistDuration = playlistTracks => {
+    const playlistDurationArray = playlistTracks.map(item => item.track.duration_ms);
     const duration = playlistDurationArray.reduce((sum, x) => sum + x);
     return this.msToTime(duration);
   };
 
-  calculatePlaylistPopularity = (playlistTracks) => {
-    const playlistPopularityArray = playlistTracks.map(
-      (item) => item.track.popularity
-    );
-    return Math.round(
-      playlistPopularityArray.reduce((sum, x) => sum + x) /
-        playlistTracks.length
-    );
+  calculatePlaylistPopularity = playlistTracks => {
+    const playlistPopularityArray = playlistTracks.map(item => item.track.popularity);
+    return Math.round(playlistPopularityArray.reduce((sum, x) => sum + x) / playlistTracks.length);
   };
 
   render() {
@@ -72,70 +63,44 @@ class PlaylistDetailPage extends Component {
     const playlistPopularity = this.calculatePlaylistPopularity(playlistTracks);
 
     return (
-      <div className="PlaylistDetailPage-container">
-        <PageCover
-          alt={`Playlist: ${playlist.name}`}
-          src={cover}
-          title={playlist.name}
-        />
+      <div className="flex flex-col items-center">
+        <div className="mt-16 mb-16 flex flex-col items-center w-full">
+          <StatsContainer>
+            <PlaylistStatItem icon={<FaUser />} value={playlist.followers.total} text="Followers" />
+            <PlaylistStatItem icon={<FaMusic />} value={playlist.tracks.total} text="Tracks" />
+            <PlaylistStatItem icon={<FaClock />} value={playlistDuration} text="Duration" />
+            <PlaylistStatItem icon={<FaFire />} value={playlistPopularity} text="Popularity" />
+          </StatsContainer>
 
-        <StatsContainer>
-          <PlaylistStatItem
-            icon={<FaUser />}
-            value={playlist.followers.total}
-            text="Followers"
-          />
-          <PlaylistStatItem
-            icon={<FaMusic />}
-            value={playlist.tracks.total}
-            text="Tracks"
-          />
-          <PlaylistStatItem
-            icon={<FaClock />}
-            value={playlistDuration}
-            text="Duration"
-          />
-          <PlaylistStatItem
-            icon={<FaFire />}
-            value={playlistPopularity}
-            text="Popularity"
-          />
-        </StatsContainer>
-
-        <PlaylistDetail playlist={playlist} playlistTracks={playlistTracks} />
+          <PlaylistDetail playlist={playlist} playlistTracks={playlistTracks} />
+        </div>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     fetchPlaylistDetail: (playlistId, accessToken) =>
-      dispatch(fetchPlaylistDetailRequest(playlistId, accessToken)),
+      dispatch(fetchPlaylistDetailRequest(playlistId, accessToken))
   };
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const { playlistReducer, playlistTracksReducer } = state;
 
   const isFetchingPlaylistDetail = playlistReducer
     ? playlistReducer.isFetchingPlaylistDetail
     : false;
-  const playlistsDetail = playlistReducer
-    ? playlistReducer.playlistsDetail
-    : {};
-  const isFetchingTracks = playlistTracksReducer
-    ? playlistTracksReducer.isFetchingTracks
-    : false;
-  const playlistsTracks = playlistTracksReducer
-    ? playlistTracksReducer.playlistsTracks
-    : {};
+  const playlistsDetail = playlistReducer ? playlistReducer.playlistsDetail : {};
+  const isFetchingTracks = playlistTracksReducer ? playlistTracksReducer.isFetchingTracks : false;
+  const playlistsTracks = playlistTracksReducer ? playlistTracksReducer.playlistsTracks : {};
 
   return {
     isFetchingPlaylistDetail,
     playlistsDetail,
     isFetchingTracks,
-    playlistsTracks,
+    playlistsTracks
   };
 };
 

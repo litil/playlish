@@ -3,7 +3,7 @@ version: 2
 defaults: &defaults
   working_directory: ~/project
   docker:
-    - image: "circleci/node:10.9"
+    - image: 'circleci/node:10.9'
 
 workflow_filters: &workflow_filters
   requires:

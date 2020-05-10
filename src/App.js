@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
-
-import { AuthConsumer } from './contexts/AuthContext';
-
-import WelcomePage from './components/pages/WelcomePage';
-import CreatePlaylistPage from './components/pages/CreatePlaylistPage';
+import { Route, Switch } from 'react-router-dom';
+import './App.css';
 import CallbackPage from './components/pages/CallbackPage';
+import CreatePlaylistPage from './components/pages/CreatePlaylistPage';
 import ListPlaylistsPage from './components/pages/ListPlaylistsPage';
 import PlaylistDetailPage from './components/pages/PlaylistDetailPage';
+import WelcomePage from './components/pages/WelcomePage';
 import DefaultLayout from './components/templates/DefaultLayout';
-
-import './App.css';
+import { AuthConsumer } from './contexts/AuthContext';
 
 class App extends Component {
   render() {
@@ -18,33 +15,40 @@ class App extends Component {
       <div className="App">
         <div className="App-container">
           <AuthConsumer>
-            {({ user, spotifyApiToken }) => (
-              <Switch>
-                <Route exact path="/" component={WelcomePage} />
-                <Route exact path="/callback" component={CallbackPage} />
-                <DefaultLayout
-                  exact
-                  path="/playlists/"
-                  component={ListPlaylistsPage}
-                  connectedUser={user}
-                  accessToken={spotifyApiToken}
-                />
-                <DefaultLayout
-                  exact
-                  path="/playlists/create"
-                  component={CreatePlaylistPage}
-                  connectedUser={user}
-                  accessToken={spotifyApiToken}
-                />
-                <DefaultLayout
-                  exact
-                  path="/playlists/:id"
-                  component={PlaylistDetailPage}
-                  connectedUser={user}
-                  accessToken={spotifyApiToken}
-                />
-              </Switch>
-            )}
+            {({ isConnected, user, spotifyApiToken }) => {
+              console.log('context', { user, spotifyApiToken });
+
+              return (
+                <Switch>
+                  <Route exact path="/" component={WelcomePage} isConnected />
+                  <Route exact path="/callback" component={CallbackPage} isConnected />
+                  <DefaultLayout
+                    exact
+                    path="/playlists/"
+                    component={ListPlaylistsPage}
+                    connectedUser={user}
+                    accessToken={spotifyApiToken}
+                    isConnected
+                  />
+                  <DefaultLayout
+                    exact
+                    path="/playlists/create"
+                    component={CreatePlaylistPage}
+                    connectedUser={user}
+                    accessToken={spotifyApiToken}
+                    isConnected
+                  />
+                  <DefaultLayout
+                    exact
+                    path="/playlists/:id"
+                    component={PlaylistDetailPage}
+                    connectedUser={user}
+                    accessToken={spotifyApiToken}
+                    isConnected
+                  />
+                </Switch>
+              );
+            }}
           </AuthConsumer>
         </div>
       </div>

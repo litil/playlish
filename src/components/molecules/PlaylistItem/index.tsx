@@ -8,11 +8,7 @@ interface IPlaylistItemProps {
 }
 type props = IPlaylistItemProps & RouteComponentProps;
 
-const PlaylistItemComponent: FunctionComponent<props> = ({
-  playlist,
-  last,
-  history,
-}) => {
+const PlaylistItemComponent: FunctionComponent<props> = ({ playlist, last, history }) => {
   // {
   //   "collaborative": true,
   //   "external_urls": {
@@ -66,29 +62,27 @@ const PlaylistItemComponent: FunctionComponent<props> = ({
     }
   };
 
-  const className = last
-    ? 'PlaylistItem-container-last'
-    : 'PlaylistItem-container';
+  const className = last ? 'PlaylistItem-container-last' : 'PlaylistItem-container';
 
   if (!playlist) return <></>;
 
   const playlistImg =
     playlist.images && playlist.images.length > 0 ? (
-      <img
-        className="PlaylistItem-img"
-        src={playlist.images[0].url}
-        alt={playlist.name}
-      />
+      <img className="PlaylistItem-img" src={playlist.images[0].url} alt={playlist.name} />
     ) : (
       ''
     );
 
+  const byPlaylistSubstring = playlist.name.indexOf(' - by Playlish');
+  const playlistName =
+    byPlaylistSubstring !== -1 ? playlist.name.substring(0, byPlaylistSubstring) : playlist.name;
+
   return (
     <div className={className} onClick={redirectToPlaylistDetail}>
       {playlistImg}
-      <div className="PlaylistItem-info">
-        <h3>{playlist.name}</h3>
-        <p>{`${playlist.tracks.total} tracks`}</p>
+      <div className="flex flex-col items-start justify-start mt-2">
+        <h3 className="text-blue-100">{playlistName}</h3>
+        <p className="text-customBlue-300">{`${playlist.tracks.total} tracks`}</p>
       </div>
     </div>
   );

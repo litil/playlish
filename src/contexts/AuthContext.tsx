@@ -8,10 +8,15 @@ interface IAuthContextState {
   logout?: () => void;
 }
 
+const accessTokenFromLS = localStorage.getItem('accessToken') || undefined;
+const userFromLS = localStorage.getItem('user') || undefined;
+const parsedUserFromLS = userFromLS ? JSON.parse(userFromLS) : undefined;
+console.log('accessTokenFromLS', accessTokenFromLS);
+
 const initialState: IAuthContextState = {
-  user: undefined,
-  isConnected: false,
-  spotifyApiToken: undefined,
+  user: parsedUserFromLS,
+  isConnected: !!accessTokenFromLS && !!parsedUserFromLS,
+  spotifyApiToken: accessTokenFromLS,
 };
 
 const AuthContext = React.createContext(initialState);
@@ -49,6 +54,11 @@ const AuthProvider: FunctionComponent<IAuthProviderProps> = (children) => {
 
   const login = (user: IUser | undefined, token: string) => {
     updateState({ isConnected: true, user: user, spotifyApiToken: token });
+
+    // save the token to the local storage
+    console.log('setting item to LS', token);
+    localStorage.setItem('accessToken', token);
+    localStorage.setItem('user', JSON.stringify(user));
   };
 
   const logout = () => {
@@ -57,6 +67,8 @@ const AuthProvider: FunctionComponent<IAuthProviderProps> = (children) => {
       user: undefined,
       spotifyApiToken: undefined,
     });
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('user');
   };
 
   console.log(children);

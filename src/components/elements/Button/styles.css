@@ -1,5 +1,5 @@
 button {
-  background-color: #1ed760;
+  background-color: #48bb78;
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
   border-radius: 20px;
@@ -11,16 +11,19 @@ button {
   font-weight: bold;
   padding: 8px 16px;
   text-decoration: none;
-  text-shadow: 2px 2px 0px #2f6627;
+  /* text-shadow: 2px 2px 0px #2f6627; */
   border: none;
 }
+
 button:hover {
-  background-color: #1ed760;
+  background-color: #48bb78;
 }
+
 button:active {
   position: relative;
   top: 1px;
 }
+
 button:disabled {
   background-color: #cccccc;
 }

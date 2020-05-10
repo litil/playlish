@@ -3,10 +3,8 @@ import React, { Component } from 'react';
 import { FaMusic, FaVolumeUp } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { listPlaylistsRequest } from '../../../actions/listPlaylistsAction';
-import cover from '../../../assets/cover_1.jpg';
-import { PageCover, PlaylistStatItem } from '../../molecules/';
+import { PlaylistStatItem } from '../../molecules/';
 import { PlaylistsList, StatsContainer } from '../../organisms/';
-import './styles.css';
 
 class ListPlaylistsPage extends Component {
   static propTypes = {
@@ -40,27 +38,23 @@ class ListPlaylistsPage extends Component {
     const totalPlaylists = playlists.length;
 
     return (
-      <div className="ListPlaylistsPage-container">
-        <PageCover
-          alt="List your playlishs"
-          src={cover}
-          title="Your Playlists"
-        />
+      <div className="flex flex-col items-center">
+        <div className="mt-16 mb-16 flex flex-col items-center">
+          <StatsContainer>
+            <PlaylistStatItem
+              icon={<FaVolumeUp />}
+              value={totalPlaylists}
+              text="Playlists"
+            />
+            <PlaylistStatItem
+              icon={<FaMusic />}
+              value={totalTracks}
+              text="Tracks"
+            />
+          </StatsContainer>
 
-        <StatsContainer>
-          <PlaylistStatItem
-            icon={<FaVolumeUp />}
-            value={totalPlaylists}
-            text="Playlists"
-          />
-          <PlaylistStatItem
-            icon={<FaMusic />}
-            value={totalTracks}
-            text="Tracks"
-          />
-        </StatsContainer>
-
-        <PlaylistsList playlists={playlists} />
+          <PlaylistsList playlists={playlists} />
+        </div>
       </div>
     );
   }
