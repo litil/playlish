@@ -98,9 +98,6 @@ class CallbackPage extends Component {
           <h2 className="font-bold text-4xl lg:text-6xl text-blue-100 mb-1 tracking-widest mt-32 justify-center items-center">
             Welcome to Playlish
           </h2>
-          <div className="container flex flex-row items-center justify-center">
-            <h4 class="flex text-lg lg:text-xl text-customBlue-300 mb-12 w-1/2"></h4>
-          </div>
         </div>
 
         <div className="container mx-auto flex flex-col justify-center align-items">
@@ -155,6 +152,7 @@ class CallbackPage extends Component {
                 <a
                   href="https://twitter.com/shipasap"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-customBlue-500 cursor-pointer"
                 >
                   @shipasap

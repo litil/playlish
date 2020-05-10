@@ -18,10 +18,6 @@ module.exports = {
       black: '#000',
       white: '#fff',
 
-      background: {
-        900: '#192750'
-      },
-
       customBlue: {
         100: '#D2D6DC',
         300: '#9EAFE2',
@@ -29,20 +25,6 @@ module.exports = {
         700: '#0b71ff',
         900: '#192750'
       },
-
-      customGreen: {
-        100: '#28db73'
-      },
-
-      // customGreen: {
-      //   100: "#E8FBF0",
-      //   200: "#D2F7E2",
-      //   300: "#A6F0C5",
-      //   400: "#64E599",
-      //   500: "#22da6e",
-      //   800: "#0D572C",
-      //   900: "#062B16",
-      // },
 
       gray: {
         100: '#f7fafc',

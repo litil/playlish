@@ -25,9 +25,7 @@ class CreatePlaylistPage extends Component {
     super(props);
     this.state = {
       playlistName: '',
-      artistKeyword: '',
-      gotoArtists: false,
-      gotoReview: false
+      artistKeyword: ''
     };
   }
 
@@ -43,16 +41,6 @@ class CreatePlaylistPage extends Component {
 
     // TODO check artists and playlist name not empty
     this.props.createPlaylist(connectedUser.id, flatten(tracks), playlistName, accessToken);
-  };
-
-  gotoArtists = callback => {
-    this.setState({ gotoArtists: true });
-    callback();
-  };
-
-  gotoReview = callback => {
-    this.setState({ gotoReview: true });
-    callback();
   };
 
   onChangePlaylistName = e => {
@@ -131,7 +119,7 @@ class CreatePlaylistPage extends Component {
 
   render() {
     const { searchedArtists, selectedArtists, createdPlaylist, isCreatingPlaylist } = this.props;
-    const { playlistName, gotoArtists, gotoReview } = this.state;
+    const { playlistName } = this.state;
     const countTracks = this.countTracks();
     const playlistDuration = this.calculateDuration();
     const playlistPopularity = this.calculatePopularity(countTracks);
@@ -198,9 +186,7 @@ class CreatePlaylistPage extends Component {
               border border-solid border-transparent 
               rounded-xl 
               flex flex-row items-center justify-center"
-              onClick={() =>
-                this.gotoArtists(() => handleClickArtistsSectionRef(artistsSectionRef))
-              }
+              onClick={() => handleClickArtistsSectionRef(artistsSectionRef)}
             >
               <FaChevronCircleRight />
               <span className="ml-2 text-sm">Next?</span>
@@ -261,9 +247,7 @@ class CreatePlaylistPage extends Component {
                     border border-solid border-transparent 
                     rounded-xl 
                     flex flex-row items-center justify-center"
-                  onClick={() =>
-                    this.gotoReview(() => handleClickReviewSectionRef(reviewSectionRef))
-                  }
+                  onClick={() => handleClickReviewSectionRef(reviewSectionRef)}
                 >
                   <FaChevronCircleRight />
                   <span className="ml-2 text-sm">Review your playlist</span>
