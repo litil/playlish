@@ -1,72 +1,70 @@
-version: 2
+version: 2.1
 
-defaults: &defaults
-  working_directory: ~/project
-  docker:
-    - image: 'circleci/node:10.9'
+restore-workspace: &restore-workspace
+  attach_workspace:
+    at: ~/
 
-workflow_filters: &workflow_filters
-  requires:
-    - build
-  filters:
-    branches:
-      only:
-        - master
-        - develop
-        - refactoring-ui
+branch-filter: &branch-filter
+  branches:
+    only: [master]
+
+executors:
+  node:
+    docker:
+      - image: circleci/node:12.14.0
+    working_directory: ~/playlish
 
 jobs:
-  build:
-    <<: *defaults
-
-    # Specify service dependencies here if necessary
-    # CircleCI maintains a library of pre-built images
-    # documented at https://circleci.com/docs/2.0/circleci-images/
-    # - image: circleci/mongo:3.4.4
-
+  checkout-install-dependencies:
+    executor: node
     steps:
       - checkout
-
-      # Download and cache dependencies
       - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
+          key: playlish-node-modules-{{ checksum "package.json" }}
       - run: yarn install
-
       - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
+          key: playlish-node-modules-{{ checksum "package.json" }}
+          paths: node_modules
       - persist_to_workspace:
-          root: ~/project
-          paths:
-            - node_modules
+          root: ~/
+          paths: playlish
 
-  prettier:
-    <<: *defaults
+  test:
+    executor: node
     steps:
-      - checkout
-      - attach_workspace:
-          at: ~/project
-      - run: './node_modules/.bin/prettier --single-quote --write "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}"'
+      - *restore-workspace
+      - run: yarn test
 
-  tests:
-    <<: *defaults
+  yarn-build:
+    executor: node
     steps:
-      - checkout
-      - attach_workspace:
-          at: ~/project
+      - *restore-workspace
+      - run: yarn build
+      - persist_to_workspace:
+          root: ~/
+          paths: playlish/build
 
-      # run tests!
-      - run: CI=true yarn test
+  # deploy:
+  #   executor: node
+  #   parameters:
+  #     {
+  #       distributor: { type: string },
+  #       bucket: { type: string },
+  #       cloudfront_id: { type: string },
+  #     }
+  #   steps:
+  #     - *restore-workspace
+  #     - run: bash .circleci/scripts/s3-sync.sh << parameters.bucket >> << parameters.cloudfront_id >> << parameters.distributor >>
+  #     run: bash echo ""
+
 workflows:
   version: 2
-  build-test-and-deploy:
+
+  build-deploy:
     jobs:
-      - build
-      - prettier: *workflow_filters
-      - tests: *workflow_filters
+      - checkout-install-dependencies
+      - test:
+          requires: [checkout-install-dependencies]
+      - yarn-build:
+          name: build
+          requires: [checkout-install-dependencies]
