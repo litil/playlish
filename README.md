@@ -1,42 +1,40 @@
-# Playlish
+<h1 align="center">🎹 Playlish</h1>
 
-The fastest way to create Spotify playlists from a list of artists.
+<p align="center">
+  <a href="https://github.com/prettier/prettier"><img alt="prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square"></a>
+  <a href="https://circleci.com/gh/litil/playlish/tree/master"><img alt="CircleCI" src="https://img.shields.io/circleci/build/gh/litil/playlish"></a>
+  <a href="https://github.com/litil/playlish"><img alt="playlists" src="https://img.shields.io/badge/created%20playlists-100%2B-success"></a>
+  <a href="mailto:guillaume.p.lambert@gmail.com"><img alt="Contact me by email" src="https://img.shields.io/badge/contact%20me-by%20email-informational"></a>
+  <a href="https://twitter.com/shipasap"><img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/shipasap?label=Follow&style=social"></a>
+</p>
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![CircleCI](https://circleci.com/gh/litil/playlish/tree/master.svg?style=svg)](https://circleci.com/gh/litil/playlish/tree/master)
+<p align="center">
+  ⚡️ <i>Discover the fastest playlist generator for Spotify</i> ⚡️
+  <br>
+  👉 <a href="https://playlish.io"><b>https://playlish.io</b></a> 👈
+</p>
 
-## Where does the idea come from
+## 🤷‍♂️ Where does the idea come from?
 
-I am huge fan of music festivals. I attend at least 2 festivals a year, up to 5, mostly all during summer. I think what I love the most is listening to ALL the lineup to discover new songs so that I can boast to my friends to know this faaaaaaamous group (let's be honest :) ).
+I am huge fan of music festivals. I attend at least 2 festivals a year, up to 5, mostly all during summer. I think what I love the most is listening to the entire lineup to discover new songs so that I can boast to my friends to know this faaaaaaamous group (let's be honest :) ).
 
-What I was doing for the past few years was searching for all artists on Spotify, then adding their 3 to 5 most famous songs (also known as top tracks in Spotify) to a common playlist. Then, I was able to listened to those curated playlists before each festivals.
+What I was doing for the past few years was searching for every artists on Spotify I've never heard of, then adding their 3 to 5 most famous songs (_also known as top tracks in Spotify_) to a common playlist. Then, I was able to listened to those curated playlists before each festivals.
 
-I was tired of doing so, so I created a quick React app which creates a playlist with the first 5 top tracks of each artists I looked for.
+I was tired of having to do it for each festivals, so I created a quick React app which creates a playlist with the first 5 top tracks of each artists I looked for.
 
-There's place for tons of improvements but that's still a huge time saver for me!
+There's place for tons of improvements but that's still a huge time saver for me 💪
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📚 How to contribute?
 
-## TODO
+I haven't written any _How to contribute_ guidelines but if you're interested in improving this project, just shout me a message! As I said above, there's room for improvements and I already thought about really cool features:
 
-As I said, there's place for tons of improvements.
+- automatically create playlists from festival lineup
+- more metrics such as number of hours a playlists have been played
+- more music providers: Deezer, Tidal ...
 
-### Technical todos
+## 👨‍💻 Stack
 
-- better handle loader and loading messages
-- change favicon
-- implement the playlists stats page
-- add a link of this page into the header
-- redirect the user to the playlists stats page once the playlist has been created
-- improve UI following https://refactoringui.com/
-- send an email to myself for each created playlist or any other metrics tool
-
-### New features
-
-- add a view to list all already created playlists with statistics: number of tracks, genres, total duration...
-- enter a festival lineup url and let Playlish creates the associated playlist
-
-## Available Scripts
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). So you'll find all the common scripts that come along with a basic CRA.
 
 In the project directory, you can run:
 
@@ -76,9 +74,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
