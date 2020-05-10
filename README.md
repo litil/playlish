@@ -13,9 +13,9 @@
   ⚡️ <i>Discover the fastest playlist generator for Spotify</i> ⚡️
   <br>
   <a href="https://playlish.io"><b>https://playlish.io</b></a>
-  <br>
-  <br>
 </p>
+
+<div align="center" style="text-align:center; margin-bottom:40px; margin-top:32px; width:100%;"><img src="./homepage.png" width="720"/></div>
 
 ## 🤷‍♂️ Where does the idea come from?
 
