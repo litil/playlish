@@ -1,0 +1,7 @@
+.CreatePage-SectionTitle {
+  background-image: url('/assets/title-pattern.svg');
+  background-repeat: no-repeat;
+  background-position: 50%;
+  height: 200px;
+  line-height: 200px;
+}
