@@ -11,12 +11,11 @@ interface IAuthContextState {
 const accessTokenFromLS = localStorage.getItem('accessToken') || undefined;
 const userFromLS = localStorage.getItem('user') || undefined;
 const parsedUserFromLS = userFromLS ? JSON.parse(userFromLS) : undefined;
-console.log('accessTokenFromLS', accessTokenFromLS);
 
 const initialState: IAuthContextState = {
   user: parsedUserFromLS,
   isConnected: !!accessTokenFromLS && !!parsedUserFromLS,
-  spotifyApiToken: accessTokenFromLS,
+  spotifyApiToken: accessTokenFromLS
 };
 
 const AuthContext = React.createContext(initialState);
@@ -25,38 +24,42 @@ interface IAuthProviderProps {
   children: ReactNode[];
 }
 
-const AuthProvider: FunctionComponent<IAuthProviderProps> = (children) => {
+const AuthProvider: FunctionComponent<IAuthProviderProps> = children => {
+  /**
+   * The state will looks like:
+   <pre>
+    state = {
+      user: {
+        country: 'FR',
+        display_name: 'Guillaume Lambert',
+        email: 'guillaume.p.lambert@gmail.com',
+        external_urls: { spotify: 'https://open.spotify.com/user/119653572' },
+        followers: { href: null, total: 17 },
+        href: 'https://api.spotify.com/v1/users/119653572',
+        id: '119653572',
+        images: [
+          {
+            height: null,
+            url:
+              'https://scontent.xx.fbcdn.net/v/t1.0-1/c66.46.576.576a/s200x200/579855_10200293885962843_1072296619_n.jpg?_nc_cat=101&_nc_ht=scontent.xx&oh=f566d1328fe09b4dde27a38f0479b856&oe=5CB085FE',
+            width: null
+          }
+        ],
+        product: 'premium',
+        type: 'user',
+        uri: 'spotify:user:119653572'
+      },
+      isConnected: true,
+      spotifyApiToken: null
+    };
+   </pre>
+   */
   const [state, updateState] = React.useState(initialState);
-  // state = {
-  //   user: {
-  //     country: 'FR',
-  //     display_name: 'Guillaume Lambert',
-  //     email: 'guillaume.p.lambert@gmail.com',
-  //     external_urls: { spotify: 'https://open.spotify.com/user/119653572' },
-  //     followers: { href: null, total: 17 },
-  //     href: 'https://api.spotify.com/v1/users/119653572',
-  //     id: '119653572',
-  //     images: [
-  //       {
-  //         height: null,
-  //         url:
-  //           'https://scontent.xx.fbcdn.net/v/t1.0-1/c66.46.576.576a/s200x200/579855_10200293885962843_1072296619_n.jpg?_nc_cat=101&_nc_ht=scontent.xx&oh=f566d1328fe09b4dde27a38f0479b856&oe=5CB085FE',
-  //         width: null
-  //       }
-  //     ],
-  //     product: 'premium',
-  //     type: 'user',
-  //     uri: 'spotify:user:119653572'
-  //   },
-  //   isConnected: true,
-  //   spotifyApiToken: null
-  // };
 
   const login = (user: IUser | undefined, token: string) => {
     updateState({ isConnected: true, user: user, spotifyApiToken: token });
 
     // save the token to the local storage
-    console.log('setting item to LS', token);
     localStorage.setItem('accessToken', token);
     localStorage.setItem('user', JSON.stringify(user));
   };
@@ -65,13 +68,11 @@ const AuthProvider: FunctionComponent<IAuthProviderProps> = (children) => {
     updateState({
       isConnected: false,
       user: undefined,
-      spotifyApiToken: undefined,
+      spotifyApiToken: undefined
     });
     localStorage.removeItem('accessToken');
     localStorage.removeItem('user');
   };
-
-  console.log(children);
 
   return (
     <AuthContext.Provider
@@ -80,7 +81,7 @@ const AuthProvider: FunctionComponent<IAuthProviderProps> = (children) => {
         user: state.user,
         spotifyApiToken: state.spotifyApiToken,
         login,
-        logout,
+        logout
       }}
     >
       {children.children}

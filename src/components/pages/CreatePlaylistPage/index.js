@@ -1,7 +1,7 @@
 import { flatten } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { FaCheck, FaChevronCircleRight, FaClock, FaFire, FaMusic } from 'react-icons/fa';
+import { FaCheck, FaChevronCircleRight, FaClock, FaEye, FaFire, FaMusic } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
 import { createPlaylistRequest } from '../../../actions/createPlaylistAction';
@@ -172,6 +172,7 @@ class CreatePlaylistPage extends Component {
               text-center
               text-2xl lg:text-4xl
               text-customBlue-300
+              w-full
               CreatePage-SectionTitle"
             placeholder="> type here the name of your playlist"
             onChange={this.onChangePlaylistName}
@@ -219,6 +220,7 @@ class CreatePlaylistPage extends Component {
               text-center
               text-2xl lg:text-4xl
               text-customBlue-300
+              w-full
               CreatePage-SectionTitle"
                 placeholder="> search for artists here, such as: Milburn, Bjorg, Eminem ..."
                 onChange={this.onChangeSearchArtists}
@@ -249,7 +251,7 @@ class CreatePlaylistPage extends Component {
                     flex flex-row items-center justify-center"
                   onClick={() => handleClickReviewSectionRef(reviewSectionRef)}
                 >
-                  <FaChevronCircleRight />
+                  <FaEye />
                   <span className="ml-2 text-sm">Review your playlist</span>
                 </button>
               )}

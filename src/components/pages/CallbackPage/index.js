@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import { fetchUserRequest } from '../../../actions/fetchUserAction';
 import { AuthContext } from '../../../contexts/AuthContext';
 import logo from '../../../playlish_logo_white.svg';
-import './styles.css';
 
 class CallbackPage extends Component {
   static propTypes = {

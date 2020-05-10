@@ -16,8 +16,6 @@ class App extends Component {
         <div className="App-container">
           <AuthConsumer>
             {({ isConnected, user, spotifyApiToken }) => {
-              console.log('context', { user, spotifyApiToken });
-
               return (
                 <Switch>
                   <Route exact path="/" component={WelcomePage} isConnected />
