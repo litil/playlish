@@ -6,7 +6,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 interface IFooterProps {}
 type props = IFooterProps & RouteComponentProps;
 
-const FooterComponent: FunctionComponent<props> = ({ history }) => {
+const FooterComponent: FunctionComponent<props> = () => {
   const linkToGithub = () => {
     window.open('https://github.com/litil/playlish');
   };
@@ -19,15 +19,9 @@ const FooterComponent: FunctionComponent<props> = ({ history }) => {
     window.open('https://www.buymeacoffee.com/3z7CnoJ');
   };
 
-  const isActive = (pathname: string) => {
-    return history.location.pathname === pathname;
-  };
-
   const mailTo = () => {
     window.location.href = `mailto:guillaume.p.lambert@gmail.com`;
   };
-
-  const activeIconCSS = 'bg-green-500 text-green-100';
 
   return (
     <div className="flex flex-col items-center justify-center text-sm mt-8 mb-4">
@@ -81,6 +75,7 @@ const FooterComponent: FunctionComponent<props> = ({ history }) => {
           <a
             href="https://twitter.com/shipasap"
             target="_blank"
+            rel="noopener noreferrer"
             className="hover:text-customBlue-500 cursor-pointer"
           >
             @shipasap

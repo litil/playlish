@@ -7,13 +7,7 @@ interface ISelectedArtistProps {
   last?: boolean;
 }
 
-export const SelectedArtist: FunctionComponent<ISelectedArtistProps> = ({
-  onClickFn,
-  artist,
-  last
-}) => {
-  const className = last ? 'SelectedArtist-container-last' : 'SelectedArtist-container';
-
+export const SelectedArtist: FunctionComponent<ISelectedArtistProps> = ({ artist, last }) => {
   if (!artist) return <></>;
 
   const artistImg =

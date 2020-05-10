@@ -367,6 +367,7 @@ class WelcomePageComponent extends Component {
                 <a
                   href="https://twitter.com/shipasap"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-customBlue-500 cursor-pointer"
                 >
                   @shipasap
