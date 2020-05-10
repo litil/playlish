@@ -3,6 +3,7 @@
 <p align="center">
   <a href="https://github.com/prettier/prettier"><img alt="prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square"></a>
   <a href="https://circleci.com/gh/litil/playlish/tree/master"><img alt="CircleCI" src="https://img.shields.io/circleci/build/gh/litil/playlish"></a>
+  <a href="https://app.netlify.com/sites/playlish/deploys"><img alt="Netlify" src="https://img.shields.io/netlify/8ce59c7d-b269-4d04-9459-9bd8c727a7ab"></a>
   <a href="https://github.com/litil/playlish"><img alt="playlists" src="https://img.shields.io/badge/created%20playlists-100%2B-success"></a>
   <a href="mailto:guillaume.p.lambert@gmail.com"><img alt="Contact me by email" src="https://img.shields.io/badge/contact%20me-by%20email-informational"></a>
   <a href="https://twitter.com/shipasap"><img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/shipasap?label=Follow&style=social"></a>
@@ -36,7 +37,13 @@ I haven't written any _How to contribute_ guidelines but if you're interested in
 
 ## 👨‍💻 Stack
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). So you'll find all the common scripts that come along with a basic CRA.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). No custom API needed, this app only relies on music providers APIs.
+
+The continuous integration job is done by [Create React App](https://circleci.com/gh/litil/playlish/tree/master).
+
+The site is hosted on [Netlify](https://app.netlify.com/sites/playlish/deploys). No specific configuration required.
+
+## ⌨️ Scripts
 
 In the project directory, you can run:
 
