@@ -28,10 +28,11 @@ class WelcomePageComponent extends Component {
       'playlist-modify-private',
       'playlist-read-collaborative'
     ];
+
     const scopes = scopesArray.join(' ');
     const clientId = '341cbbaadca743aba2dd3f99302f623f';
     const responseType = 'token';
-    const redirectUri = 'http:%2F%2Flocalhost:3000%2Fcallback';
+    const redirectUri = process.env.REACT_APP_SPOTIFY_CALLBACK_URL;
     const state = '123'; //TODO generate a random string
     window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=${responseType}&redirect_uri=${redirectUri}&state=${state}&scope=${encodeURIComponent(
       scopes
@@ -218,7 +219,8 @@ class WelcomePageComponent extends Component {
               The right price for you, whoever you are
             </h4>
             <span className="flex text-base lg:text-lg text-customBlue-300">
-              Plan under construction. Please contact us if you're interested.
+              Paid plans under construction. Please contact us if you're interested or if you want
+              to suggest features.
             </span>
 
             <div class="mt-16 lg:mt-20 ">
@@ -569,6 +571,7 @@ class WelcomePageComponent extends Component {
                                   font-semibold font-display 
                                   text-blue-500 hover:text-blue-600 focus:outline-none focus:shadow-outline transition ease-in-out duration-150"
                                   target="_blank"
+                                  rel="noopener noreferrer"
                                 >
                                   Contact us
                                 </a>
