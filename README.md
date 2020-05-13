@@ -45,41 +45,48 @@ The site is hosted on [Netlify](https://app.netlify.com/sites/playlish/deploys).
 
 ## ⌨️ Scripts
 
-In the project directory, you can run:
+As the app has been created with create-react-app, you'll find the same scripts as for other CRA apps.
 
-### `npm install` or `yarn install`
+### Install and start
 
-Installs all dependencies. You must run this before running anything else.
+To run Playlish, simply clone the repository and then run:
+```
+yarn install
+yarn start
+```
 
-### `npm start` or `yarn start`
+If you prefer use npm run:
+```
+npm install
+npm start
+```
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This will run the app in the development mode.<br>
+Then open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### Run the tests
 
-### `npm test` or `yarn test`
+To run the test, simply run:
+```
+yarn test
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+If you prefer use npm run:
+```
+npm test
+```
 
-### `npm run build` or `yarn build`
+### Build the application
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To build the app for production, simply run:
+```
+yarn build
+```
 
+If you prefer use npm run:
+```
+npm run build
+```
+
+This will bundles the React applicaiton in production mode and optimize the build for the best performance.
 The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject` or `yarn run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
