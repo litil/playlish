@@ -28,10 +28,11 @@ class WelcomePageComponent extends Component {
       'playlist-modify-private',
       'playlist-read-collaborative'
     ];
+
     const scopes = scopesArray.join(' ');
     const clientId = '341cbbaadca743aba2dd3f99302f623f';
     const responseType = 'token';
-    const redirectUri = 'http:%2F%2Flocalhost:3000%2Fcallback';
+    const redirectUri = process.env.REACT_APP_SPOTIFY_CALLBACK_URL;
     const state = '123'; //TODO generate a random string
     window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=${responseType}&redirect_uri=${redirectUri}&state=${state}&scope=${encodeURIComponent(
       scopes
@@ -211,92 +212,376 @@ class WelcomePageComponent extends Component {
               Pricing
             </h3>
 
-            <div className="flex flex-row justify-center items-center">
-              <div className="flex flex-col bg-blue-100 mx-4 w-1/4">
-                <div
-                  className="flex flex-col 
-                p-2 
-                bg-blue-500 text-blue-100 
-                text-xl lg:text-2xl 
-                font-bold 
-                mb-8"
-                >
-                  Hobby
-                </div>
-                <div className="flex flex-col  px-8 text-customBlue-900">
-                  <span className="font-bold">Free</span>
-                  <span className="italic">Recommended for individuals and music enthusiasts</span>
-                  <hr className="text-customBlue-900 mt-12 mb-8" />
-                  <ul className="h-64">
-                    <li className="my-2">1 music provider</li>
-                    <li className="my-2">Create up to 10 playlists</li>
-                    <li className="my-2">Access level 1 metrics</li>
-                  </ul>
-                  <button
-                    class="
-                      bg-customBlue-500 hover:bg-customBlue-700 
-                      text-blue-100 hover:text-blue-100
-                      font-semibold 
-                      py-2 px-8
-                      mx-8 
-                      mt-20 mb-2
-                      border border-solid border-blue-500 hover:border-transparent 
-                      uppercase 
-                      rounded-xl 
-                      flex flex-row items-center justify-center"
-                    onClick={this.redirectToSpotifySignin}
-                  >
-                    <span className="ml-2 text-sm">Select plan</span>
-                  </button>
-                </div>
-              </div>
+            <h4
+              className="font-bold text-xl 
+            lg:text-3xl text-blue-100 mb-1 "
+            >
+              The right price for you, whoever you are
+            </h4>
+            <span className="flex text-base lg:text-lg text-customBlue-300">
+              Paid plans under construction. Please contact us if you're interested or if you want
+              to suggest features.
+            </span>
 
-              <div className="flex flex-col bg-blue-100 mx-4 w-1/4">
-                <div
-                  className="flex flex-col 
-                p-2 
-                bg-blue-500 text-blue-100 
-                text-xl lg:text-2xl 
-                font-bold 
-                mb-8"
-                >
-                  Professional
-                </div>
-                <div className="flex flex-col  px-8 text-customBlue-900">
-                  <span className="font-bold">$10/month</span>
-                  <span className="italic">
-                    Recommended for festival managers, music blog owner or heavy playlists creator
-                  </span>
-                  <hr className="text-customBlue-900 my-8" />
-                  <ul>
-                    <li className="my-2">Up to 3 music providers</li>
-                    <li className="my-2">Unlimited playlists</li>
-                    <li className="my-2">Access to beta features</li>
-                    <li className="my-2">Support</li>
-                    <li className="my-2">Analytics dashboard</li>
-                    <li className="my-2">Weekly/monthly reports</li>
-                  </ul>
-                  <span className="font-customBlue-900 italic text-sm mt-8">
-                    Plan under construction. Please contact us if you're interested and share with
-                    us the killer feature(s) you want us to implement.
-                  </span>
-                  <button
-                    className="
-                      bg-customBlue-500 hover:bg-customBlue-700 
-                      text-blue-100 hover:text-blue-100
-                      font-semibold 
-                      py-2 px-8
-                      mx-8 
-                      mt-3 mb-2
-                      border border-solid border-blue-500 hover:border-transparent 
-                      uppercase 
-                      rounded-xl 
-                      flex flex-row items-center justify-center"
-                  >
-                    <a href="mailto:guillaume.p.lambert@gmail.com">
-                      <span className="ml-2 text-xs">Contact us</span>
-                    </a>
-                  </button>
+            <div class="mt-16 lg:mt-20 ">
+              <div class="relative z-0">
+                {/* <div class="absolute inset-0 h-5/6 bg-gray-900 lg:h-2/3"></div> */}
+                <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div class="relative lg:grid lg:grid-cols-10">
+                    <div class="max-w-lg mx-auto lg:max-w-none lg:mx-0 lg:col-start-4 lg:col-end-8 lg:row-start-1 lg:row-end-4">
+                      <div class="relative z-10 rounded-lg shadow-xl">
+                        <div>
+                          <div class="pointer-events-none absolute inset-0 rounded-lg border-2 border-blue-500"></div>
+                          <div class="absolute inset-x-0 top-0 transform translate-y-px">
+                            <div class="flex justify-center transform -translate-y-1/2">
+                              <span
+                                class="
+                                inline-flex rounded-full bg-blue-500 
+                                px-6 py-2 text-sm leading-5 
+                                font-semibold tracking-wider uppercase text-white"
+                              >
+                                Most popular
+                              </span>
+                            </div>
+                          </div>
+                          <div class="bg-white rounded-t-lg px-6 pt-12 pb-10">
+                            <div>
+                              <h2 class="mt-2 text-center text-3xl leading-9 font-semibold font-display text-gray-900 sm:-mx-6">
+                                Essential
+                              </h2>
+                              <div class="mt-4 flex items-center justify-center font-display">
+                                <span class="px-3 flex items-start text-6xl leading-none tracking-tight font-medium text-gray-900 sm:text-7xl">
+                                  <span class="mt-2 mr-1 text-4xl leading-none sm:text-5xl">$</span>
+                                  <span>10</span>
+                                </span>
+                                <span class="text-2xl leading-8 font-semibold text-gray-400 tracking-wide sm:text-3xl sm:leading-9">
+                                  /month
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="border-t-2 border-gray-100 rounded-b-lg pt-4 pb-8 px-6 bg-gray-50 sm:px-10 sm:pt-4 sm:pb-10 
+                          bg-blue-100 text-sm"
+                          >
+                            <p className="italic px-8 mt-2 mb-8 text-customBlue-900">
+                              Recommended for music blog owner or heavy playlists creator
+                            </p>
+                            <ul>
+                              <li class="flex items-start">
+                                <div class="flex-shrink-0">
+                                  <svg
+                                    class="h-6 w-6 text-blue-600"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M5 13l4 4L19 7"
+                                    ></path>
+                                  </svg>
+                                </div>
+                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                  Everything from the hobby plan
+                                </p>
+                              </li>
+                              <li class="mt-4 flex items-start">
+                                <div class="flex-shrink-0">
+                                  <svg
+                                    class="h-6 w-6 text-blue-600"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M5 13l4 4L19 7"
+                                    ></path>
+                                  </svg>
+                                </div>
+                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                  Unlimited playlists
+                                </p>
+                              </li>
+                              <li class="mt-4 flex items-start">
+                                <div class="flex-shrink-0">
+                                  <svg
+                                    class="h-6 w-6 text-blue-600"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M5 13l4 4L19 7"
+                                    ></path>
+                                  </svg>
+                                </div>
+                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                  Analytics dashboard
+                                </p>
+                              </li>
+                              <li class="mt-4 flex items-start">
+                                <div class="flex-shrink-0">
+                                  <svg
+                                    class="h-6 w-6 text-blue-600"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M5 13l4 4L19 7"
+                                    ></path>
+                                  </svg>
+                                </div>
+                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                  Weekly/monthly reports
+                                </p>
+                              </li>
+                            </ul>
+                            <div class="mt-10">
+                              <div class="rounded-lg shadow-md">
+                                <a
+                                  href="mailto:guillaume.p.lambert@gmail.com"
+                                  class="block w-full 
+                                  text-center rounded-lg 
+                                  bg-customBlue-500 hover:bg-customBlue-700 
+                                  px-6 py-4 text-xl 
+                                  leading-6 
+                                  font-semibold font-display 
+                                  text-white 
+                                  focus:outline-none focus:shadow-outline transition ease-in-out duration-150"
+                                >
+                                  Contact us
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-6 mx-auto max-w-md lg:m-0 lg:max-w-none lg:col-start-1 lg:col-end-4 lg:row-start-2 lg:row-end-3">
+                      <div class="h-full flex flex-col rounded-lg shadow-lg overflow-hidden lg:rounded-none lg:rounded-l-lg">
+                        <div class="flex-1 flex flex-col">
+                          <div class="bg-white px-6 pt-12 pb-10">
+                            <div>
+                              <h2 class="mt-2 text-center text-3xl leading-9 font-semibold font-display text-gray-900">
+                                Hobby (Free)
+                              </h2>
+                              <div class="mt-4 flex items-center justify-center font-display">
+                                <span class="px-3 flex items-start text-6xl leading-none tracking-tight font-medium text-gray-900">
+                                  <span class="mt-2 mr-2 text-4xl">$</span>
+                                  <span>0</span>
+                                </span>
+                                <span class="text-2xl leading-8 font-semibold text-gray-400 tracking-wide">
+                                  USD
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="border-t-2 border-gray-100 rounded-b-lg pt-4 pb-8 px-6 bg-gray-50 sm:px-10 sm:pt-4 sm:pb-10 
+                          bg-blue-100 text-sm"
+                          >
+                            <p className="italic px-8 mt-2 mb-8 text-customBlue-900">
+                              Recommended for individuals and music enthusiasts
+                            </p>
+                            <ul>
+                              <li class="flex items-start">
+                                <div class="flex-shrink-0">
+                                  <svg
+                                    class="h-6 w-6 text-blue-600"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M5 13l4 4L19 7"
+                                    ></path>
+                                  </svg>
+                                </div>
+                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                  1 music provider (Spotify)
+                                </p>
+                              </li>
+                              <li class="mt-4 flex items-start">
+                                <div class="flex-shrink-0">
+                                  <svg
+                                    class="h-6 w-6 text-blue-600"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M5 13l4 4L19 7"
+                                    ></path>
+                                  </svg>
+                                </div>
+                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                  Create up to 10 playlists
+                                </p>
+                              </li>
+                              <li class="mt-4 flex items-start">
+                                <div class="flex-shrink-0">
+                                  <svg
+                                    class="h-6 w-6 text-blue-600"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M5 13l4 4L19 7"
+                                    ></path>
+                                  </svg>
+                                </div>
+                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                  Access level 1 metrics
+                                </p>
+                              </li>
+                            </ul>
+                            <div class="mt-8">
+                              <div
+                                class="rounded-lg shadow-md block w-full text-center 
+                              rounded-lg bg-white px-6 py-3 text-base leading-6 
+                              font-semibold font-display 
+                              text-blue-500 hover:text-blue-600 focus:outline-none focus:shadow-outline transition ease-in-out duration-150
+                              cursor-pointer"
+                                onClick={this.redirectToSpotifySignin}
+                              >
+                                Get started
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-6 mx-auto max-w-md lg:m-0 lg:max-w-none lg:col-start-8 lg:col-end-11 lg:row-start-2 lg:row-end-3">
+                      <div class="h-full flex flex-col rounded-lg shadow-lg overflow-hidden lg:rounded-none lg:rounded-r-lg">
+                        <div class="flex-1 flex flex-col">
+                          <div class="bg-white px-6 pt-12 pb-10">
+                            <div>
+                              <h2 class="mt-2 text-center text-3xl leading-9 font-semibold font-display text-gray-900">
+                                Professional
+                              </h2>
+                              <div class="mt-4 flex items-center justify-center font-display">
+                                <span class="px-3 flex items-start text-6xl leading-none tracking-tight font-medium text-gray-900">
+                                  <span class="mt-2 mr-2 text-4xl">$</span>
+                                  <span>30</span>
+                                </span>
+                                <span class="text-2xl leading-8 font-semibold text-gray-400 tracking-wide">
+                                  USD
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="border-t-2 border-gray-100 rounded-b-lg pt-4 pb-8 px-6 bg-gray-50 sm:px-10 sm:pt-4 sm:pb-10 
+                          bg-blue-100 text-sm"
+                          >
+                            <p className="italic px-8 mt-2 mb-8 text-customBlue-900">
+                              Recommended for festival managers and music producers
+                            </p>
+                            <ul>
+                              <li class="flex items-start">
+                                <div class="flex-shrink-0">
+                                  <svg
+                                    class="h-6 w-6 text-blue-600"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M5 13l4 4L19 7"
+                                    ></path>
+                                  </svg>
+                                </div>
+                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                  Up to 3 music providers
+                                </p>
+                              </li>
+                              <li class="mt-4 flex items-start">
+                                <div class="flex-shrink-0">
+                                  <svg
+                                    class="h-6 w-6 text-blue-600"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M5 13l4 4L19 7"
+                                    ></path>
+                                  </svg>
+                                </div>
+                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                  Access to beta features
+                                </p>
+                              </li>
+                              <li class="mt-4 flex items-start">
+                                <div class="flex-shrink-0">
+                                  <svg
+                                    class="h-6 w-6 text-blue-600"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M5 13l4 4L19 7"
+                                    ></path>
+                                  </svg>
+                                </div>
+                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                  Support
+                                </p>
+                              </li>
+                            </ul>
+                            <div class="mt-8">
+                              <div class="rounded-lg shadow-md">
+                                <a
+                                  href="mailto:guillaume.p.lambert@gmail.com"
+                                  class="block w-full text-center rounded-lg 
+                                  bg-white px-6 py-3 text-base leading-6 
+                                  font-semibold font-display 
+                                  text-blue-500 hover:text-blue-600 focus:outline-none focus:shadow-outline transition ease-in-out duration-150"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  Contact us
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

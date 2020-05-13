@@ -222,7 +222,7 @@ class CreatePlaylistPage extends Component {
               text-customBlue-300
               w-full
               CreatePage-SectionTitle"
-                placeholder="> search for artists here, such as: Milburn, Bjorg, Eminem ..."
+                placeholder="> search for artists here"
                 onChange={this.onChangeSearchArtists}
                 value={this.state.artistKeyword}
               ></input>
@@ -278,7 +278,7 @@ class CreatePlaylistPage extends Component {
               </div>
 
               {selectedArtists && selectedArtists.length > 0 ? (
-                <div className="flex flex-col">
+                <div className="flex flex-col px-4">
                   {selectedArtists.map((artist, i) => {
                     return (
                       <SelectedArtist
