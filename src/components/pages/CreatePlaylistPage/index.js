@@ -306,7 +306,7 @@ class CreatePlaylistPage extends Component {
               bg-customBlue-500 hover:bg-customBlue-700 
               text-blue-100 font-semibold 
               py-1 px-4 
-              mt-16 mb-12
+              mt-12 mb-12
               md:mt-40 md:mb-24
               border border-solid border-transparent 
               rounded-xl 
