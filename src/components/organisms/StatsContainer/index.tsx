@@ -6,14 +6,18 @@ interface IStatsContainerProps {
 
 export const StatsContainer: FunctionComponent<IStatsContainerProps> = ({ children }) => {
   return (
-    <div className="flex flex-row justify-start w-full">
+    <div
+      className="flex 
+      flex-col md:flex-row justify-start md:w-full"
+    >
       <div
         className="
-        flex flex-row
-        items-cent
+        flex flex-col md:flex-row
+        items-center
+        justify-center md:justify-start
         w-full
         border-customBlue-300 border-b
-        mx-24 pb-3"
+        md:mx-24 pb-3"
       >
         {children}
       </div>

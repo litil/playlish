@@ -23,7 +23,13 @@ export const SearchedArtist: FunctionComponent<ISearchedArtistProps> = ({
 
   return (
     <div
-      className="container flex flex-col items-center cursor-pointer hover:text-green-500 rounded-lg"
+      className="
+        container 
+        flex 
+        flex-col 
+        items-center 
+        cursor-pointer 
+        hover:text-green-500 rounded-lg"
       onClick={onClickFn}
     >
       <div className="pt-2 pl-2 pr-2 pb-1 h-48 min-h-48 w-48 min-w-48">{artistImg}</div>

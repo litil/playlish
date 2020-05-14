@@ -110,7 +110,7 @@ class WelcomePageComponent extends Component {
             Welcome to Playlish
           </h2>
           <div className="container flex flex-row items-center justify-center">
-            <h4 class="flex text-lg lg:text-xl text-customBlue-300 mb-12 w-1/2">
+            <h4 className="flex text-lg lg:text-xl text-customBlue-300 mb-12 lg:w-1/2 w-3/4">
               Discover the fastest playlist generator for Spotify.
               <br />
               See all your playlists at a glance with tons of metrics.
@@ -121,8 +121,8 @@ class WelcomePageComponent extends Component {
 
           <div className="container flex flex-row items-center justify-center">
             <button
-              // class="bg-transparent hover:bg-blue-500 text-blue-100 font-semibold py-2 px-8 border border-solid border-blue-100 hover:border-transparent uppercase rounded-xl flex flex-row items-center justify-center"
-              class="bg-customBlue-500 hover:bg-customBlue-700 text-blue-100 font-semibold py-2 px-8 border border-solid border-transparent uppercase rounded-xl flex flex-row items-center justify-center"
+              // className="bg-transparent hover:bg-blue-500 text-blue-100 font-semibold py-2 px-8 border border-solid border-blue-100 hover:border-transparent uppercase rounded-xl flex flex-row items-center justify-center"
+              className="bg-customBlue-500 hover:bg-customBlue-700 text-blue-100 font-semibold py-2 px-8 border border-solid border-transparent uppercase rounded-xl flex flex-row items-center justify-center"
               onClick={this.redirectToSpotifySignin}
             >
               <FaSpotify />
@@ -149,10 +149,10 @@ class WelcomePageComponent extends Component {
                 <FaPlug />
               </div>
             </IconContext.Provider>
-            <h4 className="text-xl lg:text-2xl text-blue-100 mt-6 mb-6 w-1/2 tracking-wider">
+            <h4 className="text-xl lg:text-2xl text-blue-100 mt-6 mb-6 lg:w-1/2 w-3/4 tracking-wider">
               Connect to your music provider(s)
             </h4>
-            <span className="flex text-base lg:text-lg text-customBlue-300 mb-20 w-1/2">
+            <span className="flex text-base lg:text-lg text-customBlue-300 mb-20 lg:w-1/2 w-3/4">
               Securely connect your account with your music providers(s).
               <br />
               We've started with Spotify for now but we'll add more providers very soon. Stay tuned!
@@ -163,10 +163,10 @@ class WelcomePageComponent extends Component {
                 <FaEye />
               </div>
             </IconContext.Provider>
-            <h4 className="text-xl lg:text-2xl text-blue-100 mt-6 mb-6 w-1/2 tracking-wider">
+            <h4 className="text-xl lg:text-2xl text-blue-100 mt-6 mb-6 lg:w-1/2 w-3/4 tracking-wider">
               Manage your playlists easily
             </h4>
-            <span className="flex text-base lg:text-lg text-customBlue-300 mb-20 w-1/2">
+            <span className="flex text-base lg:text-lg text-customBlue-300 mb-20 lg:w-1/2 w-3/4">
               Benefit from a tailored UI to help you see all your playlists at a glance.
               <br />
               And inspect them more deeply thanks to tons of metrics such as full duration,
@@ -178,10 +178,10 @@ class WelcomePageComponent extends Component {
                 <FaStopwatch />
               </div>
             </IconContext.Provider>
-            <h4 className="text-xl lg:text-2xl text-blue-100 mt-6 mb-6 w-1/2 tracking-wider">
+            <h4 className="text-xl lg:text-2xl text-blue-100 mt-6 mb-6 lg:w-1/2 w-3/4 tracking-wider">
               Create playlists in seconds
             </h4>
-            <span className="flex text-base lg:text-lg text-customBlue-300 mb-20 w-1/2">
+            <span className="flex text-base lg:text-lg text-customBlue-300 mb-20 lg:w-1/2 w-3/4">
               Stop wasting time adding songs one by one to your playlists.
               <br />
               Just search for artists and we'll automatically create a new playlist with their top 5
@@ -190,7 +190,7 @@ class WelcomePageComponent extends Component {
           </div>
 
           <div className="container flex flex-col items-center justify-center mt-20 mb-24">
-            <span className="flex text-xl lg:text-2xl text-blue-100  w-2/3">
+            <span className="flex text-xl lg:text-2xl text-blue-100  lg:w-2/3 w-3/4">
               "I go to several festivals every year and official playlists don't work for me at all.
               Playlish helps me creating my very own playlists focused on artists I want to
               discover. I don't lose hours creating them anymore!"
@@ -223,19 +223,19 @@ class WelcomePageComponent extends Component {
               to suggest features.
             </span>
 
-            <div class="mt-16 lg:mt-20 ">
-              <div class="relative z-0">
-                {/* <div class="absolute inset-0 h-5/6 bg-gray-900 lg:h-2/3"></div> */}
-                <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-                  <div class="relative lg:grid lg:grid-cols-10">
-                    <div class="max-w-lg mx-auto lg:max-w-none lg:mx-0 lg:col-start-4 lg:col-end-8 lg:row-start-1 lg:row-end-4">
-                      <div class="relative z-10 rounded-lg shadow-xl">
+            <div className="mt-16 lg:mt-20 ">
+              <div className="relative z-0">
+                {/* <div className="absolute inset-0 h-5/6 bg-gray-900 lg:h-2/3"></div> */}
+                <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="relative lg:grid lg:grid-cols-10">
+                    <div className="max-w-lg mx-auto lg:max-w-none lg:mx-0 lg:col-start-4 lg:col-end-8 lg:row-start-1 lg:row-end-4">
+                      <div className="relative z-10 rounded-lg shadow-xl">
                         <div>
-                          <div class="pointer-events-none absolute inset-0 rounded-lg border-2 border-blue-500"></div>
-                          <div class="absolute inset-x-0 top-0 transform translate-y-px">
-                            <div class="flex justify-center transform -translate-y-1/2">
+                          <div className="pointer-events-none absolute inset-0 rounded-lg border-2 border-blue-500"></div>
+                          <div className="absolute inset-x-0 top-0 transform translate-y-px">
+                            <div className="flex justify-center transform -translate-y-1/2">
                               <span
-                                class="
+                                className="
                                 inline-flex rounded-full bg-blue-500 
                                 px-6 py-2 text-sm leading-5 
                                 font-semibold tracking-wider uppercase text-white"
@@ -244,116 +244,118 @@ class WelcomePageComponent extends Component {
                               </span>
                             </div>
                           </div>
-                          <div class="bg-white rounded-t-lg px-6 pt-12 pb-10">
+                          <div className="bg-white rounded-t-lg px-6 pt-12 pb-10">
                             <div>
-                              <h2 class="mt-2 text-center text-3xl leading-9 font-semibold font-display text-gray-900 sm:-mx-6">
+                              <h2 className="mt-2 text-center text-3xl leading-9 font-semibold font-display text-gray-900 sm:-mx-6">
                                 Essential
                               </h2>
-                              <div class="mt-4 flex items-center justify-center font-display">
-                                <span class="px-3 flex items-start text-6xl leading-none tracking-tight font-medium text-gray-900 sm:text-7xl">
-                                  <span class="mt-2 mr-1 text-4xl leading-none sm:text-5xl">$</span>
+                              <div className="mt-4 flex items-center justify-center font-display">
+                                <span className="px-3 flex items-start text-6xl leading-none tracking-tight font-medium text-gray-900 sm:text-7xl">
+                                  <span className="mt-2 mr-1 text-4xl leading-none sm:text-5xl">
+                                    $
+                                  </span>
                                   <span>10</span>
                                 </span>
-                                <span class="text-2xl leading-8 font-semibold text-gray-400 tracking-wide sm:text-3xl sm:leading-9">
+                                <span className="text-2xl leading-8 font-semibold text-gray-400 tracking-wide sm:text-3xl sm:leading-9">
                                   /month
                                 </span>
                               </div>
                             </div>
                           </div>
                           <div
-                            class="border-t-2 border-gray-100 rounded-b-lg pt-4 pb-8 px-6 bg-gray-50 sm:px-10 sm:pt-4 sm:pb-10 
+                            className="border-t-2 border-gray-100 rounded-b-lg pt-4 pb-8 px-6 bg-gray-50 sm:px-10 sm:pt-4 sm:pb-10 
                           bg-blue-100 text-sm"
                           >
                             <p className="italic px-8 mt-2 mb-8 text-customBlue-900">
                               Recommended for music blog owner or heavy playlists creator
                             </p>
                             <ul>
-                              <li class="flex items-start">
-                                <div class="flex-shrink-0">
+                              <li className="flex items-start">
+                                <div className="flex-shrink-0">
                                   <svg
-                                    class="h-6 w-6 text-blue-600"
+                                    className="h-6 w-6 text-blue-600"
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                   >
                                     <path
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      stroke-width="2"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
                                       d="M5 13l4 4L19 7"
                                     ></path>
                                   </svg>
                                 </div>
-                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                <p className="ml-3 text-base leading-6 font-medium text-customBackground-900">
                                   Everything from the hobby plan
                                 </p>
                               </li>
-                              <li class="mt-4 flex items-start">
-                                <div class="flex-shrink-0">
+                              <li className="mt-4 flex items-start">
+                                <div className="flex-shrink-0">
                                   <svg
-                                    class="h-6 w-6 text-blue-600"
+                                    className="h-6 w-6 text-blue-600"
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                   >
                                     <path
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      stroke-width="2"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
                                       d="M5 13l4 4L19 7"
                                     ></path>
                                   </svg>
                                 </div>
-                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                <p className="ml-3 text-base leading-6 font-medium text-customBackground-900">
                                   Unlimited playlists
                                 </p>
                               </li>
-                              <li class="mt-4 flex items-start">
-                                <div class="flex-shrink-0">
+                              <li className="mt-4 flex items-start">
+                                <div className="flex-shrink-0">
                                   <svg
-                                    class="h-6 w-6 text-blue-600"
+                                    className="h-6 w-6 text-blue-600"
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                   >
                                     <path
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      stroke-width="2"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
                                       d="M5 13l4 4L19 7"
                                     ></path>
                                   </svg>
                                 </div>
-                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                <p className="ml-3 text-base leading-6 font-medium text-customBackground-900">
                                   Analytics dashboard
                                 </p>
                               </li>
-                              <li class="mt-4 flex items-start">
-                                <div class="flex-shrink-0">
+                              <li className="mt-4 flex items-start">
+                                <div className="flex-shrink-0">
                                   <svg
-                                    class="h-6 w-6 text-blue-600"
+                                    className="h-6 w-6 text-blue-600"
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                   >
                                     <path
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      stroke-width="2"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
                                       d="M5 13l4 4L19 7"
                                     ></path>
                                   </svg>
                                 </div>
-                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                <p className="ml-3 text-base leading-6 font-medium text-customBackground-900">
                                   Weekly/monthly reports
                                 </p>
                               </li>
                             </ul>
-                            <div class="mt-10">
-                              <div class="rounded-lg shadow-md">
+                            <div className="mt-10">
+                              <div className="rounded-lg shadow-md">
                                 <a
                                   href="mailto:guillaume.p.lambert@gmail.com"
-                                  class="block w-full 
+                                  className="block w-full 
                                   text-center rounded-lg 
                                   bg-customBlue-500 hover:bg-customBlue-700 
                                   px-6 py-4 text-xl 
@@ -370,97 +372,97 @@ class WelcomePageComponent extends Component {
                         </div>
                       </div>
                     </div>
-                    <div class="mt-6 mx-auto max-w-md lg:m-0 lg:max-w-none lg:col-start-1 lg:col-end-4 lg:row-start-2 lg:row-end-3">
-                      <div class="h-full flex flex-col rounded-lg shadow-lg overflow-hidden lg:rounded-none lg:rounded-l-lg">
-                        <div class="flex-1 flex flex-col">
-                          <div class="bg-white px-6 pt-12 pb-10">
+                    <div className="mt-6 mx-auto max-w-md lg:m-0 lg:max-w-none lg:col-start-1 lg:col-end-4 lg:row-start-2 lg:row-end-3">
+                      <div className="h-full flex flex-col rounded-lg shadow-lg overflow-hidden lg:rounded-none lg:rounded-l-lg">
+                        <div className="flex-1 flex flex-col">
+                          <div className="bg-white px-6 pt-12 pb-10">
                             <div>
-                              <h2 class="mt-2 text-center text-3xl leading-9 font-semibold font-display text-gray-900">
+                              <h2 className="mt-2 text-center text-3xl leading-9 font-semibold font-display text-gray-900">
                                 Hobby (Free)
                               </h2>
-                              <div class="mt-4 flex items-center justify-center font-display">
-                                <span class="px-3 flex items-start text-6xl leading-none tracking-tight font-medium text-gray-900">
-                                  <span class="mt-2 mr-2 text-4xl">$</span>
+                              <div className="mt-4 flex items-center justify-center font-display">
+                                <span className="px-3 flex items-start text-6xl leading-none tracking-tight font-medium text-gray-900">
+                                  <span className="mt-2 mr-2 text-4xl">$</span>
                                   <span>0</span>
                                 </span>
-                                <span class="text-2xl leading-8 font-semibold text-gray-400 tracking-wide">
+                                <span className="text-2xl leading-8 font-semibold text-gray-400 tracking-wide">
                                   USD
                                 </span>
                               </div>
                             </div>
                           </div>
                           <div
-                            class="border-t-2 border-gray-100 rounded-b-lg pt-4 pb-8 px-6 bg-gray-50 sm:px-10 sm:pt-4 sm:pb-10 
+                            className="border-t-2 border-gray-100 rounded-b-lg pt-4 pb-8 px-6 bg-gray-50 sm:px-10 sm:pt-4 sm:pb-10 
                           bg-blue-100 text-sm"
                           >
                             <p className="italic px-8 mt-2 mb-8 text-customBlue-900">
                               Recommended for individuals and music enthusiasts
                             </p>
                             <ul>
-                              <li class="flex items-start">
-                                <div class="flex-shrink-0">
+                              <li className="flex items-start">
+                                <div className="flex-shrink-0">
                                   <svg
-                                    class="h-6 w-6 text-blue-600"
+                                    className="h-6 w-6 text-blue-600"
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                   >
                                     <path
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      stroke-width="2"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
                                       d="M5 13l4 4L19 7"
                                     ></path>
                                   </svg>
                                 </div>
-                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                <p className="ml-3 text-base leading-6 font-medium text-customBackground-900">
                                   1 music provider (Spotify)
                                 </p>
                               </li>
-                              <li class="mt-4 flex items-start">
-                                <div class="flex-shrink-0">
+                              <li className="mt-4 flex items-start">
+                                <div className="flex-shrink-0">
                                   <svg
-                                    class="h-6 w-6 text-blue-600"
+                                    className="h-6 w-6 text-blue-600"
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                   >
                                     <path
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      stroke-width="2"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
                                       d="M5 13l4 4L19 7"
                                     ></path>
                                   </svg>
                                 </div>
-                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                <p className="ml-3 text-base leading-6 font-medium text-customBackground-900">
                                   Create up to 10 playlists
                                 </p>
                               </li>
-                              <li class="mt-4 flex items-start">
-                                <div class="flex-shrink-0">
+                              <li className="mt-4 flex items-start">
+                                <div className="flex-shrink-0">
                                   <svg
-                                    class="h-6 w-6 text-blue-600"
+                                    className="h-6 w-6 text-blue-600"
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                   >
                                     <path
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      stroke-width="2"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
                                       d="M5 13l4 4L19 7"
                                     ></path>
                                   </svg>
                                 </div>
-                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                <p className="ml-3 text-base leading-6 font-medium text-customBackground-900">
                                   Access level 1 metrics
                                 </p>
                               </li>
                             </ul>
-                            <div class="mt-8">
+                            <div className="mt-8">
                               <div
-                                class="rounded-lg shadow-md block w-full text-center 
+                                className="rounded-lg shadow-md block w-full text-center 
                               rounded-lg bg-white px-6 py-3 text-base leading-6 
                               font-semibold font-display 
                               text-blue-500 hover:text-blue-600 focus:outline-none focus:shadow-outline transition ease-in-out duration-150
@@ -474,99 +476,99 @@ class WelcomePageComponent extends Component {
                         </div>
                       </div>
                     </div>
-                    <div class="mt-6 mx-auto max-w-md lg:m-0 lg:max-w-none lg:col-start-8 lg:col-end-11 lg:row-start-2 lg:row-end-3">
-                      <div class="h-full flex flex-col rounded-lg shadow-lg overflow-hidden lg:rounded-none lg:rounded-r-lg">
-                        <div class="flex-1 flex flex-col">
-                          <div class="bg-white px-6 pt-12 pb-10">
+                    <div className="mt-6 mx-auto max-w-md lg:m-0 lg:max-w-none lg:col-start-8 lg:col-end-11 lg:row-start-2 lg:row-end-3">
+                      <div className="h-full flex flex-col rounded-lg shadow-lg overflow-hidden lg:rounded-none lg:rounded-r-lg">
+                        <div className="flex-1 flex flex-col">
+                          <div className="bg-white px-6 pt-12 pb-10">
                             <div>
-                              <h2 class="mt-2 text-center text-3xl leading-9 font-semibold font-display text-gray-900">
+                              <h2 className="mt-2 text-center text-3xl leading-9 font-semibold font-display text-gray-900">
                                 Professional
                               </h2>
-                              <div class="mt-4 flex items-center justify-center font-display">
-                                <span class="px-3 flex items-start text-6xl leading-none tracking-tight font-medium text-gray-900">
-                                  <span class="mt-2 mr-2 text-4xl">$</span>
+                              <div className="mt-4 flex items-center justify-center font-display">
+                                <span className="px-3 flex items-start text-6xl leading-none tracking-tight font-medium text-gray-900">
+                                  <span className="mt-2 mr-2 text-4xl">$</span>
                                   <span>30</span>
                                 </span>
-                                <span class="text-2xl leading-8 font-semibold text-gray-400 tracking-wide">
+                                <span className="text-2xl leading-8 font-semibold text-gray-400 tracking-wide">
                                   USD
                                 </span>
                               </div>
                             </div>
                           </div>
                           <div
-                            class="border-t-2 border-gray-100 rounded-b-lg pt-4 pb-8 px-6 bg-gray-50 sm:px-10 sm:pt-4 sm:pb-10 
+                            className="border-t-2 border-gray-100 rounded-b-lg pt-4 pb-8 px-6 bg-gray-50 sm:px-10 sm:pt-4 sm:pb-10 
                           bg-blue-100 text-sm"
                           >
                             <p className="italic px-8 mt-2 mb-8 text-customBlue-900">
                               Recommended for festival managers and music producers
                             </p>
                             <ul>
-                              <li class="flex items-start">
-                                <div class="flex-shrink-0">
+                              <li className="flex items-start">
+                                <div className="flex-shrink-0">
                                   <svg
-                                    class="h-6 w-6 text-blue-600"
+                                    className="h-6 w-6 text-blue-600"
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                   >
                                     <path
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      stroke-width="2"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
                                       d="M5 13l4 4L19 7"
                                     ></path>
                                   </svg>
                                 </div>
-                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                <p className="ml-3 text-base leading-6 font-medium text-customBackground-900">
                                   Up to 3 music providers
                                 </p>
                               </li>
-                              <li class="mt-4 flex items-start">
-                                <div class="flex-shrink-0">
+                              <li className="mt-4 flex items-start">
+                                <div className="flex-shrink-0">
                                   <svg
-                                    class="h-6 w-6 text-blue-600"
+                                    className="h-6 w-6 text-blue-600"
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                   >
                                     <path
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      stroke-width="2"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
                                       d="M5 13l4 4L19 7"
                                     ></path>
                                   </svg>
                                 </div>
-                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                <p className="ml-3 text-base leading-6 font-medium text-customBackground-900">
                                   Access to beta features
                                 </p>
                               </li>
-                              <li class="mt-4 flex items-start">
-                                <div class="flex-shrink-0">
+                              <li className="mt-4 flex items-start">
+                                <div className="flex-shrink-0">
                                   <svg
-                                    class="h-6 w-6 text-blue-600"
+                                    className="h-6 w-6 text-blue-600"
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                   >
                                     <path
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      stroke-width="2"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
                                       d="M5 13l4 4L19 7"
                                     ></path>
                                   </svg>
                                 </div>
-                                <p class="ml-3 text-base leading-6 font-medium text-customBackground-900">
+                                <p className="ml-3 text-base leading-6 font-medium text-customBackground-900">
                                   Support
                                 </p>
                               </li>
                             </ul>
-                            <div class="mt-8">
-                              <div class="rounded-lg shadow-md">
+                            <div className="mt-8">
+                              <div className="rounded-lg shadow-md">
                                 <a
                                   href="mailto:guillaume.p.lambert@gmail.com"
-                                  class="block w-full text-center rounded-lg 
+                                  className="block w-full text-center rounded-lg 
                                   bg-white px-6 py-3 text-base leading-6 
                                   font-semibold font-display 
                                   text-blue-500 hover:text-blue-600 focus:outline-none focus:shadow-outline transition ease-in-out duration-150"
@@ -592,8 +594,8 @@ class WelcomePageComponent extends Component {
           </h4>
           <div className="container flex flex-row items-center justify-center">
             <button
-              // class="bg-transparent hover:bg-blue-500 text-blue-100 font-semibold py-2 px-8 border border-solid border-blue-100 hover:border-transparent uppercase rounded-xl flex flex-row items-center justify-center"
-              class="bg-customBlue-500 hover:bg-customBlue-700 text-blue-100 font-semibold py-2 px-8 border border-solid border-transparent uppercase rounded-xl flex flex-row items-center justify-center"
+              // className="bg-transparent hover:bg-blue-500 text-blue-100 font-semibold py-2 px-8 border border-solid border-blue-100 hover:border-transparent uppercase rounded-xl flex flex-row items-center justify-center"
+              className="bg-customBlue-500 hover:bg-customBlue-700 text-blue-100 font-semibold py-2 px-8 border border-solid border-transparent uppercase rounded-xl flex flex-row items-center justify-center"
               onClick={this.redirectToSpotifySignin}
             >
               <FaSpotify />
