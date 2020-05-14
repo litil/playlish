@@ -15,7 +15,10 @@
   <a href="https://playlish.io"><b>https://playlish.io</b></a>
 </p>
 
-<div align="center" style="text-align:center; margin-bottom:40px; margin-top:32px; width:100%;"><img src="./homepage.png" width="720"/></div>
+<div align="center" style="display: flex; flex-direction: row; justify-content: center; align-items:center; text-align:center; margin-bottom:40px; margin-top:32px; width:100%;">
+  <img src="./homepage.png" width="720" style="margin-right: 16px;"/>
+  <img src="./homepage_mobile.png" width="225"/>
+</div>
 
 ## 🤷‍♂️ Where does the idea come from?
 
@@ -50,12 +53,14 @@ As the app has been created with create-react-app, you'll find the same scripts 
 ### Install and start
 
 To run Playlish, simply clone the repository and then run:
+
 ```
 yarn install
 yarn start
 ```
 
 If you prefer use npm run:
+
 ```
 npm install
 npm start
@@ -67,11 +72,13 @@ Then open [http://localhost:3000](http://localhost:3000) to view it in the brows
 ### Run the tests
 
 To run the test, simply run:
+
 ```
 yarn test
 ```
 
 If you prefer use npm run:
+
 ```
 npm test
 ```
@@ -79,11 +86,13 @@ npm test
 ### Build the application
 
 To build the app for production, simply run:
+
 ```
 yarn build
 ```
 
 If you prefer use npm run:
+
 ```
 npm run build
 ```
