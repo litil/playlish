@@ -14,10 +14,10 @@ export const PlaylistStatItem: FunctionComponent<IPlaylistStatItemProps> = ({
   styles
 }) => {
   return (
-    <div className="flex flex-row items-center text-customBlue-300" style={styles}>
+    <div className="flex flex-row items-center text-customBlue-300 mx-8 md:mx-0" style={styles}>
       <span>{icon ? icon : ''}</span>
       <span className="ml-2 mr-2">{`${text}:`}</span>
-      <span className="mr-12">{value}</span>
+      <span className=" md:mr-12">{value}</span>
     </div>
   );
 };

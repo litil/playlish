@@ -179,7 +179,7 @@ class CreatePlaylistPage extends Component {
           ></input>
           {!!playlistName && (
             <button
-              class="
+              className="
               bg-customBlue-500 hover:bg-customBlue-700 
               text-blue-100 font-semibold 
               py-1 px-4 
@@ -226,7 +226,12 @@ class CreatePlaylistPage extends Component {
                 onChange={this.onChangeSearchArtists}
                 value={this.state.artistKeyword}
               ></input>
-              <div className="flex flex-row mt-12">
+              <div
+                className="
+                flex 
+                flex-col md:flex-row
+                 mt-12"
+              >
                 {!!searchedArtists &&
                   searchedArtists.items.map((artist, i) => {
                     return (
@@ -241,7 +246,7 @@ class CreatePlaylistPage extends Component {
               </div>
               {!!selectedArtists && selectedArtists.length > 0 && (
                 <button
-                  class="
+                  className="
                     bg-customBlue-500 hover:bg-customBlue-700 
                     text-blue-100 font-semibold 
                     py-1 px-4 
@@ -271,7 +276,11 @@ class CreatePlaylistPage extends Component {
               >
                 Review and create your playlist
               </h3>
-              <div className="flex flex-row text-customBlue-300 items-center mb-8">
+              <div
+                className="flex 
+                  flex-col md:flex-row 
+                  text-customBlue-300 items-center mb-8"
+              >
                 <PlaylistStatItem icon={<FaMusic />} value={countTracks} text="Tracks" />
                 <PlaylistStatItem icon={<FaClock />} value={playlistDuration} text="Duration" />
                 <PlaylistStatItem icon={<FaFire />} value={playlistPopularity} text="Popularity" />
@@ -293,11 +302,12 @@ class CreatePlaylistPage extends Component {
               )}
 
               <button
-                class="
+                className="
               bg-customBlue-500 hover:bg-customBlue-700 
               text-blue-100 font-semibold 
               py-1 px-4 
-              mt-40 mb-24
+              mt-12 mb-12
+              md:mt-40 md:mb-24
               border border-solid border-transparent 
               rounded-xl 
               flex flex-row items-center justify-center"

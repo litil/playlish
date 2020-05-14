@@ -21,31 +21,22 @@ export const TrackRow: FunctionComponent<ITrackRowProps> = ({ header, track }) =
     track.added_at === 'Added' ? 'Added' : formatDistance(getValidDate(track.added_at), dateNow);
 
   return (
-    // <div
-    //   className={`flex flex-row justify-start items-center py-2 border-b border-gray-800 ${
-    //     header ? 'text-customBlue-300' : ''
-    //   }`}
-    // >
-    //   <span className="TrackRow-title truncate">{trackDetail.name}</span>
-    //   <span className="TrackRow-artist truncate">{artist}</span>
-    //   <span className="TrackRow-album truncate">{album}</span>
-    //   <span className="TrackRow-date">{dateValue}</span>
-    //   <span className="TrackRow-popularity">{trackDetail.popularity}</span>
-    // </div>
-
-    <div className="flex flex-col justify-center items-start border-b border-customBlue-300 w-full py-4">
-      <div className="flex flex-row justify-between w-full">
-        <span className="text-blue-100">{trackDetail.name}</span>
-        <span className="text-customBlue-300 text-sm">{`added ${dateValue}`}</span>
-      </div>
-      <div className="flex flex-row justify-between w-full">
-        <div className="flex flex-row items-center">
+    <div className="flex flex-row justify-between border-b border-customBlue-300 w-full py-4 px-2">
+      <div className="flex flex-col items-start">
+        <span className="text-blue-100 text-left">{trackDetail.name}</span>
+        <div className="flex flex-row items-start">
           <span className="text-customBlue-300 italic text-sm">by&nbsp;</span>
-          <span className="text-customBlue-300 text-sm">{`${artist} •`}</span>
-          <span className="text-customBlue-300 italic text-sm">&nbsp;from&nbsp;</span>
-          <span className="text-customBlue-300 text-sm">{`${album}`}</span>
+          <span className="text-customBlue-300 text-sm text-left">{`${artist} •`}</span>
         </div>
-        <span className="text-customBlue-300 text-sm">{`popularity: ${trackDetail.popularity}`}</span>
+        <div className="flex flex-row items-start">
+          <span className="text-customBlue-300 italic text-sm">from&nbsp;</span>
+          <span className="text-customBlue-300 text-sm text-left">{`${album}`}</span>
+        </div>
+      </div>
+
+      <div className="flex flex-col items-end">
+        <span className="text-customBlue-300 text-sm text-right">{`added ${dateValue}`}</span>
+        <span className="text-customBlue-300 text-sm text-right">{`popularity: ${trackDetail.popularity}`}</span>
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ export const PlaylistDetail: FunctionComponent<IPlaylistDetailProps> = ({
 
   return (
     <div className="flex flex-row items-center justify-center mb-8 mt-12 w-full">
-      <div className="flex flex-col items-center justify-center px-24 w-full">
+      <div className="flex flex-col items-center justify-center px-8 md:px-24 w-full">
         {playlistTracks.map((track: ITrack, i: number) => {
           return <TrackRow track={track} key={`${playlist.name}-track-${i}`} />;
         })}

@@ -15,10 +15,10 @@
   <a href="https://playlish.io"><b>https://playlish.io</b></a>
 </p>
 
-<div align="center" style="display: flex; flex-direction: row; justify-content: center; align-items:center; text-align:center; margin-bottom:40px; margin-top:32px; width:100%;">
-  <img src="./homepage.png" width="720" style="margin-right: 16px;"/>
-  <img src="./homepage_mobile.png" width="225"/>
-</div>
+<p align="middle" style="margin-bottom:40px; margin-top:32px; width:100%;">
+  <img src="./homepage.png" width="540" style="margin-right: 16px;"/>
+  <img src="./homepage_mobile.png" width="168"/>
+</p>
 
 ## 🤷‍♂️ Where does the idea come from?
 
