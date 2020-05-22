@@ -1,4 +1,5 @@
 import React, { FunctionComponent, ReactNode } from 'react';
+import ReactGA from 'react-ga';
 
 interface IAuthContextState {
   user: IUser | undefined;
@@ -62,6 +63,10 @@ const AuthProvider: FunctionComponent<IAuthProviderProps> = children => {
     // save the token to the local storage
     localStorage.setItem('accessToken', token);
     localStorage.setItem('user', JSON.stringify(user));
+    ReactGA.set({
+      userId: user?.id,
+      userName: user?.display_name
+    });
   };
 
   const logout = () => {

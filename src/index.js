@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactGA from 'react-ga';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import { applyMiddleware, compose, createStore } from 'redux';
@@ -12,6 +13,9 @@ import history from './history';
 import rootReducer from './reducers/rootReducer';
 import rootSaga from './sagas/rootSaga';
 import * as serviceWorker from './serviceWorker';
+
+const trackingId = process.env.REACT_APP_GOOGLE_ANALYTICS_ID;
+ReactGA.initialize(trackingId);
 
 // dev tools middleware
 /*
