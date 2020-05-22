@@ -1,6 +1,7 @@
-import { takeEvery, call, put } from 'redux-saga/effects';
-import * as actions from '../actions/actionTypes.js';
 import axios from 'axios';
+import ReactGA from 'react-ga';
+import { call, put, takeEvery } from 'redux-saga/effects';
+import * as actions from '../actions/actionTypes.js';
 import { addTracksPlaylistRequest } from '../actions/addTracksToPlaylistAction';
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
@@ -35,13 +36,7 @@ function createPlaylist(userId, tracks, playlistName, accessToken) {
 function* workerSaga(action) {
   try {
     const { userId, tracks, playlistName, accessToken } = action;
-    const response = yield call(
-      createPlaylist,
-      userId,
-      tracks,
-      playlistName,
-      accessToken
-    );
+    const response = yield call(createPlaylist, userId, tracks, playlistName, accessToken);
 
     if (response.error) throw response.error;
 
@@ -53,6 +48,12 @@ function* workerSaga(action) {
 
     const playlist = response.data;
     yield put(addTracksPlaylistRequest(playlist.id, tracks, accessToken));
+
+    ReactGA.event({
+      category: 'Playlist Creation',
+      action: 'Playlist successfully created',
+      tracksCount: tracks.length
+    });
   } catch (error) {
     yield put({
       type: actions.CREATE_PLAYLIST_FAILURE,

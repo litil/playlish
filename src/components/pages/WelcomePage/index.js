@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactGA from 'react-ga';
 import { IconContext } from 'react-icons';
 import {
   FaCoffee,
@@ -63,17 +64,29 @@ class WelcomePageComponent extends Component {
     const howItWorksRef = React.createRef();
     const pricingRef = React.createRef();
 
-    const handleClickHowItWorks = () =>
+    const handleClickHowItWorks = () => {
       howItWorksRef.current.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
 
-    const handleClickPricing = () =>
+      ReactGA.event({
+        category: 'Welcome Page',
+        action: 'How it works link'
+      });
+    };
+
+    const handleClickPricing = () => {
       pricingRef.current.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
+
+      ReactGA.event({
+        category: 'Welcome Page',
+        action: 'Pricing link'
+      });
+    };
 
     return (
       <div className="min-h-screen flex flex-col pt-4 WelcomePage-container">
