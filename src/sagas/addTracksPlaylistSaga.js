@@ -1,6 +1,7 @@
-import { takeEvery, call, put } from 'redux-saga/effects';
-import * as actions from '../actions/actionTypes.js';
 import axios from 'axios';
+import { call, put, takeEvery } from 'redux-saga/effects';
+import * as actions from '../actions/actionTypes.js';
+import { listPlaylistsRequest } from '../actions/listPlaylistsAction';
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
 export function* addTracksPlaylistWatcherSaga() {
@@ -36,6 +37,8 @@ function* workerSaga(action) {
     );
 
     if (response.error) throw response.error;
+
+    yield put(listPlaylistsRequest(action.userId, action.accessToken));
 
     // dispatch a success action to the store with the list of transactions
     yield put({

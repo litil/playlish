@@ -47,7 +47,7 @@ function* workerSaga(action) {
     });
 
     const playlist = response.data;
-    yield put(addTracksPlaylistRequest(playlist.id, tracks, accessToken));
+    yield put(addTracksPlaylistRequest(playlist.id, tracks, accessToken, userId));
 
     ReactGA.event({
       category: 'Playlist Creation',

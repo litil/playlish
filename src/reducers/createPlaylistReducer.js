@@ -75,6 +75,16 @@ const createPlaylistReducer = (state = initialState, action) => {
         lastUpdated: action.receivedAt
       };
     }
+    case actionTypes.CREATE_PLAYLIST_SUCCESS: {
+      return {
+        ...state,
+        searchedArtists: null,
+        isSearchingArtists: false,
+        selectedArtists: [],
+        isFetchingTracks: false,
+        lastUpdated: action.receivedAt
+      };
+    }
 
     default:
       return state;

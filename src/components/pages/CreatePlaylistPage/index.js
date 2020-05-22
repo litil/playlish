@@ -118,12 +118,19 @@ class CreatePlaylistPage extends Component {
   };
 
   render() {
-    const { searchedArtists, selectedArtists, createdPlaylist, isCreatingPlaylist } = this.props;
+    const {
+      searchedArtists,
+      selectedArtists,
+      createdPlaylist,
+      isCreatingPlaylist,
+      isAddingTracks
+    } = this.props;
     const { playlistName } = this.state;
     const countTracks = this.countTracks();
     const playlistDuration = this.calculateDuration();
     const playlistPopularity = this.calculatePopularity(countTracks);
     const isPlaylistCreated = createdPlaylist && isCreatingPlaylist === false;
+    const areTracksAdded = isPlaylistCreated && isAddingTracks;
 
     const artistsSectionRef = React.createRef();
     const reviewSectionRef = React.createRef();
@@ -141,7 +148,7 @@ class CreatePlaylistPage extends Component {
         block: 'start'
       });
 
-    if (isPlaylistCreated) {
+    if (areTracksAdded) {
       return <Redirect to="/playlists" />;
     }
 
@@ -348,6 +355,7 @@ const mapStateToProps = state => {
   const selectedArtists = createPlaylistReducer ? createPlaylistReducer.selectedArtists : null;
 
   const createdPlaylist = playlistReducer ? playlistReducer.playlist : null;
+  const isAddingTracks = playlistReducer ? playlistReducer.isAddingTracks : null;
   const isCreatingPlaylist = playlistReducer ? playlistReducer.isCreating : false;
 
   return {
@@ -356,6 +364,7 @@ const mapStateToProps = state => {
     isFetchingTracks,
     selectedArtists,
     createdPlaylist,
+    isAddingTracks,
     isCreatingPlaylist
   };
 };
