@@ -22,13 +22,15 @@
     "typescript": "^3.8.3"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@testing-library/react": "10.0.4",
     "@types/react-router": "5.1.7",
     "@types/react-router-dom": "5.1.5",
     "autoprefixer": "^9.7.6",
     "date-fns": "2.13.0",
     "eslint-plugin-prettier": "3.1.3",
-    "husky": "4.2.5",
+    "husky": "^4.2.5",
     "lint-staged": "10.2.2",
     "lodash": "^4.17.15",
     "postcss-cli": "^7.1.1",
@@ -36,6 +38,7 @@
     "react-icons": "3.10.0",
     "react-notifications": "1.6.0",
     "react-tooltip": "4.2.6",
+    "standard-version": "^8.0.0",
     "tailwindcss": "^1.4.4"
   },
   "scripts": {
@@ -44,7 +47,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
-    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
+    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
+    "release": "standard-version"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -54,5 +58,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
 }
