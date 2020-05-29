@@ -106,7 +106,7 @@ class WelcomePageComponent extends Component {
                 className="cursor-pointer text-blue-100 hover:text-customBlue-300 ml-4"
                 onClick={handleClickHowItWorks}
               >
-                How does it works?
+                How does it work?
               </li>
               <li
                 className="cursor-pointer text-blue-100 hover:text-customBlue-300 ml-4"
@@ -155,7 +155,7 @@ class WelcomePageComponent extends Component {
             tracking-widest mb-20
             justify-center items-center WelcomePage-SectionTitle"
             >
-              How does it works?
+              How does it work?
             </h3>
             <IconContext.Provider value={{ color: '#48bb78', size: '3em' }}>
               <div>
