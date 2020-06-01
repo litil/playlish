@@ -22,7 +22,7 @@
 
 ## 🤷‍♂️ Where does the idea come from?
 
-I am huge fan of music festivals. I attend at least 2 festivals a year, up to 5, mostly all during summer. I think what I love the most is listening to the entire lineup to discover new songs so that I can boast to my friends to know this faaaaaaamous group (let's be honest :) ).
+I am a huge fan of music festivals. I attend at least 2 festivals a year, up to 5, mostly all during summer. I think what I love the most is listening to the entire lineup to discover new songs so that I can boast to my friends to know this faaaaaaamous group (let's be honest :) ).
 
 What I was doing for the past few years was searching for every artists on Spotify I've never heard of, then adding their 3 to 5 most famous songs (_also known as top tracks in Spotify_) to a common playlist. Then, I was able to listened to those curated playlists before each festivals.
 
