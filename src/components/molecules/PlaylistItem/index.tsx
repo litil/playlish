@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import type { RouteComponentProps } from 'react-router';
 import './styles.css';
 
 interface IPlaylistItemProps {
