@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import { FaClock, FaFire, FaMusic, FaUser } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { fetchPlaylistDetailRequest } from '../../../actions/fetchPlaylistDetailAction';
-import { PlaylistStatItem } from '../../molecules/';
-import { PlaylistDetail, StatsContainer } from '../../organisms/';
+import { PlaylistStatItem } from '../../molecules/PlaylistStatItem';
+import { PlaylistDetail } from '../../organisms/PlaylistDetail';
+import { StatsContainer } from '../../organisms/StatsContainer';
 
 class PlaylistDetailPage extends Component {
   static propTypes = {

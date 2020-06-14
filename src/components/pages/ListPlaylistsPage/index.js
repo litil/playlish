@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import { FaMusic, FaVolumeUp } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { listPlaylistsRequest } from '../../../actions/listPlaylistsAction';
-import { PlaylistStatItem } from '../../molecules/';
-import { PlaylistsList, StatsContainer } from '../../organisms/';
+import { PlaylistStatItem } from '../../molecules/PlaylistStatItem';
+import { PlaylistsList } from '../../organisms/PlaylistsList';
+import { StatsContainer } from '../../organisms/StatsContainer';
 
 class ListPlaylistsPage extends Component {
   static propTypes = {

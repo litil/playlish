@@ -16,6 +16,9 @@ import logo from '../../../playlish_logo_white.svg';
 import './styles.css';
 
 class WelcomePageComponent extends Component {
+  state = {
+    count: 0
+  }
   /**
    * Redirects the user to the Spotify sign in view.
    * The user will be redirected to the /search view afterwards.
@@ -33,7 +36,7 @@ class WelcomePageComponent extends Component {
     const scopes = scopesArray.join(' ');
     const clientId = '341cbbaadca743aba2dd3f99302f623f';
     const responseType = 'token';
-    const redirectUri = process.env.REACT_APP_SPOTIFY_CALLBACK_URL;
+    const redirectUri = import.meta.env.REACT_APP_SPOTIFY_CALLBACK_URL;
     const state = '123'; //TODO generate a random string
     window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=${responseType}&redirect_uri=${redirectUri}&state=${state}&scope=${encodeURIComponent(
       scopes
@@ -59,6 +62,14 @@ class WelcomePageComponent extends Component {
   mailTo = () => {
     window.location.href = `mailto:guillaume.p.lambert@gmail.com`;
   };
+
+  increment = () => {
+    this.setState(({ count }) => count+1);
+  }
+
+  decrement = () => {
+    this.setState(({ count }) => count-1);
+  }
 
   render() {
     const howItWorksRef = React.createRef();

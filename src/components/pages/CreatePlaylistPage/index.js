@@ -1,4 +1,4 @@
-import { flatten } from 'lodash';
+import flatten from 'lodash.flatten';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { FaCheck, FaChevronCircleRight, FaClock, FaEye, FaFire, FaMusic } from 'react-icons/fa';
@@ -11,7 +11,9 @@ import {
   resetSearchArtistsRequest,
   searchArtistsRequest
 } from '../../../actions/searchArtistsAction';
-import { PlaylistStatItem, SearchedArtist, SelectedArtist } from '../../molecules/';
+import { PlaylistStatItem } from '../../molecules/PlaylistStatItem';
+import { SearchedArtist } from '../../molecules/SearchedArtist';
+import { SelectedArtist } from '../../molecules/SelectedArtist';
 
 class CreatePlaylistPage extends Component {
   static propTypes = {
