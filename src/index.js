@@ -14,7 +14,7 @@ import rootReducer from './reducers/rootReducer';
 import rootSaga from './sagas/rootSaga';
 import * as serviceWorker from './serviceWorker';
 
-const trackingId = process.env.REACT_APP_GOOGLE_ANALYTICS_ID;
+const trackingId = import.meta.env.REACT_APP_GOOGLE_ANALYTICS_ID;
 ReactGA.initialize(trackingId);
 
 // dev tools middleware
@@ -51,3 +51,9 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+// Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
+// Learn more: https://www.snowpack.dev/#hot-module-replacement
+if (import.meta.hot) {
+  import.meta.hot.accept();
+}
