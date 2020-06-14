@@ -1,11 +1,15 @@
 {
+  "include": [
+    "src",
+    "src/components",
+    "types"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "extends": "@snowpack/app-scripts-react/tsconfig.base.json",
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "baseUrl": "./",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -17,9 +21,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
-  },
-  "include": [
-    "src"
-  ]
+    "jsx": "react",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ]
+  }
 }
