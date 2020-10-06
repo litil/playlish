@@ -12,7 +12,7 @@
 <p align="center">
   ⚡️ <i>Discover the fastest playlist generator for Spotify</i> ⚡️
   <br>
-  <a href="https://playlish.io"><b>https://playlish.io</b></a>
+  <a href="https://playlishapp.com/"><b>https://playlishapp.com/</b></a>
 </p>
 
 <p align="middle" style="margin-bottom:40px; margin-top:32px; width:100%;">
