@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { IconContext } from 'react-icons';
 import { FaPlusCircle } from 'react-icons/fa';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import type { RouteComponentProps } from 'react-router';
 import { AuthConsumer } from '../../../contexts/AuthContext';
 import logo from '../../../playlish_logo_white.svg';
 import './styles.css';

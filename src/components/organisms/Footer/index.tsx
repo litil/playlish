@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { IconContext } from 'react-icons';
 import { FaCoffee, FaEnvelope, FaGithub, FaTwitter } from 'react-icons/fa';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import type { RouteComponentProps } from 'react-router';
 
 interface IFooterProps {}
 type props = IFooterProps & RouteComponentProps;
